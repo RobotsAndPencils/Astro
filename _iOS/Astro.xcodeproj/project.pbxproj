@@ -1,0 +1,1212 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3EF778AF613B3385E7BBDF99 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		638C62521BD454FD0004ECE1 /* Astro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638C62471BD454FD0004ECE1 /* Astro.framework */; settings = {ASSET_TAGS = (); }; };
+		638C62571BD454FD0004ECE1 /* AstroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638C62561BD454FD0004ECE1 /* AstroTests.swift */; };
+		638C626E1BD455F30004ECE1 /* RBKHttpStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638C626B1BD455F30004ECE1 /* RBKHttpStatusCode.swift */; settings = {ASSET_TAGS = (); }; };
+		638C626F1BD455F30004ECE1 /* UIView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638C626C1BD455F30004ECE1 /* UIView+AstroGadgets.swift */; settings = {ASSET_TAGS = (); }; };
+		638C62701BD455F30004ECE1 /* UIViewController+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638C626D1BD455F30004ECE1 /* UIViewController+AstroGadgets.swift */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		638C62531BD454FD0004ECE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 638C623E1BD454FD0004ECE1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 638C62461BD454FD0004ECE1;
+			remoteInfo = Astro;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		638C62471BD454FD0004ECE1 /* Astro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Astro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		638C624C1BD454FD0004ECE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		638C62511BD454FD0004ECE1 /* AstroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		638C62561BD454FD0004ECE1 /* AstroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroTests.swift; sourceTree = "<group>"; };
+		638C62581BD454FD0004ECE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		638C626B1BD455F30004ECE1 /* RBKHttpStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBKHttpStatusCode.swift; sourceTree = "<group>"; };
+		638C626C1BD455F30004ECE1 /* UIView+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AstroGadgets.swift"; sourceTree = "<group>"; };
+		638C626D1BD455F30004ECE1 /* UIViewController+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AstroGadgets.swift"; sourceTree = "<group>"; };
+		A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AstroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE10EB59E130D784C4525868 /* Pods-AstroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FB15C2DB1FFCE31DEC4C7201 /* Pods-AstroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		638C62431BD454FD0004ECE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		638C624E1BD454FD0004ECE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				638C62521BD454FD0004ECE1 /* Astro.framework in Frameworks */,
+				3EF778AF613B3385E7BBDF99 /* Pods_AstroTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1B786215890A25760864E5D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE10EB59E130D784C4525868 /* Pods-AstroTests.debug.xcconfig */,
+				FB15C2DB1FFCE31DEC4C7201 /* Pods-AstroTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		638C623D1BD454FD0004ECE1 = {
+			isa = PBXGroup;
+			children = (
+				638C62491BD454FD0004ECE1 /* Astro */,
+				638C62551BD454FD0004ECE1 /* AstroTests */,
+				715BBF31F585B7396C18DFB7 /* Frameworks */,
+				1B786215890A25760864E5D9 /* Pods */,
+				638C62481BD454FD0004ECE1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		638C62481BD454FD0004ECE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				638C62471BD454FD0004ECE1 /* Astro.framework */,
+				638C62511BD454FD0004ECE1 /* AstroTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		638C62491BD454FD0004ECE1 /* Astro */ = {
+			isa = PBXGroup;
+			children = (
+				638C626A1BD455F30004ECE1 /* Classes */,
+				638C62CB1BD45CED0004ECE1 /* Resources */,
+				638C624C1BD454FD0004ECE1 /* Info.plist */,
+			);
+			path = Astro;
+			sourceTree = "<group>";
+		};
+		638C62551BD454FD0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62561BD454FD0004ECE1 /* AstroTests.swift */,
+				638C62581BD454FD0004ECE1 /* Info.plist */,
+				638C62711BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C626A1BD455F30004ECE1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				638C626B1BD455F30004ECE1 /* RBKHttpStatusCode.swift */,
+				638C626C1BD455F30004ECE1 /* UIView+AstroGadgets.swift */,
+				638C626D1BD455F30004ECE1 /* UIViewController+AstroGadgets.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		638C62711BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62721BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62721BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62731BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62731BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62741BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62741BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62751BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62751BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62761BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62761BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62771BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62771BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62781BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62781BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62791BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62791BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C627A1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C627A1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C627B1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C627B1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C627C1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C627C1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C627D1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C627D1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C627E1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C627E1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C627F1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C627F1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62801BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62801BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62811BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62811BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62821BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62821BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62831BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62831BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62841BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62841BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62851BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62851BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62861BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62861BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62871BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62871BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62881BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62881BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62891BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62891BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C628A1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C628A1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C628B1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C628B1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C628C1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C628C1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C628D1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C628D1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C628E1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C628E1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C628F1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C628F1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62901BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62901BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62911BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62911BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62921BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62921BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62931BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62931BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62941BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62941BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62951BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62951BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62961BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62961BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62971BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62971BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62981BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62981BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62991BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62991BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C629A1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C629A1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C629B1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C629B1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C629C1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C629C1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C629D1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C629D1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C629E1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C629E1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C629F1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C629F1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62A01BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62A01BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62A11BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62A11BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62A21BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62A21BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62A31BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62A31BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62A41BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62A41BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62A51BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62A51BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62A61BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62A61BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62A71BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62A71BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62A81BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62A81BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62A91BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62A91BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62AA1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62AA1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62AB1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62AB1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62AC1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62AC1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62AD1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62AD1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62AE1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62AE1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62AF1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62AF1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62B01BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62B01BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62B11BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62B11BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62B21BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62B21BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62B31BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62B31BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62B41BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62B41BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62B51BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62B51BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62B61BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62B61BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62B71BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62B71BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62B81BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62B81BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62B91BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62B91BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62BA1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62BA1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62BB1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62BB1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62BC1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62BC1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62BD1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62BD1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62BE1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62BE1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62BF1BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62BF1BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62C01BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62C01BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62C11BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62C11BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62C21BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62C21BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62C31BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62C31BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62C41BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62C41BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62C51BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62C51BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62C61BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62C61BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62C71BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62C71BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62C81BD4593B0004ECE1 /* AstroTests */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62C81BD4593B0004ECE1 /* AstroTests */ = {
+			isa = PBXGroup;
+			children = (
+				638C62C91BD4593B0004ECE1 /* AstroTe */,
+			);
+			path = AstroTests;
+			sourceTree = "<group>";
+		};
+		638C62C91BD4593B0004ECE1 /* AstroTe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AstroTe;
+			sourceTree = "<group>";
+		};
+		638C62CB1BD45CED0004ECE1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		715BBF31F585B7396C18DFB7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		638C62441BD454FD0004ECE1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		638C62461BD454FD0004ECE1 /* Astro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 638C625B1BD454FD0004ECE1 /* Build configuration list for PBXNativeTarget "Astro" */;
+			buildPhases = (
+				638C62421BD454FD0004ECE1 /* Sources */,
+				638C62431BD454FD0004ECE1 /* Frameworks */,
+				638C62441BD454FD0004ECE1 /* Headers */,
+				638C62451BD454FD0004ECE1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Astro;
+			productName = Astro;
+			productReference = 638C62471BD454FD0004ECE1 /* Astro.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		638C62501BD454FD0004ECE1 /* AstroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 638C625E1BD454FD0004ECE1 /* Build configuration list for PBXNativeTarget "AstroTests" */;
+			buildPhases = (
+				0D427253BAAE5D691A4B482E /* Check Pods Manifest.lock */,
+				638C624D1BD454FD0004ECE1 /* Sources */,
+				638C624E1BD454FD0004ECE1 /* Frameworks */,
+				638C624F1BD454FD0004ECE1 /* Resources */,
+				CD1B2AE6FE564E77C00A8268 /* Embed Pods Frameworks */,
+				34D07D5F95E15478B7D32251 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				638C62541BD454FD0004ECE1 /* PBXTargetDependency */,
+			);
+			name = AstroTests;
+			productName = AstroTests;
+			productReference = 638C62511BD454FD0004ECE1 /* AstroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		638C623E1BD454FD0004ECE1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Robots and Pencils";
+				TargetAttributes = {
+					638C62461BD454FD0004ECE1 = {
+						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = PBH8V487HB;
+					};
+					638C62501BD454FD0004ECE1 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 638C62411BD454FD0004ECE1 /* Build configuration list for PBXProject "Astro" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 638C623D1BD454FD0004ECE1;
+			productRefGroup = 638C62481BD454FD0004ECE1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				638C62461BD454FD0004ECE1 /* Astro */,
+				638C62501BD454FD0004ECE1 /* AstroTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		638C62451BD454FD0004ECE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		638C624F1BD454FD0004ECE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D427253BAAE5D691A4B482E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		34D07D5F95E15478B7D32251 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD1B2AE6FE564E77C00A8268 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		638C62421BD454FD0004ECE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				638C626F1BD455F30004ECE1 /* UIView+AstroGadgets.swift in Sources */,
+				638C626E1BD455F30004ECE1 /* RBKHttpStatusCode.swift in Sources */,
+				638C62701BD455F30004ECE1 /* UIViewController+AstroGadgets.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		638C624D1BD454FD0004ECE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				638C62571BD454FD0004ECE1 /* AstroTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		638C62541BD454FD0004ECE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 638C62461BD454FD0004ECE1 /* Astro */;
+			targetProxy = 638C62531BD454FD0004ECE1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		638C62591BD454FD0004ECE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		638C625A1BD454FD0004ECE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		638C625C1BD454FD0004ECE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Astro/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RNP.Astro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		638C625D1BD454FD0004ECE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Astro/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RNP.Astro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		638C625F1BD454FD0004ECE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE10EB59E130D784C4525868 /* Pods-AstroTests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = AstroTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RNP.AstroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		638C62601BD454FD0004ECE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB15C2DB1FFCE31DEC4C7201 /* Pods-AstroTests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = AstroTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RNP.AstroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		638C62411BD454FD0004ECE1 /* Build configuration list for PBXProject "Astro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				638C62591BD454FD0004ECE1 /* Debug */,
+				638C625A1BD454FD0004ECE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		638C625B1BD454FD0004ECE1 /* Build configuration list for PBXNativeTarget "Astro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				638C625C1BD454FD0004ECE1 /* Debug */,
+				638C625D1BD454FD0004ECE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		638C625E1BD454FD0004ECE1 /* Build configuration list for PBXNativeTarget "AstroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				638C625F1BD454FD0004ECE1 /* Debug */,
+				638C62601BD454FD0004ECE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 638C623E1BD454FD0004ECE1 /* Project object */;
+}

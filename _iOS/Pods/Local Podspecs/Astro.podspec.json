@@ -1,0 +1,25 @@
+{
+  "name": "Astro",
+  "version": "0.1.0",
+  "summary": "A short description of Astro.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/Astro",
+  "license": "MIT",
+  "authors": {
+    "Chad Sykes": "Chad.Sykes@RobotsAndPencils.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/Astro.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "Astro": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}
