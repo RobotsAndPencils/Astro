@@ -32,6 +32,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.platform     = :ios, '9.0'
   s.requires_arc = true
 
-  s.source_files = 'Astro/Classes/**/*.swift'
+  s.source_files = '_iOS/Astro/Classes/**/*.swift'
   s.frameworks = 'UIKit'
 end
