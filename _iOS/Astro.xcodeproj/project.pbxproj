@@ -10,9 +10,9 @@
 		3EF778AF613B3385E7BBDF99 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		638C62521BD454FD0004ECE1 /* Astro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638C62471BD454FD0004ECE1 /* Astro.framework */; settings = {ASSET_TAGS = (); }; };
 		638C62571BD454FD0004ECE1 /* AstroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638C62561BD454FD0004ECE1 /* AstroTests.swift */; };
-		638C626E1BD455F30004ECE1 /* RBKHttpStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638C626B1BD455F30004ECE1 /* RBKHttpStatusCode.swift */; settings = {ASSET_TAGS = (); }; };
-		638C626F1BD455F30004ECE1 /* UIView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638C626C1BD455F30004ECE1 /* UIView+AstroGadgets.swift */; settings = {ASSET_TAGS = (); }; };
-		638C62701BD455F30004ECE1 /* UIViewController+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638C626D1BD455F30004ECE1 /* UIViewController+AstroGadgets.swift */; settings = {ASSET_TAGS = (); }; };
+		638C626E1BD455F30004ECE1 /* HttpStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638C626B1BD455F30004ECE1 /* HttpStatusCode.swift */; settings = {ASSET_TAGS = (); }; };
+		D0C313B883A2284188381004 /* UIView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3141F13B31B057CD6A94E /* UIView+AstroGadgets.swift */; settings = {ASSET_TAGS = (); }; };
+		D0C31D8B85795484A200DFA7 /* UIViewController+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3153BCFB4E15453A0EA64 /* UIViewController+AstroGadgets.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,11 +31,11 @@
 		638C62511BD454FD0004ECE1 /* AstroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		638C62561BD454FD0004ECE1 /* AstroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroTests.swift; sourceTree = "<group>"; };
 		638C62581BD454FD0004ECE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		638C626B1BD455F30004ECE1 /* RBKHttpStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBKHttpStatusCode.swift; sourceTree = "<group>"; };
-		638C626C1BD455F30004ECE1 /* UIView+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AstroGadgets.swift"; sourceTree = "<group>"; };
-		638C626D1BD455F30004ECE1 /* UIViewController+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AstroGadgets.swift"; sourceTree = "<group>"; };
+		638C626B1BD455F30004ECE1 /* HttpStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpStatusCode.swift; sourceTree = "<group>"; };
 		A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AstroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE10EB59E130D784C4525868 /* Pods-AstroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D0C3141F13B31B057CD6A94E /* UIView+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AstroGadgets.swift"; sourceTree = "<group>"; };
+		D0C3153BCFB4E15453A0EA64 /* UIViewController+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AstroGadgets.swift"; sourceTree = "<group>"; };
 		FB15C2DB1FFCE31DEC4C7201 /* Pods-AstroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,9 +111,8 @@
 		638C626A1BD455F30004ECE1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				638C626B1BD455F30004ECE1 /* RBKHttpStatusCode.swift */,
-				638C626C1BD455F30004ECE1 /* UIView+AstroGadgets.swift */,
-				638C626D1BD455F30004ECE1 /* UIViewController+AstroGadgets.swift */,
+				D0C31C22BC81ABFB63101C97 /* Categories */,
+				638C626B1BD455F30004ECE1 /* HttpStatusCode.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -844,6 +843,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D0C31C22BC81ABFB63101C97 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				D0C3141F13B31B057CD6A94E /* UIView+AstroGadgets.swift */,
+				D0C3153BCFB4E15453A0EA64 /* UIViewController+AstroGadgets.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1002,9 +1010,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				638C626F1BD455F30004ECE1 /* UIView+AstroGadgets.swift in Sources */,
-				638C626E1BD455F30004ECE1 /* RBKHttpStatusCode.swift in Sources */,
-				638C62701BD455F30004ECE1 /* UIViewController+AstroGadgets.swift in Sources */,
+				638C626E1BD455F30004ECE1 /* HttpStatusCode.swift in Sources */,
+				D0C313B883A2284188381004 /* UIView+AstroGadgets.swift in Sources */,
+				D0C31D8B85795484A200DFA7 /* UIViewController+AstroGadgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

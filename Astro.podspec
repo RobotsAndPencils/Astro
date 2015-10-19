@@ -28,8 +28,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   }
   s.source           = { :git => "https://github.com/RobotsAndPencils/Astro.git", :tag => s.version.to_s }
 
-  s.ios.deployment_target = '9.0'
-  s.platform     = :ios, '9.0'
+  s.ios.deployment_target = '8.0'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
 
   s.source_files = '_iOS/Astro/Classes/**/*.swift'
