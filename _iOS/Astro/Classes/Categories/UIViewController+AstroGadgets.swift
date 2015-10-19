@@ -18,14 +18,14 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
     
     // MARK: General
     
-    /** 
+    /**
     Ensure that a view controller is added properly to another view controller
     */
-    func addChildViewController(childViewController: UIViewController, inContainer view: UIView) {
+    public func addChildViewController(childViewController: UIViewController, inContainer view: UIView) {
         self.addChildViewController(childViewController)
         view.addSubview(childViewController.view)
         childViewController.didMoveToParentViewController(self)
@@ -33,14 +33,14 @@ extension UIViewController {
 }
 
 
-extension UIViewController {
+public extension UIViewController {
     
     // MARK: Alerts
     
     /**
     Shorten way to prompt an alert
     */
-    func quickAlert(title title: String?, message: String?) {
+    public func quickAlert(title title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         presentViewController(alert, animated: true, completion: nil)
@@ -49,7 +49,7 @@ extension UIViewController {
     /**
     Prompts an alert indicating that the feature has not been implemented
     */
-    func featureNotImplemented() {
+    public func featureNotImplemented() {
         NSLog("FEATURE NOT IMPLEMENTED")
         quickAlert(title: "Coming Soon", message: "Feature Not Implemented Yet.")
     }

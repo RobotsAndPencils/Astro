@@ -20,7 +20,7 @@
 
 import Foundation
 
-@objc enum HTTPStatusCode: Int {
+@objc public enum HTTPStatusCode: Int {
     case InvalidCode = -001
     
     // Informational - 1xx codes
@@ -75,7 +75,7 @@ import Foundation
     
     // Mark: Properties
     
-    var description: String {
+    public var description: String {
         switch self {
             
         case .Code100Continue: return "Continue"
@@ -125,7 +125,7 @@ import Foundation
     
     // MARK: Lifecycle
     
-    init(rawValue: Int?, defaultStatusCode: HTTPStatusCode) {
+    public init(rawValue: Int?, defaultStatusCode: HTTPStatusCode) {
         if (rawValue == nil) {
             self = defaultStatusCode
         } else {
@@ -135,24 +135,24 @@ import Foundation
     
     // MARK: Public
     
-    func isInformationStatus() -> Bool {
+    public func isInformationStatus() -> Bool {
         return rawValue >= 100 && rawValue < 200
     }
     
-    func isSuccessfulStatus() -> Bool {
+    public func isSuccessfulStatus() -> Bool {
         return rawValue >= 200 && rawValue < 300
     }
     
-    func isRedirectionStatus() -> Bool {
+    public func isRedirectionStatus() -> Bool {
         return rawValue >= 300 && rawValue < 400
     }
-    
+    public
     func isClientErrorStatus() -> Bool {
         
         return rawValue >= 400 && rawValue < 500
     }
     
-    func isServerErrorStatus() -> Bool {
+    public func isServerErrorStatus() -> Bool {
         return rawValue >= 500
     }
     
