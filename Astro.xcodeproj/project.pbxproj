@@ -92,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				638C626A1BD455F30004ECE1 /* Classes */,
-				638C62CB1BD45CED0004ECE1 /* Resources */,
 				638C624C1BD454FD0004ECE1 /* Info.plist */,
 			);
 			path = Astro;
@@ -114,13 +113,6 @@
 				638C626B1BD455F30004ECE1 /* HttpStatusCode.swift */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		638C62CB1BD45CED0004ECE1 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		715BBF31F585B7396C18DFB7 /* Frameworks */ = {

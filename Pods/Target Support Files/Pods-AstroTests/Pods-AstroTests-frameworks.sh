@@ -52,10 +52,12 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'Pods-AstroTests/Astro.framework'
   install_framework 'Pods-AstroTests/Nimble.framework'
   install_framework 'Pods-AstroTests/Quick.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'Pods-AstroTests/Astro.framework'
   install_framework 'Pods-AstroTests/Nimble.framework'
   install_framework 'Pods-AstroTests/Quick.framework'
 fi
