@@ -1,6 +1,6 @@
 //
 //  HTTPStatusCode.swift
-//  PriorityMoments
+//  Astro
 //
 //  Created by Dominic Pepin on 2015-08-28.
 //  Copyright (c) 2015 Robots and Pencils. All rights reserved.
@@ -146,9 +146,7 @@ import Foundation
     public func isRedirectionStatus() -> Bool {
         return rawValue >= 300 && rawValue < 400
     }
-    public
-    func isClientErrorStatus() -> Bool {
-        
+    public func isClientErrorStatus() -> Bool {
         return rawValue >= 400 && rawValue < 500
     }
     

@@ -1,6 +1,6 @@
 //
 //  UIViewControllerAstroGadgets.swift
-//  PriorityMoments
+//  Astro
 //
 //  Created by Dominic Pepin on 2015-04-29.
 //  Copyright (c) 2015 Robots and Pencils Inc. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  UIView+AstroGadgets.swift
-//  PriorityMoments
+//  Astro
 //
 //  Created by Dominic Pepin on 2015-09-30.
 //  Copyright © 2015 Robots and Pencils. All rights reserved.
