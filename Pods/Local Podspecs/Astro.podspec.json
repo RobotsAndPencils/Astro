@@ -19,15 +19,15 @@
     "ios": "8.0"
   },
   "requires_arc": true,
-  "source_files": "Astro/Classes/**/*.swift",
+  "source_files": "Astro/**/*.swift",
   "subspecs": [
     {
       "name": "Networking",
-      "source_files": "Astro/Classes/Networking/**/*.swift"
+      "source_files": "Astro/Networking/**/*.swift"
     },
     {
       "name": "UI",
-      "source_files": "Astro/Classes/UI/**/*.swift",
+      "source_files": "Astro/UI/**/*.swift",
       "frameworks": "UIKit"
     }
   ]
