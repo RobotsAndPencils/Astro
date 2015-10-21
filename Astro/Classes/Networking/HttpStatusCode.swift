@@ -22,11 +22,11 @@ import Foundation
 
 @objc public enum HTTPStatusCode: Int {
     case InvalidCode = -001
-    
+
     // Informational - 1xx codes
     case Code100Continue = 100
     case Code101SwitchingProtocols = 101
-    
+
     // Successful - 2xx codes
     case Code200OK = 200
     case Code201Created = 201
@@ -35,7 +35,7 @@ import Foundation
     case Code204NoContent = 204
     case Code205ResetContent = 205
     case Code206PartialContent = 206
-    
+
     // Redirection - 3xx codes
     case Code300MultipleChoices = 300
     case Code301MovedPermanently = 301
@@ -44,7 +44,7 @@ import Foundation
     case Code304NotModified = 304
     case Code305UseProxy = 305
     case Code307TemporaryRedirect = 307
-    
+
     // Client errors - 4xx codes
     case Code400BadRequest = 400
     case Code401Unauthorized = 401
@@ -64,7 +64,7 @@ import Foundation
     case Code415UnsupportedMediaType = 415
     case Code416RequestedRangeNotSatisfiable = 416
     case Code417ExpectationFailed = 417
-    
+
     // Server errors - 5xx codes
     case Code500InternalServerError = 500
     case Code501NotImplemented = 501
@@ -72,12 +72,12 @@ import Foundation
     case Code503ServiceUnavailable = 503
     case Code504GatewayTimeout = 504
     case Code505HTTPVersionNotSupported = 505
-    
+
     // Mark: Properties
-    
+
     public var description: String {
         switch self {
-            
+
         case .Code100Continue: return "Continue"
         case .Code101SwitchingProtocols: return "Switching Protocols"
         case .Code200OK: return "OK"
@@ -122,49 +122,36 @@ import Foundation
         default: return "Invalid Status Code"
         }
     }
-    
+
     // MARK: Lifecycle
-    
-    public init(rawValue: Int?, defaultStatusCode: HTTPStatusCode) {
-        if (rawValue == nil) {
-            self = defaultStatusCode
+
+    public init(intValue: Int?) {
+        if let intValue = intValue, statusCode = HTTPStatusCode(rawValue: intValue) {
+            self = statusCode
         } else {
-            self = HTTPStatusCode.create(rawValue!, defaultStatusCode: defaultStatusCode)
+            self = .InvalidCode
         }
     }
-    
+
     // MARK: Public
-    
+
     public func isInformationStatus() -> Bool {
         return rawValue >= 100 && rawValue < 200
     }
-    
+
     public func isSuccessfulStatus() -> Bool {
         return rawValue >= 200 && rawValue < 300
     }
-    
+
     public func isRedirectionStatus() -> Bool {
         return rawValue >= 300 && rawValue < 400
     }
+
     public func isClientErrorStatus() -> Bool {
         return rawValue >= 400 && rawValue < 500
     }
-    
+
     public func isServerErrorStatus() -> Bool {
         return rawValue >= 500
-    }
-    
-    // MARK: Private
-    
-    private static func create(rawValue: Int?, defaultStatusCode: HTTPStatusCode) -> HTTPStatusCode {
-        if rawValue == nil {
-            return defaultStatusCode
-        }
-        
-        if let statusCode = HTTPStatusCode(rawValue: rawValue!) {
-            return statusCode
-        } else {
-            return defaultStatusCode
-        }
     }
 }

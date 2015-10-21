@@ -1,9 +1,7 @@
 PODS:
   - Astro (0.1.0):
-    - Astro/Logging (= 0.1.0)
     - Astro/Networking (= 0.1.0)
     - Astro/UI (= 0.1.0)
-  - Astro/Logging (0.1.0)
   - Astro/Networking (0.1.0)
   - Astro/UI (0.1.0)
   - Nimble (2.0.0)
@@ -19,7 +17,7 @@ EXTERNAL SOURCES:
     :path: .
 
 SPEC CHECKSUMS:
-  Astro: 75a7c1fc187c88e4d52ab833c99c4c9ade9d6af6
+  Astro: d2e22042013a438590d36094a770bd1f5957eb84
   Nimble: 472e75466819eb8c06299233e87c694a9b51328a
   Quick: 906d8aa995ee0afa96f1f7f01170f40fccfa5898
 

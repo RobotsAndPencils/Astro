@@ -22,10 +22,6 @@
   "source_files": "Astro/Classes/**/*.swift",
   "subspecs": [
     {
-      "name": "Logging",
-      "source_files": "Astro/Classes/Logging/**/*.swift"
-    },
-    {
       "name": "Networking",
       "source_files": "Astro/Classes/Networking/**/*.swift"
     },
