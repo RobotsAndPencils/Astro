@@ -125,11 +125,11 @@ import Foundation
     
     // MARK: Lifecycle
     
-    public init(rawValue: Int?, defaultStatusCode: HTTPStatusCode) {
-        if (rawValue == nil) {
-            self = defaultStatusCode
+    public init(intValue: Int?) {
+        if let intValue = intValue, statusCode = HTTPStatusCode(rawValue: intValue){
+            self = statusCode
         } else {
-            self = HTTPStatusCode.create(rawValue!, defaultStatusCode: defaultStatusCode)
+            self = .InvalidCode
         }
     }
     
@@ -152,19 +152,5 @@ import Foundation
     
     public func isServerErrorStatus() -> Bool {
         return rawValue >= 500
-    }
-    
-    // MARK: Private
-    
-    private static func create(rawValue: Int?, defaultStatusCode: HTTPStatusCode) -> HTTPStatusCode {
-        if rawValue == nil {
-            return defaultStatusCode
-        }
-        
-        if let statusCode = HTTPStatusCode(rawValue: rawValue!) {
-            return statusCode
-        } else {
-            return defaultStatusCode
-        }
     }
 }
