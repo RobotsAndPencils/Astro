@@ -32,5 +32,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.requires_arc = true
 
   s.source_files = 'Astro/Classes/**/*.swift'
-  s.frameworks = 'UIKit'
+  
+  s.subspec 'Logging' do | log |
+    log.source_files = 'Astro/Classes/Logging/**/*.swift'
+  end
+  
+  s.subspec 'Networking' do | net |
+    net.source_files = 'Astro/Classes/Networking/**/*.swift'
+  end
+
+  s.subspec 'UI' do | ui |
+    ui.source_files = 'Astro/Classes/UI/**/*.swift'
+    ui.frameworks = 'UIKit'
+  end
+  
 end
