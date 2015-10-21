@@ -108,8 +108,8 @@
 		2E934C6B173CE2849F181E64 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				2E934BF4A4C69C31C5403859 /* UI */,
 				2E934444499338145ADBF923 /* Networking */,
+				2E934BF4A4C69C31C5403859 /* UI */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
