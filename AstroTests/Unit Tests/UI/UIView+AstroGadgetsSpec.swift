@@ -18,8 +18,8 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                 // Arrange
                 view.frame = CGRectMake(1, 2, 3, 4)
             }
-            context("When updating a frame property") {
-                it("Then the frameSize should match") {
+            context("when updating a frame property") {
+                it("then the frameSize should match") {
                     // Arrange
                     let expectedSize = CGSizeMake(23, 45)
                     // Act
@@ -28,7 +28,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     expect(view.frameSize).to(equal(expectedSize))
                     expect(view.frame.size).to(equal(expectedSize))
                 }
-                it ("Then the frameHeight should match") {
+                it ("then the frameHeight should match") {
                     // Arrange
                     let expectedHeight:CGFloat = 12.0
                     // Act
@@ -37,7 +37,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     expect(view.frameHeight).to(equal(expectedHeight))
                     expect(view.frame.size.height).to(equal(expectedHeight))
                 }
-                it ("Then the frameWidth should match") {
+                it ("then the frameWidth should match") {
                     // Arrange
                     let expectedWidth:CGFloat = 347.0
                     // Act
@@ -46,7 +46,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     expect(view.frameWidth).to(equal(expectedWidth))
                     expect(view.frame.size.width).to(equal(expectedWidth))
                 }
-                it ("Then the frameOrigin should match") {
+                it ("then the frameOrigin should match") {
                     // Arrange
                     let expectedOrigin = CGPointMake(67,89)
                     // Act
@@ -55,7 +55,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     expect(view.frameOrigin).to(equal(expectedOrigin))
                     expect(view.frame.origin).to(equal(expectedOrigin))
                 }
-                it ("Then the frameX should match") {
+                it ("then the frameX should match") {
                     // Arrange
                     let expectedX:CGFloat = 567.0
                     // Act
@@ -64,7 +64,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     expect(view.frameX).to(equal(expectedX))
                     expect(view.frame.origin.x).to(equal(expectedX))
                 }
-                it ("Then the frameY should match") {
+                it ("then the frameY should match") {
                     // Arrange
                     let expectedY:CGFloat = 678.0
                     // Act
