@@ -7,7 +7,7 @@ use_frameworks!
 source 'https://github.com/CocoaPods/Specs.git'
 #pod 'ExternalPodDependency'
 
-source 'git@github.com:RobotsAndPencils/RNPPrivateSpecs.git'
+source 'https://github.com/RobotsAndPencils/Astro'
 #pod 'RobotsAndPencilsPodDependency'
 
 target 'AstroTests', :exclusive => true do
