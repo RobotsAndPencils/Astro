@@ -26,7 +26,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     view.frameSize = expectedSize
                     // Assert
                     expect(view.frameSize).to(equal(expectedSize))
-                    expect(view.frameSize).to(equal(view.frame.size))
+                    expect(view.frame.size).to(equal(expectedSize))
                 }
                 it ("Then the frameHeight should match") {
                     // Arrange
@@ -35,7 +35,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     view.frameHeight = expectedHeight
                     // Assert
                     expect(view.frameHeight).to(equal(expectedHeight))
-                    expect(view.frameHeight).to(equal(view.frame.size.height))
+                    expect(view.frame.size.height).to(equal(expectedHeight))
                 }
                 it ("Then the frameWidth should match") {
                     // Arrange
@@ -44,7 +44,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     view.frameWidth = expectedWidth
                     // Assert
                     expect(view.frameWidth).to(equal(expectedWidth))
-                    expect(view.frameWidth).to(equal(view.frame.size.width))
+                    expect(view.frame.size.width).to(equal(expectedWidth))
                 }
                 it ("Then the frameOrigin should match") {
                     // Arrange
@@ -53,7 +53,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     view.frameOrigin = expectedOrigin
                     // Assert
                     expect(view.frameOrigin).to(equal(expectedOrigin))
-                    expect(view.frameOrigin).to(equal(view.frame.origin))
+                    expect(view.frame.origin).to(equal(expectedOrigin))
                 }
                 it ("Then the frameX should match") {
                     // Arrange
@@ -62,7 +62,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     view.frameX = expectedX
                     // Assert
                     expect(view.frameX).to(equal(expectedX))
-                    expect(view.frameX).to(equal(view.frame.origin.x))
+                    expect(view.frame.origin.x).to(equal(expectedX))
                 }
                 it ("Then the frameY should match") {
                     // Arrange
@@ -71,7 +71,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                     view.frameY = expectedY
                     // Assert
                     expect(view.frameY).to(equal(expectedY))
-                    expect(view.frameY).to(equal(view.frame.origin.y))
+                    expect(view.frame.origin.y).to(equal(expectedY))
                 }
             }
         }

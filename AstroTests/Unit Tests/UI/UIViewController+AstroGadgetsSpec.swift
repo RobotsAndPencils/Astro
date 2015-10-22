@@ -29,7 +29,7 @@ class UIViewController_AstroGadgetsSpec: QuickSpec {
                 
                 it("Then the child view controller should have been added") {
                     // Assert
-                    expect(parentViewController.view.subviews[0]).to(equal(childViewController.view))
+                    expect(parentViewController.childViewControllers[0]).to(equal(childViewController))
                 }
                 it("Then the child view controller view should be added to the given view") {
                     // Assert
