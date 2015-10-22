@@ -21,9 +21,31 @@ use_frameworks!
 pod 'Astro'
 ```
 
+Or if you don't want the whole enchilada then grab one of the subspecs:
+
+```
+pod 'Astro/UI'
+pod 'Astro/Networking'
+```
+
+## Subspec Management
+As the library matures, more classes will be introduced to the project and it would be nice to keep it from
+becoming a mish-mash of things. One of the ways we intend to do this is to cluster the code in directories
+by functionality using pod subspecs. That way if a project just needs one or two things they can grab that
+subset easily.
+
+So if you want to add some classes in, think about the existing subspecs and decide if it belongs with one
+or if it should have a new home. If you don't know then please ask.
+
+For now the library has the following subspecs:
+
+- Logging: A super-licious logging framework
+- Networking : HTTPStatusCodes and hopefully more
+- UI : Common UIKit extensions
+
 ## Modules
 
-### Logging 
+### Logging
 
 `Log` is a structure that streamlines the printing of log messages.
 
@@ -36,7 +58,7 @@ However, if you want to see more information you can override the logging level 
 ```swift
 #if DEBUG
   Log.level = .Debug
-#else 
+#else
   Log.level = .Silent
 #endif
 
@@ -69,3 +91,4 @@ Follow Robots & Pencils on Twitter ([@robotsNpencils](https://twitter.com/robots
 
 - [Chad Sykes](http://github.com/csykes)
 - [Dominic Pepin](http://github.com/dompepin) 
+- [Michael Beauregard](http://github.com/mjbeauregard) 
