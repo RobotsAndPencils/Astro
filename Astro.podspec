@@ -8,9 +8,10 @@
 
 Pod::Spec.new do |s|
   s.name             = "Astro"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "A RoboPod containing a small collection of utilities for project reuse"
-  s.homepage         = "https://github.com/RobotsAndPencils/Astro"
+  s.homepage         = "https://RobotsAndPencils.com"
+# s.actualHomepage   = "https://github.com/RobotsAndPencils/Astro"  <-- we needed a publicly accessible s.homepage or else we couldn't publish to our own repository
   s.license      = {
     :type => 'MIT',
     :text => <<-LICENSE
