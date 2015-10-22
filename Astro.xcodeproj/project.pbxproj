@@ -15,6 +15,8 @@
 		2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9348C107F407A4402AB69F /* UIViewController+AstroGadgetsSpec.swift */; };
 		3EF778AF613B3385E7BBDF99 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		638C62521BD454FD0004ECE1 /* Astro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638C62471BD454FD0004ECE1 /* Astro.framework */; settings = {ASSET_TAGS = (); }; };
+		B69726CE1BD9162F0047EEB9 /* LoggerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69726CD1BD9162F0047EEB9 /* LoggerSpec.swift */; settings = {ASSET_TAGS = (); }; };
+		D0C3176529877E28CFD27E77 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C31A257874127AD224738D /* Log.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		638C62581BD454FD0004ECE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AstroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE10EB59E130D784C4525868 /* Pods-AstroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B69726CD1BD9162F0047EEB9 /* LoggerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerSpec.swift; sourceTree = "<group>"; };
+		D0C31A257874127AD224738D /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		FB15C2DB1FFCE31DEC4C7201 /* Pods-AstroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,13 +93,6 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		2E934A8A15B7B054581321D1 /* Logging */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Logging;
-			sourceTree = "<group>";
-		};
 		2E934BF4A4C69C31C5403859 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +107,7 @@
 			children = (
 				2E934444499338145ADBF923 /* Networking */,
 				2E934BF4A4C69C31C5403859 /* UI */,
+				D0C31C4EC3779F933478EE7E /* Logging */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -145,10 +143,10 @@
 		638C62491BD454FD0004ECE1 /* Astro */ = {
 			isa = PBXGroup;
 			children = (
-				2E934A8A15B7B054581321D1 /* Logging */,
+				638C624C1BD454FD0004ECE1 /* Info.plist */,
+				D0C315CE2C98B7DA62D463A3 /* Logging */,
 				2E934EE07BB108477AD37BC1 /* Networking */,
 				2E934A2D9C9120E1AF7D0556 /* UI */,
-				638C624C1BD454FD0004ECE1 /* Info.plist */,
 			);
 			path = Astro;
 			sourceTree = "<group>";
@@ -168,6 +166,22 @@
 				A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0C315CE2C98B7DA62D463A3 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				D0C31A257874127AD224738D /* Log.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
+		D0C31C4EC3779F933478EE7E /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				B69726CD1BD9162F0047EEB9 /* LoggerSpec.swift */,
+			);
+			path = Logging;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +345,7 @@
 				2E9345EE0AEB18FB859A8D06 /* UIView+AstroGadgets.swift in Sources */,
 				2E934B8A416AF015C76347DC /* UIViewController+AstroGadgets.swift in Sources */,
 				2E93487124A5E044E0199250 /* HttpStatusCode.swift in Sources */,
+				D0C3176529877E28CFD27E77 /* Log.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +355,7 @@
 			files = (
 				2E93419DA70B2DFA04A8D50E /* HttpStatusCodeSpec.swift in Sources */,
 				2E9342BC5B4FE98B693084A6 /* UIView+AstroGadgetsSpec.swift in Sources */,
+				B69726CE1BD9162F0047EEB9 /* LoggerSpec.swift in Sources */,
 				2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
