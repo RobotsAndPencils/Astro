@@ -25,6 +25,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.authors           = { 
     "Chad Sykes" => "Chad.Sykes@RobotsAndPencils.com",
     "Dominic Pepin" => "Dominic.Pepin@RobotsAndPencils.com" 
+    "Michael Beaureguard" => "Michael.Beauregard@RobotsAndPencils.com" 
   }
   s.source           = { :git => "https://github.com/RobotsAndPencils/Astro.git", :tag => s.version.to_s }
 

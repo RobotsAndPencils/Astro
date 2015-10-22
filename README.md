@@ -53,3 +53,4 @@ Follow Robots & Pencils on Twitter ([@robotsNpencils](https://twitter.com/robots
 
 - [Chad Sykes](http://github.com/csykes)
 - [Dominic Pepin](http://github.com/dompepin) 
+- [Michael Beauregard](http://github.com/mjbeauregard) 
