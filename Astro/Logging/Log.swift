@@ -28,7 +28,7 @@ public struct Log {
         case Silent
     }
     
-    public struct StandardLogger : Logger {
+    public struct BasicLogger: Logger {
         public func log(level: Level, message: String) {
             var prefix = ""
             
@@ -53,7 +53,7 @@ public struct Log {
     }
     
     public static var level = Level.Error
-    public static var logger: Logger = StandardLogger()
+    public static var logger: Logger = BasicLogger()
     
     public static func debug(@autoclosure msg: () -> String) {
         if level.rawValue <= Level.Debug.rawValue {
