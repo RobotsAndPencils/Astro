@@ -30,8 +30,8 @@ pod 'Astro/Networking'
 
 ## Subspec Management
 As the library matures, more classes will be introduced to the project and it would be nice to keep it from
-becoming a mish-mash of things. One of the ways we intend to do this is to cluster the code in directories 
-by functionality using pod subspecs. That way if a project just needs one or two things they can grab that 
+becoming a mish-mash of things. One of the ways we intend to do this is to cluster the code in directories
+by functionality using pod subspecs. That way if a project just needs one or two things they can grab that
 subset easily.
 
 So if you want to add some classes in, think about the existing subspecs and decide if it belongs with one
@@ -39,9 +39,47 @@ or if it should have a new home. If you don't know then please ask.
 
 For now the library has the following subspecs:
 
-- UI : Common UIKit extensions
+- Logging: A super-licious logging framework
 - Networking : HTTPStatusCodes and hopefully more
-- Logging (coming soon) : A super-licious logging framework by MB
+- UI : Common UIKit extensions
+
+## Modules
+
+### Logging
+
+`Log` is a structure that streamlines the printing of log messages.
+
+Out of the box, you will be able to log error messages.
+```swift
+Log.error("I want to log an error message with \(something)")
+```
+
+However, if you want to see more information you can override the logging level as you wish. For example:
+```swift
+#if DEBUG
+  Log.level = .Debug
+#else
+  Log.level = .Silent
+#endif
+
+Log.info("I want to log an info message with \(something)")
+Log.debug("I want to log a debug message with \(somethingElse)")
+Log.warning("I want to log a warning message with \(somethingOtherThanElse)")
+```
+
+You can also write a custom logger as long as it conforms to the `Logger` protocol.
+```
+Log.logger = MyCustomLogger()
+```
+
+### Networking
+
+`HTTPStatusCode` is an enum that allows you to clarify status codes returned by your server.
+
+### UI
+
+Contains a few UI extensions to help you write cleaner code.
+
 
 ## Contact
 
