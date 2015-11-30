@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "EA0AD1D30D67000679A080928AB53D0EBB4FFEE8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "EA0AD1D30D67000679A080928AB53D0EBB4FFEE8" : 0,
+    "03E5A9FBA49213F01F25063EC3D8735FAEA889A8" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E03FA40B-FF62-4835-9509-2F0115ABE718",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "EA0AD1D30D67000679A080928AB53D0EBB4FFEE8" : "Astro\/",
+    "03E5A9FBA49213F01F25063EC3D8735FAEA889A8" : "TExMobile\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Astro",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Astro.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/RobotsAndPencils\/TExMobile.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "03E5A9FBA49213F01F25063EC3D8735FAEA889A8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/RobotsAndPencils\/Astro.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EA0AD1D30D67000679A080928AB53D0EBB4FFEE8"
+    }
+  ]
+}
