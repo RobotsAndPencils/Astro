@@ -13,6 +13,7 @@ import Nimble
 class KeychainAccessSpec: QuickSpec {
     
     override func spec() {
+        Log.level = Log.Level.Info
         
         describe("A keychain") {
             let keychain = KeychainAccess()
@@ -22,6 +23,12 @@ class KeychainAccessSpec: QuickSpec {
                 keychain.delete(testKey)
             }
             
+            it("returns nil for retrieving a key that doesn't exist") {
+                testKey = "notValidKey"
+                let storedString = keychain.getString(testKey)
+                expect(storedString).to(beNil())
+            }
+
             it("can store and retrieve a string") {
                 testKey = "string"
                 let testString = "something really boring"

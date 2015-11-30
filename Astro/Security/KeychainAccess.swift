@@ -45,10 +45,14 @@ class KeychainAccess {
         var result: AnyObject?
         let status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(query, UnsafeMutablePointer($0)) }
         
-        switch status {
-        case errSecSuccess:
-            return result as? NSData
-        default:
+        if status == errSecSuccess {
+            guard let data = result as? NSData else {
+                Log.warn("Failed to fetch data in the correct NSData format for the key from keychain with status=\(status). Attempted to get value for key [\(key)]")
+                return nil
+            }
+            return data
+        } else {
+            Log.warn("Failed to fetch value from keychain with status=\(status).Attempted to get value for key [\(key)]")
             return nil
         }
     }
@@ -75,10 +79,21 @@ class KeychainAccess {
         let query = self.query(key, value: data)
         var status = SecItemDelete(query)
         
-        if data != nil {
-            status = SecItemAdd(query, nil)
+        if status == errSecSuccess || status == errSecItemNotFound {
+            if data != nil {
+                status = SecItemAdd(query, nil)
+                if status != errSecSuccess {
+                    Log.warn("Failed to add data to keychain with status=\(status). Attempted to add data [\(data)] for key [\(key)]")
+                    return false
+                }
+            } else {
+                Log.warn("Failed to add data to key to keychain. Attempted to add nil data to a key [\(key)]")
+            }
+            return true
+        } else {
+            Log.warn("Failed to add key to keychain with status=\(status). Attempted to add key [\(key)]")
+            return false
         }
-        return status == noErr
     }
     
     /**
@@ -90,7 +105,13 @@ class KeychainAccess {
     func delete(key: String) -> Bool {
         let query = self.query(key)
         let status = SecItemDelete(query)
-        return status == noErr
+
+        if status != errSecSuccess {
+            Log.warn("Failed to delete key from keychain with status=\(status). Attempted to delete key [\(key)]")
+            return false
+        }
+
+        return true
     }
 
     /**
