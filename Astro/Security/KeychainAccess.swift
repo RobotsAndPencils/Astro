@@ -22,6 +22,12 @@ let KeychainAccessErrorDomain = "\(KeychainAccessServiceBundleID).error"
 
 class KeychainAccess {
     
+    let keychainAccessAccount: String?
+    
+    init(account: String) {
+        keychainAccessAccount = account
+    }
+    
     /**
         Retrieve a string for the given key.
     
@@ -29,7 +35,9 @@ class KeychainAccess {
         - returns: the value stored for that key as a string. nil if there is no value or the value is not a string
     */
     func getString(key: String) -> String? {
-        guard let data = self.get(key) else { return nil }
+        guard let data = self.get(key) else {
+            return nil
+        }
         return NSString(data: data, encoding: NSUTF8StringEncoding) as? String
     }
     
@@ -47,7 +55,7 @@ class KeychainAccess {
         
         if status == errSecSuccess {
             guard let data = result as? NSData else {
-                Log.warn("Failed to fetch data in the correct NSData format for the key from keychain with status=\(status). Attempted to get value for key [\(key)]")
+                Log.warn("No data fetched for the key from keychain with status=\(status). Attempted to get value for key [\(key)]")
                 return nil
             }
             return data
@@ -77,17 +85,14 @@ class KeychainAccess {
     */
     func put(key: String, data: NSData?) -> Bool {
         let query = self.query(key, value: data)
+        // TODO: Convert this to attempt to update (watch out its tricky!)
         var status = SecItemDelete(query)
         
         if status == errSecSuccess || status == errSecItemNotFound {
-            if data != nil {
-                status = SecItemAdd(query, nil)
-                if status != errSecSuccess {
-                    Log.warn("Failed to add data to keychain with status=\(status). Attempted to add data [\(data)] for key [\(key)]")
-                    return false
-                }
-            } else {
-                Log.warn("Failed to add data to key to keychain. Attempted to add nil data to a key [\(key)]")
+            status = SecItemAdd(query, nil)
+            if status != errSecSuccess {
+                Log.warn("Failed to add data to keychain with status=\(status). Attempted to add data [\(data)] for key [\(key)]")
+                return false
             }
             return true
         } else {
@@ -106,12 +111,12 @@ class KeychainAccess {
         let query = self.query(key)
         let status = SecItemDelete(query)
 
-        if status != errSecSuccess {
+        if status == errSecSuccess || status == errSecItemNotFound {
+            return true
+        } else {
             Log.warn("Failed to delete key from keychain with status=\(status). Attempted to delete key [\(key)]")
             return false
         }
-
-        return true
     }
 
     /**
@@ -125,6 +130,8 @@ class KeychainAccess {
     private func query(key: String? = nil, value: AnyObject? = nil, get: Bool = false) -> CFDictionaryRef {
         var query: [String: AnyObject] = [:]
         query[kSecAttrService as String] = KeychainAccessServiceBundleID
+        query[kSecAttrAccount as String] = self.keychainAccessAccount
+        query[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
         query[kSecClass as String] = kSecClassGenericPassword
         if let key = key {
             query[kSecAttrAccount as String] = key

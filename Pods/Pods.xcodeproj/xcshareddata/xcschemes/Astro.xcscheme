@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '312C5831342939E3CAC1E28C'
+               BlueprintIdentifier = '412857A93729A0B44793E865'
                BlueprintName = 'Astro'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Astro.framework'>

@@ -16,7 +16,7 @@ class KeychainAccessSpec: QuickSpec {
         Log.level = Log.Level.Info
         
         describe("A keychain") {
-            let keychain = KeychainAccess()
+            let keychain = KeychainAccess(account: "Test@RobotsAndPencils.com")
             var testKey = "key"
             
             afterEach {
