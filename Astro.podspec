@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Astro"
-  s.version          = "0.2.0"
+  s.version          = "0.3.0"
   s.summary          = "A RoboPod containing a small collection of utilities for project reuse"
   s.homepage         = "https://RobotsAndPencils.com"
 # s.actualHomepage   = "https://github.com/RobotsAndPencils/Astro"  <-- we needed a publicly accessible s.homepage or else we couldn't publish to our own repository
@@ -24,6 +24,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   }
   s.authors           = { 
     "Chad Sykes" => "Chad.Sykes@RobotsAndPencils.com",
+    "Colin Gislason" => "Colin.Gislason@RobotsAndPencils.com",
     "Dominic Pepin" => "Dominic.Pepin@RobotsAndPencils.com", 
     "Michael Beaureguard" => "Michael.Beauregard@RobotsAndPencils.com" 
   }
@@ -35,8 +36,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.source_files = 'Astro/**/*.swift'
   
+  s.subspec 'Logging' do | log |
+    log.source_files = 'Astro/Logging/**/*.swift'
+  end
+
   s.subspec 'Networking' do | net |
     net.source_files = 'Astro/Networking/**/*.swift'
+  end
+
+  s.subspec 'Security' do | security |
+    security.source_files = 'Astro/Security/**/*.swift'
   end
 
   s.subspec 'UI' do | ui |

@@ -26,6 +26,7 @@ Or if you don't want the whole enchilada then grab one of the subspecs:
 ```
 pod 'Astro/Logging'
 pod 'Astro/Networking'
+pod 'Astro/Security'
 pod 'Astro/UI'
 ```
 
@@ -62,6 +63,10 @@ Log.logger = MyCustomLogger()
 
 `HTTPStatusCode` is an enum that allows you to clarify status codes returned by your server.
 
+### Security
+
+`KeychainAccess` is a Robots and Pencils keystore updating class so you don't have to rely on a 3rd party one.
+
 ### UI
 
 Contains a few UI extensions to help you write cleaner code.
@@ -82,11 +87,11 @@ Here is the cookbook to generate a new version of the pod and get it published i
 
 - update version # in Astro.podspec
 - update version # in Astro/Info.plist (or via xcode project view)
-- run pod install (to ensure all the local podfiles get update)
-- run pod lib lint Astro.podspec (to make sure there aren't any errors)
+- run `pod install` (to ensure all the local podfiles get update)
+- run `pod lib lint Astro.podspec` (to make sure there aren't any errors)
 - push that code back up to your release branch in github
 - after reviewing/merging back into master then you’ll need to create/tag the release
-- pod repo push RNPPrivateSpecs Astro.podspec (finally pushes the updated pod to our private repository)
+- run `pod repo push RNPPrivateSpecs Astro.podspec` (finally pushes the updated pod to our private repository)
 
 ## Contact
 
