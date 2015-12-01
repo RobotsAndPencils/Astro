@@ -91,6 +91,20 @@ class KeychainAccessSpec: QuickSpec {
                 expect(storedData).to(equal(testData))
             }
             
+            it("can override a value") {
+                testKey = "string"
+                let origString = "exciting stuff?"
+                let finalString = "boring stuff?"
+
+                keychain.putString(testKey, value: origString)
+                let storedOrigString = keychain.getString(testKey)
+                expect(storedOrigString).to(equal(origString))
+                
+                keychain.putString(testKey, value: finalString)
+                let storedFinalString = keychain.getString(testKey)
+                expect(storedFinalString).to(equal(finalString))
+            }
+
             it("can delete a value") {
                 testKey = "string"
                 let testString = "exciting stuff?"

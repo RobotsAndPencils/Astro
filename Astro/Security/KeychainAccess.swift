@@ -85,16 +85,40 @@ class KeychainAccess {
     */
     func put(key: String, data: NSData?) -> Bool {
         let query = self.query(key, value: data)
-        // TODO: Convert this to attempt to update (watch out its tricky!)
-        var status = SecItemDelete(query)
+        var result: AnyObject?
         
-        if status == errSecSuccess || status == errSecItemNotFound {
-            status = SecItemAdd(query, nil)
-            if status != errSecSuccess {
-                Log.warn("Failed to add data to keychain with status=\(status). Attempted to add data [\(data)] for key [\(key)]")
+        var status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(query, UnsafeMutablePointer($0)) }
+        if status == errSecSuccess {
+            // Key previously existed
+            if let data = data {
+                // Updating the data to a new value
+                let attributesToUpdate: [String: AnyObject] = [kSecValueData as String : data]
+                status = SecItemUpdate(query, attributesToUpdate as CFDictionaryRef)
+                if status == errSecSuccess {
+                    return true
+                }
+                Log.warn("Failed to update data in keychain with status=\(status). Attempted to update data [\(data)] for key [\(key)]")
+                return false
+            } else {
+                // Clearing the old data
+                var status = SecItemDelete(query)
+                if status == errSecSuccess {
+                    status = SecItemAdd(query, nil)
+                    if status == errSecSuccess {
+                        return true
+                    }
+                }
+                Log.warn("Failed to clear data in keychain with status=\(status). Attempted to clear data for key [\(key)]")
                 return false
             }
-            return true
+        } else if status == errSecItemNotFound {
+            // Key doesn't exist so add it
+            status = SecItemAdd(query, nil)
+            if status == errSecSuccess {
+                return true
+            }
+            Log.warn("Failed to add data to keychain with status=\(status). Attempted to add data [\(data)] for key [\(key)]")
+            return false
         } else {
             Log.warn("Failed to add key to keychain with status=\(status). Attempted to add key [\(key)]")
             return false
