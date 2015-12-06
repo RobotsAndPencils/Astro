@@ -13,7 +13,6 @@ import Nimble
 class KeychainAccessSpec: QuickSpec {
     
     override func spec() {
-        Log.level = Log.Level.Info
         
         describe("A keychain") {
             let keychain = KeychainAccess(account: "Test@RobotsAndPencils.com")

@@ -11,9 +11,11 @@ import Security
 
 let KeychainAccessServiceBundleID: String = {
     if NSClassFromString("XCTestCase") != nil {
+        Log.level = Log.Level.Debug
         return "com.robotsandpencils.TestTarget"
     }
     else {
+        Log.level = Log.Level.Silent
         return NSBundle.mainBundle().bundleIdentifier ?? ""
     }
 }()
@@ -55,12 +57,12 @@ class KeychainAccess {
         
         if status == errSecSuccess {
             guard let data = result as? NSData else {
-                Log.warn("No data fetched for the key from keychain with status=\(status). Attempted to get value for key [\(key)]")
+                Log.debug("No data fetched for the key from keychain with status=\(status). Attempted to get value for key [\(key)]")
                 return nil
             }
             return data
         } else {
-            Log.warn("Failed to fetch value from keychain with status=\(status).Attempted to get value for key [\(key)]")
+            Log.debug("Failed to fetch value from keychain with status=\(status).Attempted to get value for key [\(key)]")
             return nil
         }
     }
@@ -97,7 +99,7 @@ class KeychainAccess {
                 if status == errSecSuccess {
                     return true
                 }
-                Log.warn("Failed to update data in keychain with status=\(status). Attempted to update data [\(data)] for key [\(key)]")
+                Log.debug("Failed to update data in keychain with status=\(status). Attempted to update data [\(data)] for key [\(key)]")
                 return false
             } else {
                 // Clearing the old data
@@ -108,7 +110,7 @@ class KeychainAccess {
                         return true
                     }
                 }
-                Log.warn("Failed to clear data in keychain with status=\(status). Attempted to clear data for key [\(key)]")
+                Log.debug("Failed to clear data in keychain with status=\(status). Attempted to clear data for key [\(key)]")
                 return false
             }
         } else if status == errSecItemNotFound {
@@ -117,10 +119,10 @@ class KeychainAccess {
             if status == errSecSuccess {
                 return true
             }
-            Log.warn("Failed to add data to keychain with status=\(status). Attempted to add data [\(data)] for key [\(key)]")
+            Log.debug("Failed to add data to keychain with status=\(status). Attempted to add data [\(data)] for key [\(key)]")
             return false
         } else {
-            Log.warn("Failed to add key to keychain with status=\(status). Attempted to add key [\(key)]")
+            Log.debug("Failed to add key to keychain with status=\(status). Attempted to add key [\(key)]")
             return false
         }
     }
@@ -138,7 +140,7 @@ class KeychainAccess {
         if status == errSecSuccess || status == errSecItemNotFound {
             return true
         } else {
-            Log.warn("Failed to delete key from keychain with status=\(status). Attempted to delete key [\(key)]")
+            Log.debug("Failed to delete key from keychain with status=\(status). Attempted to delete key [\(key)]")
             return false
         }
     }
