@@ -65,9 +65,7 @@ Log.logger = MyCustomLogger()
 
 ### Security
 
-`KeychainAccess` provides secure access to the Keychain. It is based on previously security audited code at Robots & Pencils and is preferred over 3rd party libraries.
-
-Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then recover those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app. For more details on what else you can store, check out the KeychainAccessSpec.swift file.
+`KeychainAccess` provides the app access to a device's Keychain store. Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then recover those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app. For more details on what else you can store, check out the KeychainAccessSpec.swift file.
 
 ```
 // Instantiate the keychain access using a unique account identifier to house your key/values
@@ -82,6 +80,10 @@ keychain.putString(testKey, value: loginTokenID)
 let loginToken = keychain.getString(loginTokenID)
 
 ```
+
+NOTES: 
+- The library module is based on previously security audited code at Robots & Pencils and is preferred over 3rd party libraries that we don't control the source code to
+- This is a simple keychain store library and doesn't include and fancy integration with iCloud or TouchID
 
 ### UI
 
