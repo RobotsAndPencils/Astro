@@ -71,7 +71,7 @@ class KeychainAccess {
         Set a string for the given key.
         
         - parameter key: the key to store the string for in the keychain
-        - parameter value: the string to store in the keychain
+        - parameter value: the string to store in the keychain (if nil then no data will be stored for the key)
         - returns: true if the store was successful, false if there was an error
     */
     func putString(key: String, value: String?) -> Bool {
@@ -82,7 +82,7 @@ class KeychainAccess {
         Set data for the given key.
         
         - parameter key: the key to store the data for in the keychain
-        - parameter value: the data to store in the keychain
+        - parameter value: the data to store in the keychain (if nil then no data will be stored for the key)
         - returns: true if the store was successful, false if there was an error
     */
     func put(key: String, data: NSData?) -> Bool {
@@ -102,7 +102,7 @@ class KeychainAccess {
                 Log.debug("Failed to update data in keychain with status=\(status). Attempted to update data [\(data)] for key [\(key)]")
                 return false
             } else {
-                // Clearing the old data
+                // Explicitly clearing the old data since we can't update to a nil value
                 var status = SecItemDelete(query)
                 if status == errSecSuccess {
                     status = SecItemAdd(query, nil)
