@@ -20,7 +20,7 @@
 
 import Foundation
 
-@objc public enum HTTPStatusCode: Int {
+@objc public enum HTTPStatusCode: Int, CustomStringConvertible, CustomDebugStringConvertible {
     // Informational - 1xx codes
     case Code100Continue = 100
     case Code101SwitchingProtocols = 101
@@ -71,50 +71,57 @@ import Foundation
     case Code504GatewayTimeout = 504
     case Code505HTTPVersionNotSupported = 505
 
-    // MARK: Properties
+
+    // MARK: CustomStringConvertible
 
     public var description: String {
+        return NSHTTPURLResponse.localizedStringForStatusCode(rawValue).capitalizedString
+    }
+
+    // MARK: CustomDebugStringConvertible
+
+    public var debugDescription: String {
         switch self {
-        case .Code100Continue: return "Continue"
-        case .Code101SwitchingProtocols: return "Switching Protocols"
-        case .Code200OK: return "OK"
-        case .Code201Created: return "Created"
-        case .Code202Accepted: return "Accepted"
-        case .Code203NonAuthoritative: return "Non Authoritative"
-        case .Code204NoContent: return "No Content"
-        case .Code205ResetContent: return "Reset Content"
-        case .Code206PartialContent: return "Partial Content"
-        case .Code300MultipleChoices: return "Multiple Choices"
-        case .Code301MovedPermanently: return "Moved Permanently"
-        case .Code302Found: return "Found"
-        case .Code303SeeOther: return "See Other"
-        case .Code304NotModified: return "Not Modified"
-        case .Code305UseProxy: return "Use Proxy"
-        case .Code307TemporaryRedirect: return "Temporary Redirect"
-        case .Code400BadRequest: return "Bad Request"
-        case .Code401Unauthorized: return "Unauthorized"
-        case .Code402PaymentRequired: return "Payment Required"
-        case .Code403Forbidden: return "Forbidden"
-        case .Code404NotFound: return "Not Found"
-        case .Code405MethodNotAllowed: return "Method Not Allowed"
-        case .Code406NotAcceptable: return "Not Acceptable"
-        case .Code407ProxyAuthenticationRequired: return "Proxy Authentication Required"
-        case .Code408RequestTimeout: return "Request Timeout"
-        case .Code409Conflict: return "Conflict"
-        case .Code410Gone: return "Gone"
-        case .Code411LengthRequired: return "Length Required"
-        case .Code412PreconditionFailed: return "Precondition Failed"
-        case .Code413RequestEntityTooLarge: return "Request Entity Too Large"
-        case .Code414RequestURITooLong: return "Request URI Too Long"
-        case .Code415UnsupportedMediaType: return "Unsupported Media Type"
-        case .Code416RequestedRangeNotSatisfiable: return "Requested Range Not Satisfiable"
-        case .Code417ExpectationFailed: return "Expectation Failed"
-        case .Code500InternalServerError: return "Internal Server Error"
-        case .Code501NotImplemented: return "Not Implemented"
-        case .Code502BadGateway: return "Bad Gateway"
-        case .Code503ServiceUnavailable: return "Service Unavailable"
-        case .Code504GatewayTimeout: return "Gateway Timeout"
-        case .Code505HTTPVersionNotSupported: return "HTTP Version Not Supported"
+        case .Code100Continue: return "100 Continue"
+        case .Code101SwitchingProtocols: return "101 Switching Protocols"
+        case .Code200OK: return "200 OK"
+        case .Code201Created: return "201 Created"
+        case .Code202Accepted: return "202 Accepted"
+        case .Code203NonAuthoritative: return "203 Non Authoritative"
+        case .Code204NoContent: return "204 No Content"
+        case .Code205ResetContent: return "205 Reset Content"
+        case .Code206PartialContent: return "206 Partial Content"
+        case .Code300MultipleChoices: return "300 Multiple Choices"
+        case .Code301MovedPermanently: return "301 Moved Permanently"
+        case .Code302Found: return "302 Found"
+        case .Code303SeeOther: return "303 See Other"
+        case .Code304NotModified: return "304 Not Modified"
+        case .Code305UseProxy: return "305 Use Proxy"
+        case .Code307TemporaryRedirect: return "307 Temporary Redirect"
+        case .Code400BadRequest: return "400 Bad Request"
+        case .Code401Unauthorized: return "401 Unauthorized"
+        case .Code402PaymentRequired: return "402 Payment Required"
+        case .Code403Forbidden: return "403 Forbidden"
+        case .Code404NotFound: return "404 Not Found"
+        case .Code405MethodNotAllowed: return "405 Method Not Allowed"
+        case .Code406NotAcceptable: return "406 Not Acceptable"
+        case .Code407ProxyAuthenticationRequired: return "407 Proxy Authentication Required"
+        case .Code408RequestTimeout: return "408 Request Timeout"
+        case .Code409Conflict: return "409 Conflict"
+        case .Code410Gone: return "410 Gone"
+        case .Code411LengthRequired: return "411 Length Required"
+        case .Code412PreconditionFailed: return "412 Precondition Failed"
+        case .Code413RequestEntityTooLarge: return "413 Request Entity Too Large"
+        case .Code414RequestURITooLong: return "414 Request URI Too Long"
+        case .Code415UnsupportedMediaType: return "415 Unsupported Media Type"
+        case .Code416RequestedRangeNotSatisfiable: return "416 Requested Range Not Satisfiable"
+        case .Code417ExpectationFailed: return "417 Expectation Failed"
+        case .Code500InternalServerError: return "500 Internal Server Error"
+        case .Code501NotImplemented: return "501 Not Implemented"
+        case .Code502BadGateway: return "502 Bad Gateway"
+        case .Code503ServiceUnavailable: return "503 Service Unavailable"
+        case .Code504GatewayTimeout: return "504 Gateway Timeout"
+        case .Code505HTTPVersionNotSupported: return "505 HTTP Version Not Supported"
         }
     }
 
