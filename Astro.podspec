@@ -46,6 +46,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.subspec 'Security' do | security |
     security.source_files = 'Astro/Security/**/*.swift'
+    security.dependency 'Astro/Logging'
   end
 
   s.subspec 'UI' do | ui |
