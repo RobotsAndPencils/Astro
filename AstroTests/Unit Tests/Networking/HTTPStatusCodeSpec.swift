@@ -1,5 +1,5 @@
 //
-//  HttpStatusCodeSpec.swift
+//  HTTPStatusCodeSpec.swift
 //  Astro
 //
 //  Created by Dominic Pepin on 2015-10-21.
