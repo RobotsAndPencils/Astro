@@ -131,23 +131,23 @@ import Foundation
 
     // MARK: Public
 
-    public func isInformationStatus() -> Bool {
+    public var isInformational: Bool {
         return rawValue >= 100 && rawValue < 200
     }
 
-    public func isSuccessfulStatus() -> Bool {
+    public var isSuccessful: Bool {
         return rawValue >= 200 && rawValue < 300
     }
 
-    public func isRedirectionStatus() -> Bool {
+    public var isRedirection: Bool {
         return rawValue >= 300 && rawValue < 400
     }
 
-    public func isClientErrorStatus() -> Bool {
+    public var isClientError: Bool {
         return rawValue >= 400 && rawValue < 500
     }
 
-    public func isServerErrorStatus() -> Bool {
+    public var isServerError: Bool {
         return rawValue >= 500
     }
 }

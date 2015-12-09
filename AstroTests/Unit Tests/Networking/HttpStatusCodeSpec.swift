@@ -36,35 +36,35 @@ class HTTPStatusCodeSpec: QuickSpec {
         describe("Given a Status Code") {
             context("when the code between 100 and 199"){
                 it("then it should have an informational status"){
-                    expect(HTTPStatusCode.Code100Continue.isInformationStatus()).to(beTrue())
-                    expect(HTTPStatusCode.Code200OK.isInformationStatus()).to(beFalse())
+                    expect(HTTPStatusCode.Code100Continue.isInformational).to(beTrue())
+                    expect(HTTPStatusCode.Code200OK.isInformational).to(beFalse())
                 }
             }
             context("when the code between 200 and 299"){
                 it("then it should have a successful status"){
-                    expect(HTTPStatusCode.Code101SwitchingProtocols.isSuccessfulStatus()).to(beFalse())
-                    expect(HTTPStatusCode.Code200OK.isSuccessfulStatus()).to(beTrue())
-                    expect(HTTPStatusCode.Code300MultipleChoices.isSuccessfulStatus()).to(beFalse())
+                    expect(HTTPStatusCode.Code101SwitchingProtocols.isSuccessful).to(beFalse())
+                    expect(HTTPStatusCode.Code200OK.isSuccessful).to(beTrue())
+                    expect(HTTPStatusCode.Code300MultipleChoices.isSuccessful).to(beFalse())
                 }
             }
             context("when the code between 300 and 399"){
                 it("then should have a redirection status"){
-                    expect(HTTPStatusCode.Code206PartialContent.isRedirectionStatus()).to(beFalse())
-                    expect(HTTPStatusCode.Code300MultipleChoices.isRedirectionStatus()).to(beTrue())
-                    expect(HTTPStatusCode.Code400BadRequest.isRedirectionStatus()).to(beFalse())
+                    expect(HTTPStatusCode.Code206PartialContent.isRedirection).to(beFalse())
+                    expect(HTTPStatusCode.Code300MultipleChoices.isRedirection).to(beTrue())
+                    expect(HTTPStatusCode.Code400BadRequest.isRedirection).to(beFalse())
                 }
             }
             context("when the code between 400 and 499"){
                 it("then should have a client error status"){
-                    expect(HTTPStatusCode.Code307TemporaryRedirect.isClientErrorStatus()).to(beFalse())
-                    expect(HTTPStatusCode.Code400BadRequest.isClientErrorStatus()).to(beTrue())
-                    expect(HTTPStatusCode.Code500InternalServerError.isClientErrorStatus()).to(beFalse())
+                    expect(HTTPStatusCode.Code307TemporaryRedirect.isClientError).to(beFalse())
+                    expect(HTTPStatusCode.Code400BadRequest.isClientError).to(beTrue())
+                    expect(HTTPStatusCode.Code500InternalServerError.isClientError).to(beFalse())
                 }
             }
             context("when the code between 500 and 599"){
                 it("then should have a server error status"){
-                    expect(HTTPStatusCode.Code417ExpectationFailed.isServerErrorStatus()).to(beFalse())
-                    expect(HTTPStatusCode.Code500InternalServerError.isServerErrorStatus()).to(beTrue())
+                    expect(HTTPStatusCode.Code417ExpectationFailed.isServerError).to(beFalse())
+                    expect(HTTPStatusCode.Code500InternalServerError.isServerError).to(beTrue())
                 }
             }
         }
