@@ -18,7 +18,7 @@ class HTTPStatusCodeSpec: QuickSpec {
                     // Arrange
                     // Act
                     let statusCode = HTTPStatusCode(intValue: HTTPStatusCode.Code200OK.rawValue)
-                    // Asssert
+                    // Assert
                     expect(statusCode).to(equal(HTTPStatusCode.Code200OK))
                 }
             }
@@ -27,8 +27,8 @@ class HTTPStatusCodeSpec: QuickSpec {
                     // Arrange
                     // Act
                     let statusCode = HTTPStatusCode(intValue: 100000)
-                    // Asssert
-                    expect(statusCode).to(equal(HTTPStatusCode.InvalidCode))
+                    // Assert
+                    expect(statusCode).to(beNil())
                 }
             }
         }

@@ -21,8 +21,6 @@
 import Foundation
 
 @objc public enum HTTPStatusCode: Int {
-    case InvalidCode = -001
-
     // Informational - 1xx codes
     case Code100Continue = 100
     case Code101SwitchingProtocols = 101
@@ -118,19 +116,17 @@ import Foundation
         case .Code503ServiceUnavailable: return "Service Unavailable"
         case .Code504GatewayTimeout: return "Gateway Timeout"
         case .Code505HTTPVersionNotSupported: return "HTTP Version Not Supported"
-        case .InvalidCode: fallthrough
-        default: return "Invalid Status Code"
         }
     }
 
     // MARK: Lifecycle
 
-    public init(intValue: Int?) {
-        if let intValue = intValue, statusCode = HTTPStatusCode(rawValue: intValue) {
-            self = statusCode
-        } else {
-            self = .InvalidCode
+    public init?(intValue: Int) {
+        guard let statusCode = HTTPStatusCode(rawValue: intValue) else {
+            return nil
         }
+
+        self = statusCode
     }
 
     // MARK: Public
