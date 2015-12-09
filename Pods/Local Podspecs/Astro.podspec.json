@@ -33,7 +33,12 @@
     },
     {
       "name": "Security",
-      "source_files": "Astro/Security/**/*.swift"
+      "source_files": "Astro/Security/**/*.swift",
+      "dependencies": {
+        "Astro/Logging": [
+
+        ]
+      }
     },
     {
       "name": "UI",
