@@ -82,8 +82,8 @@ let loginToken = keychain.getString(loginTokenID)
 ```
 
 NOTES: 
-- The library module is based on previously security audited code at Robots & Pencils and is preferred over 3rd party libraries that we don't control the source code to
-- This is a simple keychain store library and doesn't include any fancy integration with iCloud or TouchID
+- KeychainAccess is based on previously security audited code at Robots & Pencils and is preferred over 3rd party libraries that we don't control the source code to
+- It is a simple keychain store library and doesn't include any fancy integration with iCloud or TouchID
 
 ### UI
 
