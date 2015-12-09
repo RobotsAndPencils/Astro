@@ -14,6 +14,7 @@
 		2E934B8A416AF015C76347DC /* UIViewController+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9348D0FB90D68FC7E5C3D7 /* UIViewController+AstroGadgets.swift */; };
 		2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9348C107F407A4402AB69F /* UIViewController+AstroGadgetsSpec.swift */; };
 		3EF778AF613B3385E7BBDF99 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; };
+		607EC5E8906BCBF4F810394F /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; };
 		63379D7F1C063B8800DDD95B /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63379D7E1C063B8800DDD95B /* KeychainAccess.swift */; };
 		63379D811C063BA900DDD95B /* KeychainAccessSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63379D801C063BA900DDD95B /* KeychainAccessSpec.swift */; };
 		6367D7851C0BCC6C0045BDFE /* testdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 6367D7841C0BCC6C0045BDFE /* testdata.json */; };
@@ -58,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607EC5E8906BCBF4F810394F /* Pods_AstroTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,10 +236,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 638C625B1BD454FD0004ECE1 /* Build configuration list for PBXNativeTarget "Astro" */;
 			buildPhases = (
+				1F5523580B5E8DF9E88F4D7F /* Check Pods Manifest.lock */,
 				638C62421BD454FD0004ECE1 /* Sources */,
 				638C62431BD454FD0004ECE1 /* Frameworks */,
 				638C62441BD454FD0004ECE1 /* Headers */,
 				638C62451BD454FD0004ECE1 /* Resources */,
+				135B955ECA9903C15674C177 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -325,6 +329,36 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		0D427253BAAE5D691A4B482E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		135B955ECA9903C15674C177 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F5523580B5E8DF9E88F4D7F /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -501,6 +535,7 @@
 		};
 		638C625C1BD454FD0004ECE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE10EB59E130D784C4525868 /* Pods-AstroTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -520,6 +555,7 @@
 		};
 		638C625D1BD454FD0004ECE1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB15C2DB1FFCE31DEC4C7201 /* Pods-AstroTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
