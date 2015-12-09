@@ -71,11 +71,10 @@ import Foundation
     case Code504GatewayTimeout = 504
     case Code505HTTPVersionNotSupported = 505
 
-    // Mark: Properties
+    // MARK: Properties
 
     public var description: String {
         switch self {
-
         case .Code100Continue: return "Continue"
         case .Code101SwitchingProtocols: return "Switching Protocols"
         case .Code200OK: return "OK"
