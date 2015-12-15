@@ -60,11 +60,18 @@ class HTTPStatusCodeSpec: QuickSpec {
                     expect(HTTPStatusCode.Code400BadRequest.isClientError).to(beTrue())
                     expect(HTTPStatusCode.Code500InternalServerError.isClientError).to(beFalse())
                 }
+                it("is an error") {
+                    expect(HTTPStatusCode.Code307TemporaryRedirect.isError).to(beFalse())
+                    expect(HTTPStatusCode.Code400BadRequest.isError).to(beTrue())
+                }
             }
             context("when the code between 500 and 599"){
                 it("then should have a server error status"){
                     expect(HTTPStatusCode.Code417ExpectationFailed.isServerError).to(beFalse())
                     expect(HTTPStatusCode.Code500InternalServerError.isServerError).to(beTrue())
+                }
+                it("is an error"){
+                    expect(HTTPStatusCode.Code500InternalServerError.isError).to(beTrue())
                 }
             }
         }

@@ -160,4 +160,8 @@ import Foundation
     public var isServerError: Bool {
         return rawValue >= 500
     }
+
+    public var isError: Bool {
+        return isServerError || isClientError
+    }
 }
