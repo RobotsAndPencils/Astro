@@ -22,11 +22,11 @@ let KeychainAccessServiceBundleID: String = {
 
 let KeychainAccessErrorDomain = "\(KeychainAccessServiceBundleID).error"
 
-class KeychainAccess {
+public class KeychainAccess {
     
     let keychainAccessAccount: String?
     
-    init(account: String) {
+    public init(account: String) {
         keychainAccessAccount = account
     }
     
@@ -36,7 +36,7 @@ class KeychainAccess {
         - parameter key: the key to find the string in the keychain
         - returns: the value stored for that key as a string. nil if there is no value or the value is not a string
     */
-    func getString(key: String) -> String? {
+    public func getString(key: String) -> String? {
         guard let data = self.get(key) else {
             return nil
         }
@@ -49,7 +49,7 @@ class KeychainAccess {
         - parameter key: the key to find the data in the keychain
         - returns: the value stored for that key as NSData. nil if there is no value or the value is not NSData
     */
-    func get(key: String) -> NSData? {
+    public func get(key: String) -> NSData? {
         let query = self.query(key, get: true)
         
         var result: AnyObject?
@@ -74,7 +74,7 @@ class KeychainAccess {
         - parameter value: the string to store in the keychain (if nil then no data will be stored for the key)
         - returns: true if the store was successful, false if there was an error
     */
-    func putString(key: String, value: String?) -> Bool {
+    public func putString(key: String, value: String?) -> Bool {
         return self.put(key, data: value?.dataUsingEncoding(NSUTF8StringEncoding))
     }
     
@@ -85,7 +85,7 @@ class KeychainAccess {
         - parameter value: the data to store in the keychain (if nil then no data will be stored for the key)
         - returns: true if the store was successful, false if there was an error
     */
-    func put(key: String, data: NSData?) -> Bool {
+    public func put(key: String, data: NSData?) -> Bool {
         let query = self.query(key, value: data)
         var result: AnyObject?
         
@@ -133,7 +133,7 @@ class KeychainAccess {
         - parameter key: the key to delete the data for in the keychain
         - returns: true if the delete was successful, false if there was an error
     */
-    func delete(key: String) -> Bool {
+    public func delete(key: String) -> Bool {
         let query = self.query(key)
         let status = SecItemDelete(query)
 
