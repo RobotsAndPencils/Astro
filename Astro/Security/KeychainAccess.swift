@@ -145,6 +145,27 @@ public class KeychainAccess {
         }
     }
 
+    public subscript(key: String) -> String? {
+        get {
+            return self.getString(key)
+        }
+
+        set {
+            self.putString(key, value: newValue)
+        }
+    }
+
+    public subscript(data key: String) -> NSData? {
+        get {
+            return self.get(key)
+        }
+
+        set {
+            self.put(key, data: newValue)
+        }
+    }
+
+    //MARK: Private
     /**
         Set up the query for use with the keychain functions.
         
@@ -170,25 +191,5 @@ public class KeychainAccess {
             query[kSecMatchLimit as String] = kSecMatchLimitOne
         }
         return query as CFDictionaryRef
-    }
-    
-    subscript(key: String) -> String? {
-        get {
-            return self.getString(key)
-        }
-        
-        set {
-            self.putString(key, value: newValue)
-        }
-    }
-    
-    subscript(data key: String) -> NSData? {
-        get {
-            return self.get(key)
-        }
-        
-        set {
-            self.put(key, data: newValue)
-        }
     }
 }
