@@ -20,9 +20,7 @@
 
 import Foundation
 
-@objc public enum HTTPStatusCode: Int {
-    case InvalidCode = -001
-
+@objc public enum HTTPStatusCode: Int, CustomStringConvertible, CustomDebugStringConvertible {
     // Informational - 1xx codes
     case Code100Continue = 100
     case Code101SwitchingProtocols = 101
@@ -73,11 +71,21 @@ import Foundation
     case Code504GatewayTimeout = 504
     case Code505HTTPVersionNotSupported = 505
 
-    // Mark: Properties
+
+    // MARK: CustomStringConvertible
 
     public var description: String {
-        switch self {
+        return NSHTTPURLResponse.localizedStringForStatusCode(rawValue).capitalizedString
+    }
 
+    // MARK: CustomDebugStringConvertible
+
+    public var debugDescription: String {
+        return "HTTPStatusCode: \(rawValue) - \(string)"
+    }
+
+    public var string: String {
+        switch self {
         case .Code100Continue: return "Continue"
         case .Code101SwitchingProtocols: return "Switching Protocols"
         case .Code200OK: return "OK"
@@ -118,40 +126,42 @@ import Foundation
         case .Code503ServiceUnavailable: return "Service Unavailable"
         case .Code504GatewayTimeout: return "Gateway Timeout"
         case .Code505HTTPVersionNotSupported: return "HTTP Version Not Supported"
-        case .InvalidCode: fallthrough
-        default: return "Invalid Status Code"
         }
     }
 
     // MARK: Lifecycle
 
-    public init(intValue: Int?) {
-        if let intValue = intValue, statusCode = HTTPStatusCode(rawValue: intValue) {
-            self = statusCode
-        } else {
-            self = .InvalidCode
+    public init?(intValue: Int) {
+        guard let statusCode = HTTPStatusCode(rawValue: intValue) else {
+            return nil
         }
+
+        self = statusCode
     }
 
     // MARK: Public
 
-    public func isInformationStatus() -> Bool {
+    public var isInformational: Bool {
         return rawValue >= 100 && rawValue < 200
     }
 
-    public func isSuccessfulStatus() -> Bool {
+    public var isSuccessful: Bool {
         return rawValue >= 200 && rawValue < 300
     }
 
-    public func isRedirectionStatus() -> Bool {
+    public var isRedirection: Bool {
         return rawValue >= 300 && rawValue < 400
     }
 
-    public func isClientErrorStatus() -> Bool {
+    public var isClientError: Bool {
         return rawValue >= 400 && rawValue < 500
     }
 
-    public func isServerErrorStatus() -> Bool {
+    public var isServerError: Bool {
         return rawValue >= 500
+    }
+
+    public var isError: Bool {
+        return isServerError || isClientError
     }
 }

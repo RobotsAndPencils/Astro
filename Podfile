@@ -11,6 +11,7 @@ source 'git@github.com:RobotsAndPencils/RNPPrivateSpecs.git'
 #pod 'RobotsAndPencilsPodDependency'
 
 target 'AstroTests', :exclusive => true do
+  link_with "Astro"
   pod "Astro", :path => "."
 
   pod 'Quick'

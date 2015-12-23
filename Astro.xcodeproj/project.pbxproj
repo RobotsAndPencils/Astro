@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E93419DA70B2DFA04A8D50E /* HttpStatusCodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E934B3DCE343BE7D9CECCCD /* HttpStatusCodeSpec.swift */; };
+		2E93419DA70B2DFA04A8D50E /* HTTPStatusCodeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E934B3DCE343BE7D9CECCCD /* HTTPStatusCodeSpec.swift */; };
 		2E9342BC5B4FE98B693084A6 /* UIView+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E93428725B0114A0FC9064E /* UIView+AstroGadgetsSpec.swift */; };
 		2E9345EE0AEB18FB859A8D06 /* UIView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E93420DB2E8AE3339E2E9C0 /* UIView+AstroGadgets.swift */; };
-		2E93487124A5E044E0199250 /* HttpStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E934F99FFAF39F046F75750 /* HttpStatusCode.swift */; };
+		2E93487124A5E044E0199250 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E934F99FFAF39F046F75750 /* HTTPStatusCode.swift */; };
 		2E934B8A416AF015C76347DC /* UIViewController+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9348D0FB90D68FC7E5C3D7 /* UIViewController+AstroGadgets.swift */; };
 		2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9348C107F407A4402AB69F /* UIViewController+AstroGadgetsSpec.swift */; };
 		3EF778AF613B3385E7BBDF99 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; };
+		607EC5E8906BCBF4F810394F /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; };
 		63379D7F1C063B8800DDD95B /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63379D7E1C063B8800DDD95B /* KeychainAccess.swift */; };
 		63379D811C063BA900DDD95B /* KeychainAccessSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63379D801C063BA900DDD95B /* KeychainAccessSpec.swift */; };
 		6367D7851C0BCC6C0045BDFE /* testdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 6367D7841C0BCC6C0045BDFE /* testdata.json */; };
@@ -37,8 +38,8 @@
 		2E93428725B0114A0FC9064E /* UIView+AstroGadgetsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AstroGadgetsSpec.swift"; sourceTree = "<group>"; };
 		2E9348C107F407A4402AB69F /* UIViewController+AstroGadgetsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AstroGadgetsSpec.swift"; sourceTree = "<group>"; };
 		2E9348D0FB90D68FC7E5C3D7 /* UIViewController+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AstroGadgets.swift"; sourceTree = "<group>"; };
-		2E934B3DCE343BE7D9CECCCD /* HttpStatusCodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpStatusCodeSpec.swift; sourceTree = "<group>"; };
-		2E934F99FFAF39F046F75750 /* HttpStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpStatusCode.swift; sourceTree = "<group>"; };
+		2E934B3DCE343BE7D9CECCCD /* HTTPStatusCodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodeSpec.swift; sourceTree = "<group>"; };
+		2E934F99FFAF39F046F75750 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		63379D7E1C063B8800DDD95B /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainAccess.swift; path = Security/KeychainAccess.swift; sourceTree = "<group>"; };
 		63379D801C063BA900DDD95B /* KeychainAccessSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainAccessSpec.swift; path = Security/KeychainAccessSpec.swift; sourceTree = "<group>"; };
 		6367D7841C0BCC6C0045BDFE /* testdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testdata.json; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607EC5E8906BCBF4F810394F /* Pods_AstroTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,7 +87,7 @@
 		2E934444499338145ADBF923 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				2E934B3DCE343BE7D9CECCCD /* HttpStatusCodeSpec.swift */,
+				2E934B3DCE343BE7D9CECCCD /* HTTPStatusCodeSpec.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -122,7 +124,7 @@
 		2E934EE07BB108477AD37BC1 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				2E934F99FFAF39F046F75750 /* HttpStatusCode.swift */,
+				2E934F99FFAF39F046F75750 /* HTTPStatusCode.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -234,10 +236,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 638C625B1BD454FD0004ECE1 /* Build configuration list for PBXNativeTarget "Astro" */;
 			buildPhases = (
+				1F5523580B5E8DF9E88F4D7F /* Check Pods Manifest.lock */,
 				638C62421BD454FD0004ECE1 /* Sources */,
 				638C62431BD454FD0004ECE1 /* Frameworks */,
 				638C62441BD454FD0004ECE1 /* Headers */,
 				638C62451BD454FD0004ECE1 /* Resources */,
+				135B955ECA9903C15674C177 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -339,6 +343,36 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		135B955ECA9903C15674C177 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F5523580B5E8DF9E88F4D7F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		34D07D5F95E15478B7D32251 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -378,7 +412,7 @@
 			files = (
 				2E9345EE0AEB18FB859A8D06 /* UIView+AstroGadgets.swift in Sources */,
 				2E934B8A416AF015C76347DC /* UIViewController+AstroGadgets.swift in Sources */,
-				2E93487124A5E044E0199250 /* HttpStatusCode.swift in Sources */,
+				2E93487124A5E044E0199250 /* HTTPStatusCode.swift in Sources */,
 				63379D7F1C063B8800DDD95B /* KeychainAccess.swift in Sources */,
 				D0C3176529877E28CFD27E77 /* Log.swift in Sources */,
 			);
@@ -388,7 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E93419DA70B2DFA04A8D50E /* HttpStatusCodeSpec.swift in Sources */,
+				2E93419DA70B2DFA04A8D50E /* HTTPStatusCodeSpec.swift in Sources */,
 				2E9342BC5B4FE98B693084A6 /* UIView+AstroGadgetsSpec.swift in Sources */,
 				63379D811C063BA900DDD95B /* KeychainAccessSpec.swift in Sources */,
 				B69726CE1BD9162F0047EEB9 /* LoggerSpec.swift in Sources */,
@@ -501,6 +535,7 @@
 		};
 		638C625C1BD454FD0004ECE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE10EB59E130D784C4525868 /* Pods-AstroTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -520,6 +555,7 @@
 		};
 		638C625D1BD454FD0004ECE1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB15C2DB1FFCE31DEC4C7201 /* Pods-AstroTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
