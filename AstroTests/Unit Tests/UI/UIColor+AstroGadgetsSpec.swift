@@ -18,7 +18,7 @@ class UIColor_AstroGadgetsSpec: QuickSpec {
             context("00") {
                 it("returns nil") {
                     hexString = "00"
-                    let subject = UIColor(hexCode: hexString)
+                    let subject = UIColor(hexString: hexString)
                     expect(subject).to(beNil())
                 }
             }
@@ -26,7 +26,7 @@ class UIColor_AstroGadgetsSpec: QuickSpec {
             context("AABBCC") {
                 it("correctly deserializes the color") {
                     hexString = "AABBCC"
-                    let subject = UIColor(hexCode: hexString)
+                    let subject = UIColor(hexString: hexString)
                     expect(subject).to(equal(UIColor(red: 0xAA/255.0, green: 0xBB/255.0, blue: 0xCC/255.0, alpha: 0xFF/255.0)))
                 }
             }
@@ -34,7 +34,7 @@ class UIColor_AstroGadgetsSpec: QuickSpec {
             context("aabbcc") {
                 it("correctly deserializes the color") {
                     hexString = "aabbcc"
-                    let subject = UIColor(hexCode: hexString)
+                    let subject = UIColor(hexString: hexString)
                     expect(subject).to(equal(UIColor(red: 0xAA/255.0, green: 0xBB/255.0, blue: 0xCC/255.0, alpha: 0xFF/255.0)))
                 }
             }
@@ -42,7 +42,7 @@ class UIColor_AstroGadgetsSpec: QuickSpec {
             context("000000") {
                 it("correctly deserializes the color") {
                     hexString = "000000"
-                    let subject = UIColor(hexCode: hexString)
+                    let subject = UIColor(hexString: hexString)
                     expect(subject).to(equal(UIColor(red: 0x00/255.0, green: 0x00/255.0, blue: 0x00/255.0, alpha: 0xFF/255.0)))
                 }
             }
@@ -50,7 +50,7 @@ class UIColor_AstroGadgetsSpec: QuickSpec {
             context("#000000") {
                 it("correctly deserializes the color") {
                     hexString = "#000000"
-                    let subject = UIColor(hexCode: hexString)
+                    let subject = UIColor(hexString: hexString)
                     expect(subject).to(equal(UIColor(red: 0x00/255.0, green: 0x00/255.0, blue: 0x00/255.0, alpha: 0xFF/255.0)))
                 }
             }
@@ -58,7 +58,7 @@ class UIColor_AstroGadgetsSpec: QuickSpec {
             context("123456") {
                 it("correctly deserializes the color") {
                     hexString = "123456"
-                    let subject = UIColor(hexCode: hexString)
+                    let subject = UIColor(hexString: hexString)
                     expect(subject).to(equal(UIColor(red: 0x12/255.0, green: 0x34/255.0, blue: 0x56/255.0, alpha: 0xFF/255.0)))
                 }
             }
@@ -66,7 +66,7 @@ class UIColor_AstroGadgetsSpec: QuickSpec {
             context("AABBCCDD") {
                 it("correctly deserializes the color") {
                     hexString = "AABBCCDD"
-                    let subject = UIColor(hexCode: hexString)
+                    let subject = UIColor(hexString: hexString)
                     expect(subject).to(equal(UIColor(red: 0xAA/255.0, green: 0xBB/255.0, blue: 0xCC/255.0, alpha: 0xDD/255.0)))
                 }
             }

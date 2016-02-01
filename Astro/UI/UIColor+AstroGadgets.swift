@@ -17,14 +17,14 @@
 import UIKit
 
 extension UIColor {
-    public convenience init?(hexCode: String) {
+    public convenience init?(hexString: String) {
         var red: UInt32 = 255
         var green: UInt32 = 255
         var blue: UInt32 = 255
         var alpha: UInt32 = 255
 
         let hexCharacterSet = NSCharacterSet(charactersInString: "0123456789abcdefABCDEF")
-        let hexOnlyString = hexCode.componentsSeparatedByCharactersInSet(hexCharacterSet.invertedSet).joinWithSeparator("")
+        let hexOnlyString = hexString.componentsSeparatedByCharactersInSet(hexCharacterSet.invertedSet).joinWithSeparator("")
 
         guard hexOnlyString.characters.count >= 6 else {
             return nil
