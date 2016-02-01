@@ -59,7 +59,7 @@ extension UIColor {
         var g: CGFloat = 0
         var b: CGFloat = 0
         var a: CGFloat = 0
-        assert(getRed(&r, green: &g, blue: &b, alpha: &a), "Unable to get RGB channels from UIColor")
+        assert(getRed(&r, green: &g, blue: &b, alpha: &a), "Unable to get RGBA channels from UIColor")
         return NSString(format: "%02X%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255), Int(a * 255)) as String
     }
 }

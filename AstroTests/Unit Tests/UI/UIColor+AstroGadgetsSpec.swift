@@ -95,7 +95,7 @@ class UIColor_AstroGadgetsSpec: QuickSpec {
             }
             
             context("01AF97") {
-                it("correctly serializes the color") {
+                it("correctly serializes the color with alpha") {
                     let subject = UIColor(red: 0x01/255.0, green: 0xAF/255.0, blue: 0x97/255.0, alpha: 0x00/255.0).hexRGB()
                     expect(subject).to(equal("01AF97"))
                 }
@@ -104,14 +104,14 @@ class UIColor_AstroGadgetsSpec: QuickSpec {
 
         describe("hexRGBA()") {
             context("AABBCCDD") {
-                it("correctly serializes the color") {
+                it("correctly serializes the color with alpha") {
                     let subject = UIColor(red: 0xAA/255.0, green: 0xBB/255.0, blue: 0xCC/255.0, alpha: 0xDD/255.0).hexRGBA()
                     expect(subject).to(equal("AABBCCDD"))
                 }
             }
 
             context("AABBCC00") {
-                it("correctly serializes the color") {
+                it("correctly serializes the color with alpha") {
                     let subject = UIColor(red: 0xAA/255.0, green: 0xBB/255.0, blue: 0xCC/255.0, alpha: 0x00/255.0).hexRGBA()
                     expect(subject).to(equal("AABBCC00"))
                 }
