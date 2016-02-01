@@ -17,11 +17,11 @@
 import UIKit
 
 extension UIColor {
-    public convenience init?(hexString: String) {
-        var red: UInt32 = 255
-        var green: UInt32 = 255
-        var blue: UInt32 = 255
-        var alpha: UInt32 = 255
+    public convenience init?(hexString: String, alpha: Double = 1.0) {
+        var parsedRed: UInt32 = 255
+        var parsedGreen: UInt32 = 255
+        var parsedBlue: UInt32 = 255
+        var parsedAlpha: UInt32 = 255
 
         let hexCharacterSet = NSCharacterSet(charactersInString: "0123456789abcdefABCDEF")
         let hexOnlyString = hexString.componentsSeparatedByCharactersInSet(hexCharacterSet.invertedSet).joinWithSeparator("")
@@ -31,18 +31,18 @@ extension UIColor {
         }
 
         let redCharacterRange = Range(start: hexOnlyString.startIndex, end: hexOnlyString.startIndex.advancedBy(2))
-        NSScanner(string: hexOnlyString.substringWithRange(redCharacterRange)).scanHexInt(&red)
+        NSScanner(string: hexOnlyString.substringWithRange(redCharacterRange)).scanHexInt(&parsedRed)
         let greenCharacterRange = Range(start: hexOnlyString.startIndex.advancedBy(2), end: hexOnlyString.startIndex.advancedBy(4))
-        NSScanner(string: hexOnlyString.substringWithRange(greenCharacterRange)).scanHexInt(&green)
+        NSScanner(string: hexOnlyString.substringWithRange(greenCharacterRange)).scanHexInt(&parsedGreen)
         let blueCharacterRange = Range(start: hexOnlyString.startIndex.advancedBy(4), end: hexOnlyString.startIndex.advancedBy(6))
-        NSScanner(string: hexOnlyString.substringWithRange(blueCharacterRange)).scanHexInt(&blue)
+        NSScanner(string: hexOnlyString.substringWithRange(blueCharacterRange)).scanHexInt(&parsedBlue)
         
         if hexOnlyString.characters.count == 8 {
             let alphaCharacterRange = Range(start: hexOnlyString.startIndex.advancedBy(6), end: hexOnlyString.startIndex.advancedBy(8))
-            NSScanner(string: hexOnlyString.substringWithRange(alphaCharacterRange)).scanHexInt(&alpha)
+            NSScanner(string: hexOnlyString.substringWithRange(alphaCharacterRange)).scanHexInt(&parsedAlpha)
         }
 
-        self.init(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: CGFloat(alpha)/255.0)
+        self.init(red: CGFloat(parsedRed) / 255.0, green: CGFloat(parsedGreen) / 255.0, blue: CGFloat(parsedBlue) / 255.0, alpha: (CGFloat(alpha) * CGFloat(parsedAlpha)) / 255.0)
     }
     
     public func hexRGB() -> String {
