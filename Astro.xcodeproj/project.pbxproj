@@ -15,6 +15,7 @@
 		2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9348C107F407A4402AB69F /* UIViewController+AstroGadgetsSpec.swift */; };
 		3EF778AF613B3385E7BBDF99 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; };
 		535DF10A1C87864E00961785 /* LayoutLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DF1091C87864E00961785 /* LayoutLabel.swift */; };
+		535DF10C1C87886500961785 /* LayoutLabelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DF10B1C87886500961785 /* LayoutLabelSpec.swift */; };
 		607EC5E8906BCBF4F810394F /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; };
 		63379D7F1C063B8800DDD95B /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63379D7E1C063B8800DDD95B /* KeychainAccess.swift */; };
 		63379D811C063BA900DDD95B /* KeychainAccessSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63379D801C063BA900DDD95B /* KeychainAccessSpec.swift */; };
@@ -44,6 +45,7 @@
 		2E934B3DCE343BE7D9CECCCD /* HTTPStatusCodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodeSpec.swift; sourceTree = "<group>"; };
 		2E934F99FFAF39F046F75750 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		535DF1091C87864E00961785 /* LayoutLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutLabel.swift; sourceTree = "<group>"; };
+		535DF10B1C87886500961785 /* LayoutLabelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutLabelSpec.swift; sourceTree = "<group>"; };
 		63379D7E1C063B8800DDD95B /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainAccess.swift; path = Security/KeychainAccess.swift; sourceTree = "<group>"; };
 		63379D801C063BA900DDD95B /* KeychainAccessSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainAccessSpec.swift; path = Security/KeychainAccessSpec.swift; sourceTree = "<group>"; };
 		6367D7841C0BCC6C0045BDFE /* testdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testdata.json; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				2E93428725B0114A0FC9064E /* UIView+AstroGadgetsSpec.swift */,
 				2E9348C107F407A4402AB69F /* UIViewController+AstroGadgetsSpec.swift */,
 				CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */,
+				535DF10B1C87886500961785 /* LayoutLabelSpec.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				535DF10C1C87886500961785 /* LayoutLabelSpec.swift in Sources */,
 				2E93419DA70B2DFA04A8D50E /* HTTPStatusCodeSpec.swift in Sources */,
 				2E9342BC5B4FE98B693084A6 /* UIView+AstroGadgetsSpec.swift in Sources */,
 				63379D811C063BA900DDD95B /* KeychainAccessSpec.swift in Sources */,
