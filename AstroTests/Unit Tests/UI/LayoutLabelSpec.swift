@@ -17,39 +17,40 @@ class LayoutLabelSpec: QuickSpec {
         describe("Given a LayoutLabel") {
             let label = LayoutLabel(frame: mockFrame)
             
-            context("when layoutSubviews is called") {
-                context("numberOfLines is set to 0") {
-                    beforeEach {
-                        //Arrange
-                        label.numberOfLines = 0
-                    }
+            context("when layoutSubviews is called and numberOfLines is set to 0 ") {
+                beforeEach {
+                    //Arrange
+                    label.numberOfLines = 0
                     
-                    it("the the preferred max width should equal the frame width") {
-                        //Act
-                        label.layoutSubviews()
-                        
-                        //Assert
-                        expect(label.preferredMaxLayoutWidth).to(equal(label.frame.size.width))
-                    }
+                    //Act
+                    label.layoutSubviews()
+                }
+                
+                it("then the preferred max width should equal the frame width") {
+                    //Assert
+                    expect(label.preferredMaxLayoutWidth).to(equal(label.frame.size.width))
                 }
             }
             
             context("when intrinsicContentSize is called") {
+                
                 let comparableLabel = UILabel(frame: mockFrame)
                 
-                context("numberOfLines is set to 0") {
+                context("and numberOfLines is set to 0") {
                     beforeEach {
+                        //Arrange
                         label.numberOfLines = 0
                         comparableLabel.numberOfLines = 0
                     }
                     
-                    context("if text is empty") {
+                    context("and text is empty") {
                         beforeEach {
+                            //Arrange
                             label.text = ""
                             comparableLabel.text = ""
                         }
                         
-                        it("contentSize should remain the same") {
+                        it("then contentSize should remain the same") {
                             //Act
                             let contentSize = label.intrinsicContentSize()
                             let comparableContentSize = comparableLabel.intrinsicContentSize()
@@ -59,13 +60,14 @@ class LayoutLabelSpec: QuickSpec {
                         }
                     }
                     
-                    context("if text is not empty") {
+                    context("and text is not empty") {
                         beforeEach {
+                            //Arrange
                             label.text = "a"
                             comparableLabel.text = "a"
                         }
                         
-                        it("contentSize should be 1pt taller") {
+                        it("then contentSize should be 1pt taller") {
                             //Act
                             let contentSize = label.intrinsicContentSize()
                             let comparableContentSize = comparableLabel.intrinsicContentSize()
@@ -76,13 +78,14 @@ class LayoutLabelSpec: QuickSpec {
                     }
                 }
                 
-                context("numberOfLines is not 0") {
+                context("and numberOfLines is not 0") {
                     beforeEach {
+                        //Arrange
                         label.numberOfLines = 1
                         comparableLabel.numberOfLines = 1
                     }
                     
-                    it("content size should remain the same") {
+                    it("then content size should remain the same") {
                         //Act
                         let contentSize = label.intrinsicContentSize()
                         let comparableContentSize = comparableLabel.intrinsicContentSize()
