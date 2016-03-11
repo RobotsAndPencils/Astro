@@ -37,12 +37,16 @@ pod 'Astro/UI'
 `Log` is a structure that streamlines the printing of log messages.
 
 Out of the box, you will be able to log error messages.
-```swift
+
+```
+swift
 Log.error("I want to log an error message with \(something)")
 ```
 
 However, if you want to see more information you can override the logging level as you wish. For example:
-```swift
+
+```
+swift
 #if DEBUG
   Log.level = .Debug
 #else
@@ -101,7 +105,31 @@ In your app's implementation you you can then quickly make use of those colors:
 ```swift
 let color = UIColor.MyApp_BrightOrangeColor()
 ```
+### Utils
+`EnumCountable` provides an easy way to add a static `count` constant to Swift enums of type Int.  
 
+It requires that the first case start at 0 and all cases must be continuous.
+
+Example:
+
+```
+class SettingsViewController : UICollectionViewController {
+enum Section: Int, EnumCountable {
+    case Customizations = 0
+    case Faqs
+    case Support
+    case Logout
+ 
+    static let count = Settings.countCases()  
+}
+...
+override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return Section.count
+    }
+}
+```
+    
+    
 ## Module Management
 
 As the library matures, more classes will be introduced to the project and it would be nice to keep it from

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Astro"
-  s.version          = "0.5.0"
+  s.version          = "0.6.0"
   s.summary          = "A RoboPod containing a small collection of utilities for project reuse"
   s.homepage         = "https://RobotsAndPencils.com"
 # s.actualHomepage   = "https://github.com/RobotsAndPencils/Astro"  <-- we needed a publicly accessible s.homepage or else we couldn't publish to our own repository
@@ -53,5 +53,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     ui.source_files = 'Astro/UI/**/*.swift'
     ui.frameworks = 'UIKit'
   end
-  
+
+  s.subspec 'Utils' do | log |
+    log.source_files = 'Astro/Utils/**/*.swift'
+  end
+
 end

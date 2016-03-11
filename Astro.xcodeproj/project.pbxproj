@@ -22,6 +22,8 @@
 		6367D7851C0BCC6C0045BDFE /* testdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 6367D7841C0BCC6C0045BDFE /* testdata.json */; };
 		638C62521BD454FD0004ECE1 /* Astro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638C62471BD454FD0004ECE1 /* Astro.framework */; };
 		B69726CE1BD9162F0047EEB9 /* LoggerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69726CD1BD9162F0047EEB9 /* LoggerSpec.swift */; };
+		BD62EA481C929BF0004A02DF /* EnumCountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62EA471C929BF0004A02DF /* EnumCountable.swift */; };
+		BD62EA4B1C929C1C004A02DF /* EnumCountableSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */; };
 		CA5380CB1C5C195900204A68 /* UIColor+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5380CA1C5C195900204A68 /* UIColor+AstroGadgets.swift */; };
 		CA5380CD1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */; };
 		D0C3176529877E28CFD27E77 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C31A257874127AD224738D /* Log.swift */; };
@@ -56,6 +58,8 @@
 		A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AstroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE10EB59E130D784C4525868 /* Pods-AstroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B69726CD1BD9162F0047EEB9 /* LoggerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerSpec.swift; sourceTree = "<group>"; };
+		BD62EA471C929BF0004A02DF /* EnumCountable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnumCountable.swift; path = Utils/EnumCountable.swift; sourceTree = "<group>"; };
+		BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnumCountableSpec.swift; path = Utils/EnumCountableSpec.swift; sourceTree = "<group>"; };
 		CA5380CA1C5C195900204A68 /* UIColor+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AstroGadgets.swift"; sourceTree = "<group>"; };
 		CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AstroGadgetsSpec.swift"; sourceTree = "<group>"; };
 		D0C31A257874127AD224738D /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				2E934444499338145ADBF923 /* Networking */,
 				63379D771C06394900DDD95B /* Security */,
 				2E934BF4A4C69C31C5403859 /* UI */,
+				BD62EA491C929C04004A02DF /* Utils */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 				2E934EE07BB108477AD37BC1 /* Networking */,
 				63379D741C0638C900DDD95B /* Security */,
 				2E934A2D9C9120E1AF7D0556 /* UI */,
+				BD62EA461C928F6C004A02DF /* Utils */,
 			);
 			path = Astro;
 			sourceTree = "<group>";
@@ -213,6 +219,22 @@
 				A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD62EA461C928F6C004A02DF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BD62EA471C929BF0004A02DF /* EnumCountable.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		BD62EA491C929C04004A02DF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		D0C315CE2C98B7DA62D463A3 /* Logging */ = {
@@ -422,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD62EA481C929BF0004A02DF /* EnumCountable.swift in Sources */,
 				535DF10A1C87864E00961785 /* LayoutLabel.swift in Sources */,
 				2E9345EE0AEB18FB859A8D06 /* UIView+AstroGadgets.swift in Sources */,
 				2E934B8A416AF015C76347DC /* UIViewController+AstroGadgets.swift in Sources */,
@@ -443,6 +466,7 @@
 				B69726CE1BD9162F0047EEB9 /* LoggerSpec.swift in Sources */,
 				CA5380CD1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift in Sources */,
 				2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */,
+				BD62EA4B1C929C1C004A02DF /* EnumCountableSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
