@@ -40,7 +40,7 @@ class EnumCountableSpec: QuickSpec {
     override func spec() {
         describe("Given you have an enum") {
             context("with 2 cases") {
-                it("the count should be 6") {
+                it("the count should be 2") {
                     expect(Enum2.count).to(equal(2))
                 }
             }

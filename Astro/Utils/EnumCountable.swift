@@ -42,7 +42,7 @@ extension EnumCountable where Self : RawRepresentable, Self.RawValue == Int {
     static func countCases() -> Int {
         var count = 0
         while let _ = Self(rawValue: count) {
-            count++
+            count += 1
         }
         return count
     }

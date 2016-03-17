@@ -54,8 +54,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     ui.frameworks = 'UIKit'
   end
 
-  s.subspec 'Utils' do | log |
-    log.source_files = 'Astro/Utils/**/*.swift'
+  s.subspec 'Utils' do | utils |
+    utils = 'Astro/Utils/**/*.swift'
   end
 
 end
