@@ -30,26 +30,31 @@ extension UIColor {
         var parsedGreen: UInt32 = 255
         var parsedBlue: UInt32 = 255
         var parsedAlpha: UInt32 = 255
-
+        
         let hexCharacterSet = NSCharacterSet(charactersInString: "0123456789abcdefABCDEF")
         let hexOnlyString = hexString.componentsSeparatedByCharactersInSet(hexCharacterSet.invertedSet).joinWithSeparator("")
-
+        
         guard hexOnlyString.characters.count >= 6 else {
+            // There is a bug in stable Xcode 7.3 (SR-704) where returning nil
+            // here will crash with EXC_BAD_ACCESS. Current workaround is to
+            // call self/super.init() before returning nil.
+            // Source: https://bugs.swift.org/browse/SR-704
+            self.init()
             return nil
         }
-
-        let redCharacterRange = Range(start: hexOnlyString.startIndex, end: hexOnlyString.startIndex.advancedBy(2))
+        
+        let redCharacterRange = hexOnlyString.startIndex..<hexOnlyString.startIndex.advancedBy(2)
         NSScanner(string: hexOnlyString.substringWithRange(redCharacterRange)).scanHexInt(&parsedRed)
-        let greenCharacterRange = Range(start: hexOnlyString.startIndex.advancedBy(2), end: hexOnlyString.startIndex.advancedBy(4))
+        let greenCharacterRange = hexOnlyString.startIndex.advancedBy(2)..<hexOnlyString.startIndex.advancedBy(4)
         NSScanner(string: hexOnlyString.substringWithRange(greenCharacterRange)).scanHexInt(&parsedGreen)
-        let blueCharacterRange = Range(start: hexOnlyString.startIndex.advancedBy(4), end: hexOnlyString.startIndex.advancedBy(6))
+        let blueCharacterRange = hexOnlyString.startIndex.advancedBy(4)..<hexOnlyString.startIndex.advancedBy(6)
         NSScanner(string: hexOnlyString.substringWithRange(blueCharacterRange)).scanHexInt(&parsedBlue)
         
         if hexOnlyString.characters.count == 8 {
-            let alphaCharacterRange = Range(start: hexOnlyString.startIndex.advancedBy(6), end: hexOnlyString.startIndex.advancedBy(8))
+            let alphaCharacterRange = hexOnlyString.startIndex.advancedBy(6)..<hexOnlyString.startIndex.advancedBy(8)
             NSScanner(string: hexOnlyString.substringWithRange(alphaCharacterRange)).scanHexInt(&parsedAlpha)
         }
-
+        
         self.init(red: CGFloat(parsedRed) / 255.0, green: CGFloat(parsedGreen) / 255.0, blue: CGFloat(parsedBlue) / 255.0, alpha: (CGFloat(alpha) * CGFloat(parsedAlpha)) / 255.0)
     }
 

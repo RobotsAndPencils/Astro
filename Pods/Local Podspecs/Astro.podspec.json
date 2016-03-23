@@ -1,6 +1,6 @@
 {
   "name": "Astro",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "summary": "A RoboPod containing a small collection of utilities for project reuse",
   "homepage": "https://RobotsAndPencils.com",
   "license": {
@@ -14,8 +14,8 @@
     "Michael Beaureguard": "Michael.Beauregard@RobotsAndPencils.com"
   },
   "source": {
-    "git": "https://github.com/RobotsAndPencils/Astro.git",
-    "tag": "0.5.0"
+    "git": "git@github.com:RobotsAndPencils/Astro.git",
+    "tag": "0.6.0"
   },
   "platforms": {
     "ios": "8.0"
@@ -44,6 +44,9 @@
       "name": "UI",
       "source_files": "Astro/UI/**/*.swift",
       "frameworks": "UIKit"
+    },
+    {
+      "name": "Utils"
     }
   ]
 }
