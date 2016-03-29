@@ -55,7 +55,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   end
 
   s.subspec 'Utils' do | utils |
-    utils = 'Astro/Utils/**/*.swift'
+    utils.source_files = 'Astro/Utils/**/*.swift'
   end
 
 end
