@@ -14,6 +14,7 @@
 		2E934B8A416AF015C76347DC /* UIViewController+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9348D0FB90D68FC7E5C3D7 /* UIViewController+AstroGadgets.swift */; };
 		2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9348C107F407A4402AB69F /* UIViewController+AstroGadgetsSpec.swift */; };
 		3EF778AF613B3385E7BBDF99 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; };
+		3F78B5501CC35D4900A0E30C /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F78B54F1CC35D4900A0E30C /* Queue.swift */; };
 		535DF10A1C87864E00961785 /* LayoutLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DF1091C87864E00961785 /* LayoutLabel.swift */; };
 		535DF10C1C87886500961785 /* LayoutLabelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DF10B1C87886500961785 /* LayoutLabelSpec.swift */; };
 		607EC5E8906BCBF4F810394F /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; };
@@ -46,6 +47,7 @@
 		2E9348D0FB90D68FC7E5C3D7 /* UIViewController+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AstroGadgets.swift"; sourceTree = "<group>"; };
 		2E934B3DCE343BE7D9CECCCD /* HTTPStatusCodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodeSpec.swift; sourceTree = "<group>"; };
 		2E934F99FFAF39F046F75750 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
+		3F78B54F1CC35D4900A0E30C /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Utils/Queue.swift; sourceTree = "<group>"; };
 		535DF1091C87864E00961785 /* LayoutLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutLabel.swift; sourceTree = "<group>"; };
 		535DF10B1C87886500961785 /* LayoutLabelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutLabelSpec.swift; sourceTree = "<group>"; };
 		63379D7E1C063B8800DDD95B /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainAccess.swift; path = Security/KeychainAccess.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		BD62EA461C928F6C004A02DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3F78B54F1CC35D4900A0E30C /* Queue.swift */,
 				BD62EA471C929BF0004A02DF /* EnumCountable.swift */,
 			);
 			name = Utils;
@@ -451,6 +454,7 @@
 				2E93487124A5E044E0199250 /* HTTPStatusCode.swift in Sources */,
 				63379D7F1C063B8800DDD95B /* KeychainAccess.swift in Sources */,
 				D0C3176529877E28CFD27E77 /* Log.swift in Sources */,
+				3F78B5501CC35D4900A0E30C /* Queue.swift in Sources */,
 				CA5380CB1C5C195900204A68 /* UIColor+AstroGadgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
