@@ -5,11 +5,11 @@
 
 import Foundation
 
-protocol ExcutableQueue {
+protocol ExecutableQueue {
     var queue: dispatch_queue_t { get }
 }
 
-extension ExcutableQueue {
+extension ExecutableQueue {
     func execute(closure: () -> Void) {
         dispatch_async(queue, closure)
     }
@@ -19,7 +19,7 @@ extension ExcutableQueue {
     }
 }
 
-enum Queue: ExcutableQueue {
+enum Queue: ExecutableQueue {
     case Main
     case UserInteractive
     case UserInitiated
