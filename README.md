@@ -194,7 +194,7 @@ override func numberOfSectionsInCollectionView(collectionView: UICollectionView)
 ```
 
 #### Queue
-`Queue` provides a prettier interface for dispatching onto different GCD Queues.
+`Queue` provides a prettier interface for the most common needs of dispatching onto different GCD Queues. If you require something more powerfull consider [Async](https://github.com/duemunk/Async).
 
 ```swift
 Queue.Background.execute {
