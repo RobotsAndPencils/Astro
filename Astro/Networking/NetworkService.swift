@@ -242,9 +242,8 @@ private extension URLRequestConvertible {
         let request = self.URLRequest
         let method = request.HTTPMethod
 
-        guard let url = request.URL?.absoluteString
-            else {
-                return "**Unable to log request**"
+        guard let url = request.URL?.absoluteString else {
+            return "**Unable to log request**"
         }
 
         var result = "\(method) \(url)"
@@ -271,8 +270,7 @@ private extension Response {
     func logResponse(headers includeHeaders: Bool = false, body includeBody: Bool = false) -> String {
         guard let url = request?.URL?.absoluteString,
             statusCodeInt = self.response?.statusCode,
-            statusCode = HTTPStatusCode(intValue: statusCodeInt)
-            else {
+            statusCode = HTTPStatusCode(intValue: statusCodeInt) else {
                 return "**Unable to log response**"
         }
 
