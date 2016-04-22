@@ -23,7 +23,7 @@ pod 'Astro'
 
 Or if you don't want the whole enchilada then grab one of the subspecs:
 
-```
+```ruby
 pod 'Astro/Logging'
 pod 'Astro/Networking'
 pod 'Astro/Security'
@@ -38,15 +38,13 @@ pod 'Astro/UI'
 
 Out of the box, you will be able to log error messages.
 
-```
-swift
+```swift
 Log.error("I want to log an error message with \(something)")
 ```
 
 However, if you want to see more information you can override the logging level as you wish. For example:
 
-```
-swift
+```swift
 #if DEBUG
   Log.level = .Debug
 #else
@@ -59,7 +57,7 @@ Log.warning("I want to log a warning message with \(somethingOtherThanElse)")
 ```
 
 You can also write a custom logger as long as it conforms to the `Logger` protocol.
-```
+```swift
 Log.logger = MyCustomLogger()
 ```
 
@@ -100,7 +98,8 @@ self.networkService.request(Route.login(username: username, password: password))
 ```
 
 When testing the rest of your app you will want to stub the network layer. The recommended approach is to use the `Nocilla` library and add the follwing convienences (I tried to put these into a subspec [but failed](https://github.com/CocoaPods/CocoaPods/issues/5191)):
-```
+
+```swift
 // Improved DSL for Nocilla
 
 func stubRoute(route: Route) -> LSStubRequestDSL {
@@ -135,7 +134,7 @@ stubRoute(Route.login(username: "user", password: "pass")).andReturn(.Code200OK)
 
 `KeychainAccess` provides the app access to a device's Keychain store. Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then recover those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app. For more details on what else you can store, check out the KeychainAccessSpec.swift file.
 
-```
+```swift
 // Instantiate the keychain access using a unique account identifier to house your key/values
 let keychain = KeychainAccess(account: "FredDarling@RobotsAndPencils.com")  
 
@@ -177,7 +176,7 @@ It requires that the first case start at 0 and all cases must be continuous.
 
 Example:
 
-```
+```swift
 class SettingsViewController : UICollectionViewController {
 enum Section: Int, EnumCountable {
     case Customizations = 0
