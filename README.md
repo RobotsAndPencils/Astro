@@ -66,6 +66,67 @@ Log.logger = MyCustomLogger()
 ### Networking
 
 `HTTPStatusCode` is an enum that allows you to clarify status codes returned by your server.
+`HTTPStatusCode+FriendlyMessaging` adds some more user friendly failureReason and recoverSuggestions options to `HTTPStatusCode`
+
+`Route` provides a simple abstraction for working with `NSURLRequests`. Recommended approach is to add extensions to `Route` to add a default `baseURL` value and static functions for your specific API.
+
+```swift
+extension Route {
+    public init(path: String, method: Alamofire.Method = .GET, JSON: Freddy.JSON, additionalHeaders: [String: String] = [:]) {
+        self.init(baseURL: NSURL(string: "https://myapp.com/api/v1/")!, path: path, method: method, parameters: RequestParameters.JSON(parameters: JSON), additionalHeaders: additionalHeaders)
+    }
+    
+    static func login(username username: String, password: String) -> Route {
+        return Route(path: "token", method: .POST, JSON: ["username": username, "password": password].toJSON())
+    }
+}
+```
+
+`NetworkService` brings in AlamoFire, Freddy, and SwiftTask in order to provide a simple networking layer that creates `Task`'s capable of performing network requests, decoding JSON, and mapping the JSON into model objects. Here is an example of a login call where `AuthToken` is a swift struct conforming to `JSONDecodable` (from Freddy):
+
+```swift
+self.networkService.request(Route.login(username: username, password: password)).success { (loginResponse: ResponseValue<AuthToken>) in
+	let networkResponse = loginResponse.response
+    let authToken = loginResponse.value // on success we directly get our model object(s)
+    // Do something with autoToken and/or networkResponse...
+}.failure { errorInfo in
+    let networkResponse = errorInfo.error?.response
+    let error = errorInfo.error?.error
+    // Again, you have access to the error and the network response.     
+}
+```
+
+When testing the rest of your app you will want to stub the network layer. The recommended approach is to use the `Nocilla` library and add the follwing convienences (I tried to put these into a subspec [but failed](https://github.com/CocoaPods/CocoaPods/issues/5191)):
+```
+// Improved DSL for Nocilla
+
+func stubRoute(route: Route) -> LSStubRequestDSL {
+    return stubRequest(route.method.rawValue, route.URL.absoluteString).withHeaders(route.URLRequest.allHTTPHeaderFields).withBody(route.URLRequest.HTTPBody)
+}
+
+extension LSStubRequestDSL {
+    func andReturn(status: HTTPStatusCode) -> LSStubResponseDSL {
+        return andReturn(status.rawValue)
+    }
+}
+
+extension LSStubResponseDSL {
+    func withJSON(json: JSON) -> LSStubResponseDSL {
+        let body = try? json.serialize() ?? NSData()
+        return withHeader("Content-Type", "application/json").withBody(body)
+    }
+}
+
+func stubAnyRequest() -> LSStubRequestDSL {
+    return stubRequest(nil, ".*".regex())
+}
+```
+
+Now you can easily stub your login `Route` like this:
+
+```swift
+stubRoute(Route.login(username: "user", password: "pass")).andReturn(.Code200OK).withJSON(["token": "[TOKEN]"])
+```
 
 ### Security
 
