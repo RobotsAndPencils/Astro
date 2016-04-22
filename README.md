@@ -65,9 +65,11 @@ Log.logger = MyCustomLogger()
 
 ### Networking
 
+#### HTTPStatusCode
 `HTTPStatusCode` is an enum that allows you to clarify status codes returned by your server.
 `HTTPStatusCode+FriendlyMessaging` adds some more user friendly failureReason and recoverSuggestions options to `HTTPStatusCode`
 
+#### Route
 `Route` provides a simple abstraction for working with `NSURLRequests`. Recommended approach is to add extensions to `Route` to add a default `baseURL` value and static functions for your specific API.
 
 ```swift
@@ -82,6 +84,7 @@ extension Route {
 }
 ```
 
+#### NetworkService
 `NetworkService` brings in AlamoFire, Freddy, and SwiftTask in order to provide a simple networking layer that creates `Task`'s capable of performing network requests, decoding JSON, and mapping the JSON into model objects. Here is an example of a login call where `AuthToken` is a swift struct conforming to `JSONDecodable` (from Freddy):
 
 ```swift
@@ -167,6 +170,7 @@ In your app's implementation you you can then quickly make use of those colors:
 let color = UIColor.MyApp_BrightOrangeColor()
 ```
 ### Utils
+#### EnumCountable
 `EnumCountable` provides an easy way to add a static `count` constant to Swift enums of type Int.  
 
 It requires that the first case start at 0 and all cases must be continuous.
@@ -190,6 +194,7 @@ override func numberOfSectionsInCollectionView(collectionView: UICollectionView)
 }
 ```
 
+#### Queue
 `Queue` provides a prettier interface for dispatching onto different GCD Queues.
 
 ```swift
