@@ -84,12 +84,20 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-AstroTests/Alamofire.framework"
   install_framework "Pods-AstroTests/Astro.framework"
+  install_framework "Pods-AstroTests/Freddy.framework"
   install_framework "Pods-AstroTests/Nimble.framework"
+  install_framework "Pods-AstroTests/Nocilla.framework"
   install_framework "Pods-AstroTests/Quick.framework"
+  install_framework "Pods-AstroTests/SwiftTask.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-AstroTests/Alamofire.framework"
   install_framework "Pods-AstroTests/Astro.framework"
+  install_framework "Pods-AstroTests/Freddy.framework"
   install_framework "Pods-AstroTests/Nimble.framework"
+  install_framework "Pods-AstroTests/Nocilla.framework"
   install_framework "Pods-AstroTests/Quick.framework"
+  install_framework "Pods-AstroTests/SwiftTask.framework"
 fi

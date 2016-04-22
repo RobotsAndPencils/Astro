@@ -16,4 +16,5 @@ target 'AstroTests', :exclusive => true do
 
   pod 'Quick'
   pod 'Nimble'
+  pod 'Nocilla'
 end

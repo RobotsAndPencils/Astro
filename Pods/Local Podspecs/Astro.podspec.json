@@ -29,7 +29,18 @@
     },
     {
       "name": "Networking",
-      "source_files": "Astro/Networking/**/*.swift"
+      "source_files": "Astro/Networking/**/*.swift",
+      "dependencies": {
+        "Alamofire": [
+
+        ],
+        "Freddy": [
+
+        ],
+        "SwiftTask": [
+
+        ]
+      }
     },
     {
       "name": "Security",
