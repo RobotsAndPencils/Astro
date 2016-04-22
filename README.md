@@ -189,6 +189,17 @@ override func numberOfSectionsInCollectionView(collectionView: UICollectionView)
     }
 }
 ```
+
+`Queue` provides a prettier interface for dispatching onto different GCD Queues.
+
+```swift
+Queue.Background.execute {
+    // Do some work...
+    Queue.Main.executeAfter(delay: 1) {
+        // Back on main thread
+    }
+}
+```
     
     
 ## Module Management
