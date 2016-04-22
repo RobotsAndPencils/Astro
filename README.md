@@ -89,7 +89,7 @@ extension Route {
 self.networkService.request(Route.login(username: username, password: password)).success { (loginResponse: ResponseValue<AuthToken>) in
 	let networkResponse = loginResponse.response
     let authToken = loginResponse.value // on success we directly get our model object(s)
-    // Do something with autoToken and/or networkResponse...
+    // Do something with authToken and/or networkResponse...
 }.failure { errorInfo in
     let networkResponse = errorInfo.error?.response
     let error = errorInfo.error?.error
@@ -97,7 +97,7 @@ self.networkService.request(Route.login(username: username, password: password))
 }
 ```
 
-When testing the rest of your app you will want to stub the network layer. The recommended approach is to use the `Nocilla` library and add the follwing convienences (I tried to put these into a subspec [but failed](https://github.com/CocoaPods/CocoaPods/issues/5191)):
+When testing the rest of your app you will want to stub the network layer. The recommended approach is to use the `Nocilla` library and add the following conveniences (I tried to put these into a subspec [but failed](https://github.com/CocoaPods/CocoaPods/issues/5191)):
 
 ```swift
 // Improved DSL for Nocilla
