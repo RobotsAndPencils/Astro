@@ -141,8 +141,20 @@ public extension NetworkServiceType {
 public class NetworkService: NetworkServiceType {
 
     public struct AssertionError: ErrorType {}
+    private let requestManager: Alamofire.Manager
 
-    public init() {
+    public convenience init() {
+        let requestManager: Alamofire.Manager = {
+            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            configuration.HTTPAdditionalHeaders = Alamofire.Manager.defaultHTTPHeaders
+
+            return Alamofire.Manager(configuration: configuration)
+        }()
+        self.init(requestManager: requestManager)
+    }
+
+    public init(requestManager: Alamofire.Manager) {
+        self.requestManager = requestManager
     }
 
     public func request(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<Void>, NetworkError> {
@@ -227,13 +239,6 @@ public class NetworkService: NetworkServiceType {
             }
         }
     }
-
-    private let requestManager: Alamofire.Manager = {
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.HTTPAdditionalHeaders = Alamofire.Manager.defaultHTTPHeaders
-
-        return Alamofire.Manager(configuration: configuration)
-    }()
 }
 
 private extension URLRequestConvertible {
