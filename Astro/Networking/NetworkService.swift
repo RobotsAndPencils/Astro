@@ -1,6 +1,5 @@
 //
 //  NetworkService.swift
-//  GriefSteps
 //
 //  Created by Cody Rayment on 2016-04-07.
 //  Copyright © 2016 Robots and Pencils. All rights reserved.

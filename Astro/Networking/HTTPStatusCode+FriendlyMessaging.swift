@@ -1,6 +1,5 @@
 //
-//  HTTPStatusCodeExtensions.swift
-//  DecisiveFarming
+//  HTTPStatusCode+FriendlyMessaging.swift
 //
 //  Created by Brandon Evans on 2016-01-20.
 //  Copyright © 2016 Robots and Pencils. All rights reserved.

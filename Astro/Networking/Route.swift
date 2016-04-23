@@ -1,6 +1,6 @@
 //
 //  Created by Brandon Evans on 2016-01-20.
-//  Copyright (c) 2016 Varo Money, Inc. All rights reserved.
+//  Copyright © 2016 Robots and Pencils. All rights reserved.
 //
 
 import Alamofire
