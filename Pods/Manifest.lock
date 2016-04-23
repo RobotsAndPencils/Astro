@@ -9,6 +9,7 @@ PODS:
   - Astro/Logging (0.8.0)
   - Astro/Networking (0.8.0):
     - Alamofire
+    - Astro/Logging
     - Freddy
     - SwiftTask
   - Astro/Security (0.8.0):
@@ -33,7 +34,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  Astro: 22b6e802ac3879766a0246f66a1d44819ab95d49
+  Astro: 2a658f74b5e6046635713ebc3a1d24678b4cd89c
   Freddy: e53713b8d5be02dbf5f4132c44d899d99eb09a6b
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
   Nocilla: ae0a2b05f3087b473624ac2b25903695df51246a

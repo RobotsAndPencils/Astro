@@ -16,7 +16,6 @@
 		3EF778AF613B3385E7BBDF99 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; };
 		3F78B5501CC35D4900A0E30C /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F78B54F1CC35D4900A0E30C /* Queue.swift */; };
 		3F8E16F51CCA801000E0B4DD /* NetworkServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F41CCA801000E0B4DD /* NetworkServiceSpec.swift */; };
-		3F8E16F91CCA843100E0B4DD /* HTTPStatusCode+FriendlyMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F61CCA843100E0B4DD /* HTTPStatusCode+FriendlyMessaging.swift */; };
 		3F8E16FA1CCA843100E0B4DD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F71CCA843100E0B4DD /* NetworkService.swift */; };
 		3F8E16FB1CCA843100E0B4DD /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F81CCA843100E0B4DD /* Route.swift */; };
 		535DF10A1C87864E00961785 /* LayoutLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DF1091C87864E00961785 /* LayoutLabel.swift */; };
@@ -53,7 +52,6 @@
 		2E934F99FFAF39F046F75750 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		3F78B54F1CC35D4900A0E30C /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Utils/Queue.swift; sourceTree = "<group>"; };
 		3F8E16F41CCA801000E0B4DD /* NetworkServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceSpec.swift; sourceTree = "<group>"; };
-		3F8E16F61CCA843100E0B4DD /* HTTPStatusCode+FriendlyMessaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPStatusCode+FriendlyMessaging.swift"; sourceTree = "<group>"; };
 		3F8E16F71CCA843100E0B4DD /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3F8E16F81CCA843100E0B4DD /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		535DF1091C87864E00961785 /* LayoutLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutLabel.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				2E934F99FFAF39F046F75750 /* HTTPStatusCode.swift */,
-				3F8E16F61CCA843100E0B4DD /* HTTPStatusCode+FriendlyMessaging.swift */,
 				3F8E16F71CCA843100E0B4DD /* NetworkService.swift */,
 				3F8E16F81CCA843100E0B4DD /* Route.swift */,
 			);
@@ -469,7 +466,6 @@
 				D0C3176529877E28CFD27E77 /* Log.swift in Sources */,
 				3F78B5501CC35D4900A0E30C /* Queue.swift in Sources */,
 				3F8E16FB1CCA843100E0B4DD /* Route.swift in Sources */,
-				3F8E16F91CCA843100E0B4DD /* HTTPStatusCode+FriendlyMessaging.swift in Sources */,
 				CA5380CB1C5C195900204A68 /* UIColor+AstroGadgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

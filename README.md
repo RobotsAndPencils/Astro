@@ -88,8 +88,7 @@ Log.logger = MyCustomLogger()
 ### Networking
 
 #### HTTPStatusCode
-`HTTPStatusCode` is an enum that allows you to clarify status codes returned by your server.
-`HTTPStatusCode+FriendlyMessaging` adds some more user friendly failureReason and recoverSuggestions options to `HTTPStatusCode`
+`HTTPStatusCode` is an enum that allows you to clarify status codes returned by your server and includes some more user friendly messaging for falureReason and recoverySuggestion.
 
 #### Route
 `Route` provides a simple abstraction for working with `NSURLRequests`. Recommended approach is to add extensions to `Route` to add a default `baseURL` value and static functions for your specific API.

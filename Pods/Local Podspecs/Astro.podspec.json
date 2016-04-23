@@ -31,6 +31,9 @@
       "name": "Networking",
       "source_files": "Astro/Networking/**/*.swift",
       "dependencies": {
+        "Astro/Logging": [
+
+        ],
         "Alamofire": [
 
         ],
