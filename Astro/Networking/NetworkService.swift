@@ -12,15 +12,15 @@ import Freddy
 
 /// Error Type.
 public struct NetworkError {
-    public let response: NSHTTPURLResponse?
+    public let response: Response<NSData, NSError>?
     public let error: ErrorType
 
     public var statusCode: HTTPStatusCode? {
-        guard let response = response else { return nil }
+        guard let response = response?.response else { return nil }
         return HTTPStatusCode(intValue: response.statusCode)
     }
 
-    public init(response: NSHTTPURLResponse? = nil, error: ErrorType) {
+    public init(response: Response<NSData, NSError>? = nil, error: ErrorType) {
         self.response = response
         self.error = error
     }
@@ -28,15 +28,15 @@ public struct NetworkError {
 
 /// Success Type.
 public struct ResponseValue<T> {
-    public let response: NSHTTPURLResponse?
+    public let response: Response<NSData, NSError>?
     public let value: T
 
     public var statusCode: HTTPStatusCode? {
-        guard let response = response else { return nil }
+        guard let response = response?.response else { return nil }
         return HTTPStatusCode(intValue: response.statusCode)
     }
 
-    public init(response: NSHTTPURLResponse? = nil, value: T) {
+    public init(response: Response<NSData, NSError>? = nil, value: T) {
         self.response = response
         self.value = value
     }
@@ -229,10 +229,10 @@ public class NetworkService: NetworkServiceType {
                     guard let data = response.result.value where response.result.isSuccess else {
                         // We should always have an error in the non success case but use AssertionError to avoid a bang (!)
                         let error: ErrorType = response.result.error ?? AssertionError()
-                        reject(NetworkError(response: response.response, error: error))
+                        reject(NetworkError(response: response, error: error))
                         return
                     }
-                    fulfill(ResponseValue(response: response.response, value: data))
+                    fulfill(ResponseValue(response: response, value: data))
             }
             configure.cancel = { [weak request] in
                 request?.cancel()

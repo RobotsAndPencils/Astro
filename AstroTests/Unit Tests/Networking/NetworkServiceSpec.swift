@@ -118,7 +118,7 @@ class NetworkServiceSpec: QuickSpec {
                         let expectedError = JSON.Error.ValueNotConvertible(value: [], to: Swift.Dictionary<String, JSON>)
                         expect({
                             dictTask.errorInfo?.error?.error as? JSON.Error
-                            }()).toEventually(equal(expectedError))
+                        }()).toEventually(equal(expectedError))
                     }
                 }
             }
@@ -138,7 +138,7 @@ class NetworkServiceSpec: QuickSpec {
                     it("should eventually return token JSON") {
                         expect({
                             arrayTask.value != nil ? JSON.Array(arrayTask.value!.value) : nil
-                            }()).toEventually(equal([testJSON]))
+                        }()).toEventually(equal([testJSON]))
                     }
                 }
 
@@ -155,7 +155,48 @@ class NetworkServiceSpec: QuickSpec {
                         let expectedError = JSON.Error.ValueNotConvertible(value: [:], to: Swift.Array<JSON>)
                         expect({
                             arrayTask.errorInfo?.error?.error as? JSON.Error
-                            }()).toEventually(equal(expectedError))
+                        }()).toEventually(equal(expectedError))
+                    }
+                }
+            }
+
+            describe(".requestJSON") {
+                var task: Task<Float, ResponseValue<JSON>, NetworkError>!
+
+                describe("200 OK") {
+                    beforeEach {
+                        stubAnyRequest().andReturn(.Code200OK).withJSON(testJSON)
+                        task = subject.requestJSON(request)
+                    }
+
+                    it("task should be rejected") {
+                        expect(task.state).toEventually(equal(TaskState.Fulfilled))
+                    }
+                    it("response should contain response data") {
+                        expect({ () -> JSON? in
+                            guard let data = task.value?.response?.data else { return nil }
+                            return try? JSON(data: data)
+                            }()).toEventually(equal(testJSON))
+                    }
+                    it("response should contain the parsed JSON") {
+                        expect(task.value?.value).toEventually(equal(testJSON))
+                    }
+                }
+
+                describe("status code validation failure") {
+                    beforeEach {
+                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(testJSON)
+                        task = subject.requestJSON(request)
+                    }
+
+                    it("task should be rejected") {
+                        expect(task.state).toEventually(equal(TaskState.Rejected))
+                    }
+                    it("error should contain response data") {
+                        expect({ () -> JSON? in
+                            guard let data = task.errorInfo?.error?.response?.data else { return nil }
+                            return try? JSON(data: data)
+                        }()).toEventually(equal(testJSON))
                     }
                 }
             }
