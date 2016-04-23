@@ -29,12 +29,6 @@ public struct Route: URLRequestConvertible {
         return baseURL.URLByAppendingPathComponent(self.path)
     }
 
-    private func logRequest(request: NSURLRequest?) {
-        let method = request?.HTTPMethod ?? ""
-        let url = request?.URLString ?? ""
-        Log.info("\(method) \(url)")
-    }
-
     // MARK: - URLRequestConvertible
 
     public var URLRequest: NSMutableURLRequest {
@@ -50,6 +44,15 @@ public struct Route: URLRequestConvertible {
         }
 
         return mutableURLRequest
+    }
+}
+
+extension Route: CustomStringConvertible {
+    public var description: String {
+        let request = URLRequest
+        let method = request.HTTPMethod ?? ""
+        let url = request.URLString ?? ""
+        return "\(method) \(url)"
     }
 }
 
