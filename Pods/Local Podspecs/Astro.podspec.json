@@ -21,7 +21,6 @@
     "ios": "8.0"
   },
   "requires_arc": true,
-  "source_files": "Astro/**/*.swift",
   "subspecs": [
     {
       "name": "Logging",
