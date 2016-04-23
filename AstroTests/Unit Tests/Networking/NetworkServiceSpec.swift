@@ -34,8 +34,8 @@ class NetworkServiceSpec: QuickSpec {
             beforeEach {
                 subject = NetworkService()
                 testJSON = [
-                    "firstName": "Trogdor",
-                    "lastName": "the Burninator",
+                    "id": "1",
+                    "email": "user@example.com",
                 ]
                 request = NSMutableURLRequest(URL: NSURL(string: "https://example.com/path")!)
             }
@@ -197,6 +197,36 @@ class NetworkServiceSpec: QuickSpec {
                             guard let data = task.errorInfo?.error?.response?.data else { return nil }
                             return try? JSON(data: data)
                         }()).toEventually(equal(testJSON))
+                    }
+                }
+            }
+
+            describe(".request<T>") {
+                var task: Task<Float, ResponseValue<User>, NetworkError>!
+
+                describe("200 OK") {
+                    beforeEach {
+                        stubAnyRequest().andReturn(.Code200OK).withJSON(testJSON)
+                        task = subject.request(request)
+                    }
+                    it("fulfills with the correct User") {
+                        expect({ () -> JSON? in
+                            guard let data = task.value?.response?.data else { return nil }
+                            return try? JSON(data: data)
+                            }()).toEventually(equal(testJSON))
+                    }
+                    it("response should contain the parsed JSON") {
+                        expect(task.value?.value).toEventually(equal(User(userID: "1", email: "user@example.com")))
+                    }
+                }
+
+                describe("status code validation failure") {
+                    beforeEach {
+                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(testJSON)
+                        task = subject.request(request)
+                    }
+                    it("task should be rejected") {
+                        expect(task.state).toEventually(equal(TaskState.Rejected))
                     }
                 }
             }

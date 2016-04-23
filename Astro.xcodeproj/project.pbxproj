@@ -18,6 +18,7 @@
 		3F8E16F51CCA801000E0B4DD /* NetworkServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F41CCA801000E0B4DD /* NetworkServiceSpec.swift */; };
 		3F8E16FA1CCA843100E0B4DD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F71CCA843100E0B4DD /* NetworkService.swift */; };
 		3F8E16FB1CCA843100E0B4DD /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F81CCA843100E0B4DD /* Route.swift */; };
+		3FCD95D71CCC2D3400A5442F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD95D61CCC2D3400A5442F /* User.swift */; };
 		535DF10A1C87864E00961785 /* LayoutLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DF1091C87864E00961785 /* LayoutLabel.swift */; };
 		535DF10C1C87886500961785 /* LayoutLabelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535DF10B1C87886500961785 /* LayoutLabelSpec.swift */; };
 		607EC5E8906BCBF4F810394F /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A62E5CBBE7AB5997245AADAF /* Pods_AstroTests.framework */; };
@@ -54,6 +55,7 @@
 		3F8E16F41CCA801000E0B4DD /* NetworkServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceSpec.swift; sourceTree = "<group>"; };
 		3F8E16F71CCA843100E0B4DD /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3F8E16F81CCA843100E0B4DD /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		3FCD95D61CCC2D3400A5442F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		535DF1091C87864E00961785 /* LayoutLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutLabel.swift; sourceTree = "<group>"; };
 		535DF10B1C87886500961785 /* LayoutLabelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutLabelSpec.swift; sourceTree = "<group>"; };
 		63379D7E1C063B8800DDD95B /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainAccess.swift; path = Security/KeychainAccess.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			children = (
 				2E934B3DCE343BE7D9CECCCD /* HTTPStatusCodeSpec.swift */,
 				3F8E16F41CCA801000E0B4DD /* NetworkServiceSpec.swift */,
+				3FCD95D61CCC2D3400A5442F /* User.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				B69726CE1BD9162F0047EEB9 /* LoggerSpec.swift in Sources */,
 				CA5380CD1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift in Sources */,
 				2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */,
+				3FCD95D71CCC2D3400A5442F /* User.swift in Sources */,
 				BD62EA4B1C929C1C004A02DF /* EnumCountableSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
