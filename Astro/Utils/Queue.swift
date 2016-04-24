@@ -5,28 +5,28 @@
 
 import Foundation
 
-protocol ExecutableQueue {
+public protocol ExecutableQueue {
     var queue: dispatch_queue_t { get }
 }
 
-extension ExecutableQueue {
-    func execute(closure: () -> Void) {
+public extension ExecutableQueue {
+    public func execute(closure: () -> Void) {
         dispatch_async(queue, closure)
     }
-    func executeAfter(delay delay: NSTimeInterval, closure: () -> Void) {
+    public func executeAfter(delay delay: NSTimeInterval, closure: () -> Void) {
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, queue, closure)
     }
 }
 
-enum Queue: ExecutableQueue {
+public enum Queue: ExecutableQueue {
     case Main
     case UserInteractive
     case UserInitiated
     case Utility
     case Background
 
-    var queue: dispatch_queue_t {
+    public var queue: dispatch_queue_t {
         switch self {
         case .Main:
             return dispatch_get_main_queue()
