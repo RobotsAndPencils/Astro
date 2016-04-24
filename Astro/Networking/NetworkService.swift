@@ -20,6 +20,11 @@ public struct NetworkError {
         return HTTPStatusCode(intValue: response.statusCode)
     }
 
+    public var json: JSON? {
+        guard let data = response?.data else { return nil }
+        return try? JSON(data: data)
+    }
+
     public init(response: Response<NSData, NSError>? = nil, error: ErrorType) {
         self.response = response
         self.error = error

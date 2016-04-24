@@ -176,7 +176,7 @@ class NetworkServiceSpec: QuickSpec {
                         expect({ () -> JSON? in
                             guard let data = task.value?.response?.data else { return nil }
                             return try? JSON(data: data)
-                            }()).toEventually(equal(testJSON))
+                        }()).toEventually(equal(testJSON))
                     }
                     it("response should contain the parsed JSON") {
                         expect(task.value?.value).toEventually(equal(testJSON))
@@ -197,6 +197,9 @@ class NetworkServiceSpec: QuickSpec {
                             guard let data = task.errorInfo?.error?.response?.data else { return nil }
                             return try? JSON(data: data)
                         }()).toEventually(equal(testJSON))
+                    }
+                    it("error should calculate json") {
+                        expect(task.errorInfo?.error?.json).toEventually(equal(testJSON))
                     }
                 }
             }
