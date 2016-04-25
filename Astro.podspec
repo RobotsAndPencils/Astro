@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Astro"
-  s.version          = "0.7.0"
+  s.version          = "0.8.0"
   s.summary          = "A RoboPod containing a small collection of utilities for project reuse"
   s.homepage         = "https://RobotsAndPencils.com"
 # s.actualHomepage   = "https://github.com/RobotsAndPencils/Astro"  <-- we needed a publicly accessible s.homepage or else we couldn't publish to our own repository
@@ -33,8 +33,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.ios.deployment_target = '8.0'
   s.platform     = :ios, '8.0'
   s.requires_arc = true
-
-  s.source_files = 'Astro/**/*.swift'
   
   s.subspec 'Logging' do | log |
     log.source_files = 'Astro/Logging/**/*.swift'
@@ -42,6 +40,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.subspec 'Networking' do | net |
     net.source_files = 'Astro/Networking/**/*.swift'
+    net.dependency 'Astro/Logging'
+    net.dependency 'Alamofire'
+    net.dependency 'Freddy'
+    net.dependency 'SwiftTask'
   end
 
   s.subspec 'Security' do | security |

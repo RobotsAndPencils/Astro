@@ -1,7 +1,30 @@
 # Astro
-===========
 
 Astro is a library, built in swift, used to hold common utility methods. It was built as an eventual replacement for RoboKit.
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Modules](#modules)
+  - [Logging](#logging)
+  - [Networking](#networking)
+    - [HTTPStatusCode](#httpstatuscode)
+    - [Route](#route)
+    - [NetworkService](#networkservice)
+  - [Security](#security)
+  - [UI](#ui)
+  - [Utils](#utils)
+    - [EnumCountable](#enumcountable)
+    - [Queue](#queue)
+- [Module Management](#module-management)
+- [Deploy new release to our private CocoaPods repository](#deploy-new-release-to-our-private-cocoapods-repository)
+- [Contact](#contact)
+  - [Maintainers](#maintainers)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Requirements
 
@@ -23,7 +46,7 @@ pod 'Astro'
 
 Or if you don't want the whole enchilada then grab one of the subspecs:
 
-```
+```ruby
 pod 'Astro/Logging'
 pod 'Astro/Networking'
 pod 'Astro/Security'
@@ -38,15 +61,13 @@ pod 'Astro/UI'
 
 Out of the box, you will be able to log error messages.
 
-```
-swift
+```swift
 Log.error("I want to log an error message with \(something)")
 ```
 
 However, if you want to see more information you can override the logging level as you wish. For example:
 
-```
-swift
+```swift
 #if DEBUG
   Log.level = .Debug
 #else
@@ -59,19 +80,83 @@ Log.warning("I want to log a warning message with \(somethingOtherThanElse)")
 ```
 
 You can also write a custom logger as long as it conforms to the `Logger` protocol.
-```
+```swift
 Log.logger = MyCustomLogger()
 ```
 
 ### Networking
 
-`HTTPStatusCode` is an enum that allows you to clarify status codes returned by your server.
+#### HTTPStatusCode
+`HTTPStatusCode` is an enum that allows you to clarify status codes returned by your server and includes some more user friendly messaging for falureReason and recoverySuggestion.
+
+#### Route
+`Route` provides a simple abstraction for working with `NSURLRequests`. Recommended approach is to add extensions to `Route` to add a default `baseURL` value and static functions for your specific API.
+
+```swift
+extension Route {
+    public init(path: String, method: Alamofire.Method = .GET, JSON: Freddy.JSON, additionalHeaders: [String: String] = [:]) {
+        self.init(baseURL: NSURL(string: "https://myapp.com/api/v1/")!, path: path, method: method, parameters: RequestParameters.JSON(parameters: JSON), additionalHeaders: additionalHeaders)
+    }
+    
+    static func login(username username: String, password: String) -> Route {
+        return Route(path: "token", method: .POST, JSON: ["username": username, "password": password].toJSON())
+    }
+}
+```
+
+#### NetworkService
+`NetworkService` brings in AlamoFire, Freddy, and SwiftTask in order to provide a simple networking layer that creates `Task`'s capable of performing network requests, decoding JSON, and mapping the JSON into model objects. Here is an example of a login call where `AuthToken` is a swift struct conforming to `JSONDecodable` (from Freddy):
+
+```swift
+self.networkService.request(Route.login(username: username, password: password)).success { (loginResponse: ResponseValue<AuthToken>) in
+	let networkResponse = loginResponse.response
+    let authToken = loginResponse.value // on success we directly get our model object(s)
+    // Do something with authToken and/or networkResponse...
+}.failure { errorInfo in
+    let networkResponse = errorInfo.error?.response
+    let error = errorInfo.error?.error
+    // Again, you have access to the error and the network response.     
+}
+```
+
+When testing the rest of your app you will want to stub the network layer. The recommended approach is to use the `Nocilla` library and add the following conveniences (I tried to put these into a subspec [but failed](https://github.com/CocoaPods/CocoaPods/issues/5191)):
+
+```swift
+// Improved DSL for Nocilla
+
+func stubRoute(route: Route) -> LSStubRequestDSL {
+    return stubRequest(route.method.rawValue, route.URL.absoluteString).withHeaders(route.URLRequest.allHTTPHeaderFields).withBody(route.URLRequest.HTTPBody)
+}
+
+extension LSStubRequestDSL {
+    func andReturn(status: HTTPStatusCode) -> LSStubResponseDSL {
+        return andReturn(status.rawValue)
+    }
+}
+
+extension LSStubResponseDSL {
+    func withJSON(json: JSON) -> LSStubResponseDSL {
+        let body = try? json.serialize() ?? NSData()
+        return withHeader("Content-Type", "application/json").withBody(body)
+    }
+}
+
+func stubAnyRequest() -> LSStubRequestDSL {
+    return stubRequest(nil, ".*".regex())
+}
+```
+
+Now you can easily stub your login `Route` like this:
+
+```swift
+stubRoute(Route.login(username: "user", password: "pass")).andReturn(.Code200OK).withJSON(["token": "[TOKEN]"])
+```
 
 ### Security
 
 `KeychainAccess` provides the app access to a device's Keychain store. Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then recover those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app. For more details on what else you can store, check out the KeychainAccessSpec.swift file.
 
-```
+```swift
 // Instantiate the keychain access using a unique account identifier to house your key/values
 let keychain = KeychainAccess(account: "FredDarling@RobotsAndPencils.com")  
 
@@ -106,13 +191,14 @@ In your app's implementation you you can then quickly make use of those colors:
 let color = UIColor.MyApp_BrightOrangeColor()
 ```
 ### Utils
+#### EnumCountable
 `EnumCountable` provides an easy way to add a static `count` constant to Swift enums of type Int.  
 
 It requires that the first case start at 0 and all cases must be continuous.
 
 Example:
 
-```
+```swift
 class SettingsViewController : UICollectionViewController {
 enum Section: Int, EnumCountable {
     case Customizations = 0
@@ -125,6 +211,18 @@ enum Section: Int, EnumCountable {
 ...
 override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return Section.count
+    }
+}
+```
+
+#### Queue
+`Queue` provides a prettier interface for the most common needs of dispatching onto different GCD Queues. If you require something more powerfull consider [Async](https://github.com/duemunk/Async).
+
+```swift
+Queue.Background.execute {
+    // Do some work...
+    Queue.Main.executeAfter(delay: 1) {
+        // Back on main thread
     }
 }
 ```

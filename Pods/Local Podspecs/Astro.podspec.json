@@ -1,6 +1,6 @@
 {
   "name": "Astro",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "summary": "A RoboPod containing a small collection of utilities for project reuse",
   "homepage": "https://RobotsAndPencils.com",
   "license": {
@@ -15,13 +15,12 @@
   },
   "source": {
     "git": "git@github.com:RobotsAndPencils/Astro.git",
-    "tag": "0.7.0"
+    "tag": "0.8.0"
   },
   "platforms": {
     "ios": "8.0"
   },
   "requires_arc": true,
-  "source_files": "Astro/**/*.swift",
   "subspecs": [
     {
       "name": "Logging",
@@ -29,7 +28,21 @@
     },
     {
       "name": "Networking",
-      "source_files": "Astro/Networking/**/*.swift"
+      "source_files": "Astro/Networking/**/*.swift",
+      "dependencies": {
+        "Astro/Logging": [
+
+        ],
+        "Alamofire": [
+
+        ],
+        "Freddy": [
+
+        ],
+        "SwiftTask": [
+
+        ]
+      }
     },
     {
       "name": "Security",

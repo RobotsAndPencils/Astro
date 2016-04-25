@@ -1,31 +1,44 @@
 PODS:
-  - Astro (0.7.0):
-    - Astro/Logging (= 0.7.0)
-    - Astro/Networking (= 0.7.0)
-    - Astro/Security (= 0.7.0)
-    - Astro/UI (= 0.7.0)
-    - Astro/Utils (= 0.7.0)
-  - Astro/Logging (0.7.0)
-  - Astro/Networking (0.7.0)
-  - Astro/Security (0.7.0):
+  - Alamofire (3.3.1)
+  - Astro (0.8.0):
+    - Astro/Logging (= 0.8.0)
+    - Astro/Networking (= 0.8.0)
+    - Astro/Security (= 0.8.0)
+    - Astro/UI (= 0.8.0)
+    - Astro/Utils (= 0.8.0)
+  - Astro/Logging (0.8.0)
+  - Astro/Networking (0.8.0):
+    - Alamofire
     - Astro/Logging
-  - Astro/UI (0.7.0)
-  - Astro/Utils (0.7.0)
+    - Freddy
+    - SwiftTask
+  - Astro/Security (0.8.0):
+    - Astro/Logging
+  - Astro/UI (0.8.0)
+  - Astro/Utils (0.8.0)
+  - Freddy (2.0.2)
   - Nimble (3.2.0)
+  - Nocilla (0.10.0)
   - Quick (0.9.1)
+  - SwiftTask (4.2.1)
 
 DEPENDENCIES:
   - Astro (from `.`)
   - Nimble
+  - Nocilla
   - Quick
 
 EXTERNAL SOURCES:
   Astro:
-    :path: .
+    :path: "."
 
 SPEC CHECKSUMS:
-  Astro: 9db2d1b717b383e9eb5e3b59d2f2f9234a9c39ac
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Astro: ae28effa40241d3448c6e9656d25e7493d18a0d7
+  Freddy: e53713b8d5be02dbf5f4132c44d899d99eb09a6b
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
+  Nocilla: ae0a2b05f3087b473624ac2b25903695df51246a
   Quick: a5221fc21788b6aeda934805e68b061839bc3165
+  SwiftTask: 30423c2499ac69e3fc20c001600ab7de46efeed1
 
 COCOAPODS: 0.39.0
