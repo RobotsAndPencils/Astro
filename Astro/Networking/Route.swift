@@ -85,8 +85,8 @@ public enum RequestParameters {
     }
 }
 
-extension String {
-    func base64Encode() -> String {
+public extension String {
+    public func base64Encode() -> String {
         let data = self.dataUsingEncoding(NSUTF8StringEncoding)
         return data!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
     }
