@@ -21,9 +21,9 @@
 
 import UIKit
 
-class LayoutLabel: UILabel {
+public class LayoutLabel: UILabel {
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         if numberOfLines == 0 && preferredMaxLayoutWidth != frame.size.width {
@@ -32,7 +32,7 @@ class LayoutLabel: UILabel {
         }
     }
     
-    override func intrinsicContentSize() -> CGSize {
+    override public func intrinsicContentSize() -> CGSize {
         var contentSize = super.intrinsicContentSize()
         
         guard let text = text else {

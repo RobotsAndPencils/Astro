@@ -167,7 +167,7 @@ import Foundation
 }
 
 extension HTTPStatusCode {
-    var failureReason: String {
+    public var failureReason: String {
         if !self.isError { return "" }
 
         switch self {
@@ -203,7 +203,7 @@ extension HTTPStatusCode {
         }
     }
 
-    var recoverySuggestion: String {
+    public var recoverySuggestion: String {
         if !self.isError { return "" }
 
         switch self {
