@@ -13,9 +13,7 @@ let KeychainAccessServiceBundleID: String = {
     if NSClassFromString("XCTestCase") != nil {
         Log.level = Log.Level.Debug
         return "com.robotsandpencils.TestTarget"
-    }
-    else {
-        Log.level = Log.Level.Silent
+    } else {
         return NSBundle.mainBundle().bundleIdentifier ?? ""
     }
 }()
