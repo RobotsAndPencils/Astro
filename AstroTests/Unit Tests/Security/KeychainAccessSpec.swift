@@ -16,20 +16,18 @@ class KeychainAccessSpec: QuickSpec {
         
         describe("A keychain") {
             let keychain = KeychainAccess(account: "Test@RobotsAndPencils.com")
-            var testKey = "key"
+            var testKey = "AccessKey"
             
             afterEach {
                 keychain.delete(testKey)
             }
             
             it("returns nil for retrieving a key that doesn't exist") {
-                testKey = "notValidKey"
                 let storedString = keychain.getString(testKey)
                 expect(storedString).to(beNil())
             }
 
             it("can store and retrieve a string") {
-                testKey = "string"
                 let testString = "something really boring"
                 keychain.putString(testKey, value: testString)
                 
@@ -38,7 +36,7 @@ class KeychainAccessSpec: QuickSpec {
             }
             
             it("can store and retrieve data") {
-                testKey = "data"
+                testKey = "DataKey"
                 guard let testFilePath = NSBundle(forClass: KeychainAccessSpec.self).pathForResource("testdata", ofType: "json") else {
                     fail("no test file")
                     return
@@ -52,7 +50,6 @@ class KeychainAccessSpec: QuickSpec {
             }
             
             it("can set a string value to nil") {
-                testKey = "string"
                 keychain.putString(testKey, value: nil)
                 
                 let storedString = keychain.getString(testKey)
@@ -60,7 +57,6 @@ class KeychainAccessSpec: QuickSpec {
             }
             
             it("can set a data value to nil") {
-                testKey = "data"
                 keychain.putString(testKey, value: nil)
                 
                 let storedData = keychain.get(testKey)
@@ -68,7 +64,6 @@ class KeychainAccessSpec: QuickSpec {
             }
             
             it("can be accessed using subscripting for strings") {
-                testKey = "string"
                 let testString = "something slightly less boring"
                 keychain[testKey] = testString
                 
@@ -77,7 +72,7 @@ class KeychainAccessSpec: QuickSpec {
             }
             
             it("can be accessed using subscripting for data") {
-                testKey = "data"
+                testKey = "DataKey"
                 guard let testFilePath = NSBundle(forClass: KeychainAccessSpec.self).pathForResource("testdata", ofType: "json") else {
                     fail("no test file")
                     return
@@ -91,7 +86,6 @@ class KeychainAccessSpec: QuickSpec {
             }
             
             it("can override a value") {
-                testKey = "string"
                 let origString = "exciting stuff?"
                 let finalString = "boring stuff?"
 
@@ -105,7 +99,6 @@ class KeychainAccessSpec: QuickSpec {
             }
 
             it("can delete a value") {
-                testKey = "string"
                 let testString = "exciting stuff?"
                 keychain.putString(testKey, value: testString)
                 let storedString = keychain.getString(testKey)
