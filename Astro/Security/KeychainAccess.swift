@@ -13,9 +13,7 @@ let KeychainAccessServiceBundleID: String = {
     if NSClassFromString("XCTestCase") != nil {
         Log.level = Log.Level.Debug
         return "com.robotsandpencils.TestTarget"
-    }
-    else {
-        Log.level = Log.Level.Silent
+    } else {
         return NSBundle.mainBundle().bundleIdentifier ?? ""
     }
 }()
@@ -145,6 +143,24 @@ public class KeychainAccess {
         }
     }
 
+    /**
+     Delete the all keys and data for the app.
+     
+     - returns: true if the delete was successful, false if there was an error
+     */
+    public func deleteAllKeysAndDataForApp() -> Bool {
+        var query: [String: AnyObject] = [:]
+        query[kSecClass as String] = kSecClassGenericPassword
+        
+        let status = SecItemDelete(query)
+        if status == errSecSuccess || status == errSecItemNotFound {
+            return true
+        } else {
+            Log.debug("Failed to delete all app keys and data from keychain with status=\(status).")
+            return false
+        }
+    }
+
     public subscript(key: String) -> String? {
         get {
             return self.getString(key)
@@ -174,22 +190,23 @@ public class KeychainAccess {
         - parameter get: the query is for retrieving data and should have the parameters to do that
         - returns: a dictionary for use as the query
     */
-    private func query(key: String? = nil, value: AnyObject? = nil, get: Bool = false) -> CFDictionaryRef {
+    private func query(key: String, value: AnyObject? = nil, get: Bool = false) -> CFDictionaryRef {
         var query: [String: AnyObject] = [:]
-        query[kSecAttrService as String] = KeychainAccessServiceBundleID
+        query[kSecAttrService as String] = key
         query[kSecAttrAccount as String] = self.keychainAccessAccount
         query[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
         query[kSecClass as String] = kSecClassGenericPassword
-        if let key = key {
-            query[kSecAttrAccount as String] = key
-        }
+        
         if let value = value {
             query[kSecValueData as String] = value
         }
+        
         if get {
             query[kSecReturnData as String] = kCFBooleanTrue
             query[kSecMatchLimit as String] = kSecMatchLimitOne
         }
+        
         return query as CFDictionaryRef
     }
+    
 }
