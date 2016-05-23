@@ -108,7 +108,36 @@ class KeychainAccessSpec: QuickSpec {
                 expect(storedString).to(equal(testString))
                 expect(storedNil).to(beNil())
             }
-            
+
+            it("can delete all keys and data for the app") {
+                // Push in a key/data element and verify it exists
+                let testString = "exciting stuff?"
+                keychain.putString(testKey, value: testString)
+                var storedString = keychain.getString(testKey)
+                expect(storedString).to(equal(testString))
+
+                // Delete everything and then verify you can't access the key/data any more
+                let status = keychain.deleteAllKeysAndDataForApp()
+                expect(status).to(beTrue())
+                storedString = keychain.getString(testKey)
+                expect(storedString).to(beNil())
+            }
+
+            it("can't access a key from a different account") {
+                testKey = "SuperSecretKey"
+                let testString = "you can't see me"
+
+                // Push in a key/data element and verify it exists in the main account
+                keychain.putString(testKey, value: testString)
+                var storedString = keychain.getString(testKey)
+                expect(storedString).to(equal(testString))
+                
+                // Try to gain access to a key from another account
+                let otherKeychain = KeychainAccess(account: "SomeOtherAccount@RobotsAndPencils.com")
+                storedString = otherKeychain.getString(testKey)
+                expect(storedString).to(beNil())
+            }
+
         }
         
     }

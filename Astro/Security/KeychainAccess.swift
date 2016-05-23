@@ -143,6 +143,24 @@ public class KeychainAccess {
         }
     }
 
+    /**
+     Delete the all keys and data for the app.
+     
+     - returns: true if the delete was successful, false if there was an error
+     */
+    public func deleteAllKeysAndDataForApp() -> Bool {
+        var query: [String: AnyObject] = [:]
+        query[kSecClass as String] = kSecClassGenericPassword
+        
+        let status = SecItemDelete(query)
+        if status == errSecSuccess || status == errSecItemNotFound {
+            return true
+        } else {
+            Log.debug("Failed to delete all app keys and data from keychain with status=\(status).")
+            return false
+        }
+    }
+
     public subscript(key: String) -> String? {
         get {
             return self.getString(key)
