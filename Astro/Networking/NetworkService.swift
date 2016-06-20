@@ -65,7 +65,18 @@ public protocol NetworkServiceType {
      - returns: A task for type T
      */
     func request<T: JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<T>, NetworkError>
-
+    
+    /**
+     Performs the specified request for a single object of type T. The response body is
+     expected to be a nillable JSON dictionary which is then automatically converted to an
+     instance of T using Decodable.
+     If the request does not return any data, we will return nil.
+     
+     - parameter URLRequest: the request
+     - returns: A task for type T?
+     */
+    func request<T: JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<T?>, NetworkError>
+    
     /**
      Performs the specified request for an array of type T. The response body is expected
      to be a JSON array which is then automatically converted to instances of T using
@@ -75,7 +86,18 @@ public protocol NetworkServiceType {
      - returns: A task for type [T]
      */
     func request<T: JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[T]>, NetworkError>
-
+    
+    /**
+     Performs the specified request for an array of type T. The response body is expected
+     to be a nillable JSON array which is then automatically converted to instances of T using
+     Decodable. Elements of the array that fail decoding are ignored in this implementation.
+     If the request does not return any data, we will return nil.
+     
+     - parameter URLRequest: the request
+     - returns: A task for type [T]
+     */
+    func request<T: JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[T]?>, NetworkError>
+    
     /**
      Performs the specified request for a JSON dictionary.
 
@@ -93,12 +115,28 @@ public protocol NetworkServiceType {
     func requestJSONArray(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[JSON]>, NetworkError>
 
     /**
+     Performs the specified request for a JSON array.
+
+     - parameter URLRequest: the request
+     - returns: A task for a JSON array
+     */
+    func requestJSONArray(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[JSON]?>, NetworkError>
+
+    /**
      Performs the specified request for some JSON (which may be either an array or a dictionary).
 
      - parameter URLRequest: the request
      - returns: A task for a JSON object which is either an array or dictionary
      */
     func requestJSON(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<JSON>, NetworkError>
+
+    /**
+     Performs the specified request for some JSON (which may be either an array or a dictionary).
+
+     - parameter URLRequest: the request
+     - returns: A task for a JSON object which is either an array or dictionary
+     */
+    func requestJSON(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<JSON?>, NetworkError>
 
     /**
      Performs the specified request for some data.
@@ -118,11 +156,19 @@ public extension NetworkServiceType {
     func request<T:JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, T, NetworkError> {
         return request(URLRequest).success { $0.value }
     }
-
+    
+    func request<T:JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, T?, NetworkError> {
+        return request(URLRequest).success { $0.value }
+    }
+    
     func request<T:JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, [T], NetworkError> {
         return request(URLRequest).success { $0.value }
     }
-
+    
+    func request<T:JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, [T]?, NetworkError> {
+        return request(URLRequest).success { $0.value }
+    }
+    
     func requestJSONDictionary(URLRequest: URLRequestConvertible) -> Task<Float, [String:JSON], NetworkError> {
         return requestJSONDictionary(URLRequest).success { $0.value }
     }
@@ -131,7 +177,15 @@ public extension NetworkServiceType {
         return requestJSONArray(URLRequest).success { $0.value }
     }
 
+    func requestJSONArray(URLRequest: URLRequestConvertible) -> Task<Float, [JSON]?, NetworkError> {
+        return requestJSONArray(URLRequest).success { $0.value }
+    }
+
     func requestJSON(URLRequest: URLRequestConvertible) -> Task<Float, JSON, NetworkError> {
+        return requestJSON(URLRequest).success { $0.value }
+    }
+
+    func requestJSON(URLRequest: URLRequestConvertible) -> Task<Float, JSON?, NetworkError> {
         return requestJSON(URLRequest).success { $0.value }
     }
 
@@ -167,7 +221,7 @@ public class NetworkService: NetworkServiceType {
     }
 
     public func request<T: JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<T>, NetworkError> {
-        return requestJSON(URLRequest).success { value -> Task<Float, ResponseValue<T>, NetworkError> in
+        return requestJSON(URLRequest).success { (value: ResponseValue<JSON>) -> Task<Float, ResponseValue<T>, NetworkError> in
             let json = value.value
             do {
                 let result = try T(json: json)
@@ -177,9 +231,23 @@ public class NetworkService: NetworkServiceType {
             }
         }
     }
-
+    
+    public func request<T: JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<T?>, NetworkError> {
+        return requestJSON(URLRequest).success { (value: ResponseValue<JSON?>) -> Task<Float, ResponseValue<T?>, NetworkError> in
+            guard let json = value.value else {
+                return Task(value: ResponseValue(response: value.response, value: nil))
+            }
+            do {
+                let result = try T(json: json)
+                return Task(value: ResponseValue(response: value.response, value: result))
+            } catch let error {
+                return Task(error: NetworkError(response: value.response, error: error))
+            }
+        }
+    }
+    
     public func request<T: JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[T]>, NetworkError> {
-        return requestJSONArray(URLRequest).success { value -> Task<Float, ResponseValue<[T]>, NetworkError> in
+        return requestJSONArray(URLRequest).success { (value: ResponseValue<[JSON]>) -> Task<Float, ResponseValue<[T]>, NetworkError> in
             let json = value.value
             do {
                 let models = try json.map(T.init)
@@ -189,9 +257,23 @@ public class NetworkService: NetworkServiceType {
             }
         }
     }
-
+    
+    public func request<T:JSONDecodable>(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[T]?>, NetworkError> {
+        return requestJSONArray(URLRequest).success { (value: ResponseValue<[JSON]?>) -> Task<Float, ResponseValue<[T]?>, NetworkError> in
+            guard let json = value.value else {
+                return Task(value: ResponseValue(response: value.response, value: nil))
+            }
+            do {
+                let models = try json.map(T.init)
+                return Task(value: ResponseValue(response: value.response, value: models))
+            } catch let error {
+                return Task(error: NetworkError(response: value.response, error: error))
+            }
+        }
+    }
+    
     public func requestJSONDictionary(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[String: JSON]>, NetworkError> {
-        return requestJSON(URLRequest).success { value -> Task<Float, ResponseValue<[String: JSON]>, NetworkError> in
+        return requestJSON(URLRequest).success { (value: ResponseValue<JSON>) -> Task<Float, ResponseValue<[String: JSON]>, NetworkError> in
             let json = value.value
             guard case let JSON.Dictionary(dictionary) = json else {
                 let error = JSON.Error.ValueNotConvertible(value: json, to: Swift.Dictionary<String, JSON>)
@@ -202,7 +284,7 @@ public class NetworkService: NetworkServiceType {
     }
 
     public func requestJSONArray(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[JSON]>, NetworkError> {
-        return requestJSON(URLRequest).success { value -> Task<Float, ResponseValue<[JSON]>, NetworkError> in
+        return requestJSON(URLRequest).success { (value: ResponseValue<JSON>) -> Task<Float, ResponseValue<[JSON]>, NetworkError> in
             let json = value.value
             guard case let JSON.Array(array) = json else {
                 let error = JSON.Error.ValueNotConvertible(value: json, to: Swift.Array<JSON>)
@@ -211,7 +293,20 @@ public class NetworkService: NetworkServiceType {
             return Task(value: ResponseValue(response: value.response, value: array))
         }
     }
-
+    
+    public func requestJSONArray(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[JSON]?>, NetworkError> {
+        return requestJSON(URLRequest).success { (value: ResponseValue<JSON?>) -> Task<Float, ResponseValue<[JSON]?>, NetworkError> in
+            guard let json = value.value else {
+                return Task(value: ResponseValue(response: value.response, value: nil))
+            }
+            guard case let JSON.Array(array) = json else {
+                let error = JSON.Error.ValueNotConvertible(value: json, to: Swift.Array<JSON>)
+                return Task<Float, ResponseValue<[JSON]?>, NetworkError>(error: NetworkError(response: value.response, error: error))
+            }
+            return Task(value: ResponseValue(response: value.response, value: array))
+        }
+    }
+    
     public func requestJSON(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<JSON>, NetworkError> {
         return requestData(URLRequest).success { value -> Task<Float, ResponseValue<JSON>, NetworkError> in
             do {
@@ -222,7 +317,21 @@ public class NetworkService: NetworkServiceType {
             }
         }
     }
-
+    
+    public func requestJSON(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<JSON?>, NetworkError> {
+        return requestData(URLRequest).success { value -> Task<Float, ResponseValue<JSON?>, NetworkError> in
+            if value.value.length == 0 {
+                return Task(value: ResponseValue(response: value.response, value: nil))
+            }
+            do {
+                let json = try JSON(data: value.value)
+                return Task(value: ResponseValue(response: value.response, value: json))
+            } catch let error {
+                return Task(error: NetworkError(response: value.response, error: error))
+            }
+        }
+    }
+    
     public func requestData(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<NSData>, NetworkError> {
         return Task { [weak self] progress, fulfill, reject, configure in
             let request = self?.requestManager.request(URLRequest)

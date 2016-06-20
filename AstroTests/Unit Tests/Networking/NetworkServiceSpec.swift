@@ -25,46 +25,49 @@ class NetworkServiceSpec: QuickSpec {
         afterEach {
             LSNocilla.sharedInstance().clearStubs()
         }
-
+        
         describe("NetworkService") {
             var subject: NetworkService!
-            var testJSON: JSON!
+            var userJSON: JSON!
+            var userArrayJSON: JSON!
             var request: NSMutableURLRequest!
-
+            let expectedUser = User(userID: "1", email: "user@example.com")
+            
             beforeEach {
                 subject = NetworkService()
-                testJSON = [
+                userJSON = [
                     "id": "1",
                     "email": "user@example.com",
                 ]
+                userArrayJSON = [userJSON, userJSON]
                 request = NSMutableURLRequest(URL: NSURL(string: "https://example.com/path")!)
             }
-
+            
             describe(".requestJSONDictionary") {
                 var dictTask: Task<Float, ResponseValue<[String: JSON]>, NetworkError>!
-
+                
                 describe("success") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code200OK).withJSON(testJSON)
+                        stubAnyRequest().andReturn(.Code200OK).withJSON(userJSON)
                         dictTask = subject.requestJSONDictionary(request)
                     }
-
+                    
                     it("task should be fulfilled") {
                         expect(dictTask.state).toEventually(equal(TaskState.Fulfilled))
                     }
                     it("should eventually return token JSON") {
                         expect({
                             dictTask.value != nil ? JSON.Dictionary(dictTask.value!.value) : nil
-                            }()).toEventually(equal(testJSON))
+                            }()).toEventually(equal(userJSON))
                     }
                 }
-
+                
                 describe("401 Unauthorized") {
                     beforeEach {
                         stubAnyRequest().andReturn(.Code401Unauthorized).withJSON(["Error": "Unauthorized"])
                         dictTask = subject.requestJSONDictionary(request)
                     }
-
+                    
                     it("task should be rejected") {
                         expect(dictTask.state).toEventually(equal(TaskState.Rejected))
                     }
@@ -72,17 +75,17 @@ class NetworkServiceSpec: QuickSpec {
                         expect((dictTask.errorInfo?.error?.error as? NSError)?.code).toEventually(equal(Error.Code.StatusCodeValidationFailed.rawValue), timeout: 1)
                     }
                 }
-
+                
                 describe("connection error") {
                     var connectionError: NSError!
-
+                    
                     beforeEach {
                         connectionError = NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotConnectToHost, userInfo:nil)
-
+                        
                         stubAnyRequest().andFailWithError(connectionError)
                         dictTask = subject.requestJSONDictionary(request)
                     }
-
+                    
                     it("task should be rejected") {
                         expect(dictTask.state).toEventually(equal(TaskState.Rejected))
                     }
@@ -90,13 +93,13 @@ class NetworkServiceSpec: QuickSpec {
                         expect(dictTask.errorInfo?.error?.error as? NSError).toEventually(equal(connectionError))
                     }
                 }
-
+                
                 describe("invalid JSON in response") {
                     beforeEach {
                         stubAnyRequest().andReturn(.Code200OK).withBody("not valid JSON!")
                         dictTask = subject.requestJSONDictionary(request)
                     }
-
+                    
                     it("task should be rejected") {
                         expect(dictTask.state).toEventually(equal(TaskState.Rejected))
                     }
@@ -104,13 +107,13 @@ class NetworkServiceSpec: QuickSpec {
                         expect((dictTask.errorInfo?.error?.error as? NSError)?.domain).toEventually(equal("Freddy.JSONParser.Error"))
                     }
                 }
-
+                
                 describe("received json [] instead of {}") {
                     beforeEach {
                         stubAnyRequest().andReturn(.Code200OK).withJSON([])
                         dictTask = subject.requestJSONDictionary(request)
                     }
-
+                    
                     it("task should be rejected") {
                         expect(dictTask.state).toEventually(equal(TaskState.Rejected))
                     }
@@ -118,117 +121,307 @@ class NetworkServiceSpec: QuickSpec {
                         let expectedError = JSON.Error.ValueNotConvertible(value: [], to: Swift.Dictionary<String, JSON>)
                         expect({
                             dictTask.errorInfo?.error?.error as? JSON.Error
-                        }()).toEventually(equal(expectedError))
+                            }()).toEventually(equal(expectedError))
                     }
                 }
             }
-
-            describe(".requestJSONArray") {
+            
+            describe(".requestJSONArray -> JSON") {
                 var arrayTask: Task<Float, ResponseValue<[JSON]>, NetworkError>!
-
-                describe("success") {
-                    beforeEach {
-                        stubAnyRequest().andReturn(.Code200OK).withJSON([testJSON])
-                        arrayTask = subject.requestJSONArray(request)
+                context("Given a successful response (200 OK)") {
+                    context("with a valid array") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK).withJSON(userArrayJSON)
+                            arrayTask = subject.requestJSONArray(request)
+                        }
+                        it("then it should fulfill with the correct user JSON") {
+                            expect(arrayTask.state).toEventually(equal(TaskState.Fulfilled))
+                            expect(arrayTask.value?.value.count).toEventually(equal(2))
+                            expect(arrayTask.value?.value[0]).toEventually(equal(userJSON))
+                            expect(arrayTask.value?.value[1]).toEventually(equal(userJSON))
+                        }
                     }
-
-                    it("task should be fulfilled") {
-                        expect(arrayTask.state).toEventually(equal(TaskState.Fulfilled))
-                    }
-                    it("should eventually return token JSON") {
-                        expect({
-                            arrayTask.value != nil ? JSON.Array(arrayTask.value!.value) : nil
-                        }()).toEventually(equal([testJSON]))
+                    context("with an empty response") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK)
+                            arrayTask = subject.requestJSONArray(request)
+                        }
+                        it("then the task should be rejected") {
+                            expect(arrayTask.state).toEventually(equal(TaskState.Rejected))
+                        }
                     }
                 }
-
-                describe("received json {} instead of []") {
+                context("Given a failed status code (404 Not Found)") {
+                    beforeEach {
+                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        arrayTask = subject.requestJSONArray(request)
+                    }
+                    it("then task should be rejected") {
+                        expect(arrayTask.state).toEventually(equal(TaskState.Rejected))
+                    }
+                }
+                
+                describe("Given a invalid json {} instead of []") {
                     beforeEach {
                         stubAnyRequest().andReturn(.Code200OK).withJSON([:])
                         arrayTask = subject.requestJSONArray(request)
                     }
-
                     it("task should be rejected") {
                         expect(arrayTask.state).toEventually(equal(TaskState.Rejected))
                     }
-                    it("should fail to parse json") {
-                        let expectedError = JSON.Error.ValueNotConvertible(value: [:], to: Swift.Array<JSON>)
-                        expect({
-                            arrayTask.errorInfo?.error?.error as? JSON.Error
-                        }()).toEventually(equal(expectedError))
+                }
+            }
+            
+            describe(".requestJSONArray -> JSON?") {
+                var arrayTask: Task<Float, ResponseValue<[JSON]?>, NetworkError>!
+                context("Given a successful response (200 OK)") {
+                    context("with a valid array") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK).withJSON(userArrayJSON)
+                            arrayTask = subject.requestJSONArray(request)
+                        }
+                        it("then it should fulfill with the correct user JSON") {
+                            expect(arrayTask.state).toEventually(equal(TaskState.Fulfilled))
+                            expect(arrayTask.value?.value?.count).toEventually(equal(2))
+                            expect(arrayTask.value?.value?[0]).toEventually(equal(userJSON))
+                            expect(arrayTask.value?.value?[1]).toEventually(equal(userJSON))
+                        }
+                    }
+                    context("with an empty response") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK)
+                            arrayTask = subject.requestJSONArray(request)
+                        }
+                        it("then the task should be fulfilled") {
+                            expect(arrayTask.state).toEventually(equal(TaskState.Fulfilled))
+                        }
+                        it("then the response should be nil") {
+                            expect(arrayTask.state).toEventually(equal(TaskState.Fulfilled))
+                            expect(arrayTask.value?.value).to(beNil())
+                        }
+                    }
+                }
+                context("Given a failed status code (404 Not Found)") {
+                    beforeEach {
+                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        arrayTask = subject.requestJSONArray(request)
+                    }
+                    it("then task should be rejected") {
+                        expect(arrayTask.state).toEventually(equal(TaskState.Rejected))
+                    }
+                }
+
+                describe("Given a invalid json {} instead of []") {
+                    beforeEach {
+                        stubAnyRequest().andReturn(.Code200OK).withJSON([:])
+                        arrayTask = subject.requestJSONArray(request)
+                    }
+                    it("task should be rejected") {
+                        expect(arrayTask.state).toEventually(equal(TaskState.Rejected))
                     }
                 }
             }
-
-            describe(".requestJSON") {
+            
+            describe(".requestJSON -> JSON") {
                 var task: Task<Float, ResponseValue<JSON>, NetworkError>!
-
-                describe("200 OK") {
-                    beforeEach {
-                        stubAnyRequest().andReturn(.Code200OK).withJSON(testJSON)
-                        task = subject.requestJSON(request)
+                context("given a successful response (200 OK)") {
+                    context("with a valid object") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK).withJSON(userJSON)
+                            task = subject.requestJSON(request)
+                        }
+                        it("then it should fulfill with the correct JSON") {
+                            expect({ () -> JSON? in
+                                guard let data = task.value?.response?.data else { return nil }
+                                return try? JSON(data: data)
+                                }()).toEventually(equal(userJSON))
+                        }
+                        it("then the response should contain the expected User") {
+                            expect(task.value?.value).toEventually(equal(userJSON))
+                        }
                     }
-
-                    it("task should be rejected") {
-                        expect(task.state).toEventually(equal(TaskState.Fulfilled))
-                    }
-                    it("response should contain response data") {
-                        expect({ () -> JSON? in
-                            guard let data = task.value?.response?.data else { return nil }
-                            return try? JSON(data: data)
-                        }()).toEventually(equal(testJSON))
-                    }
-                    it("response should contain the parsed JSON") {
-                        expect(task.value?.value).toEventually(equal(testJSON))
+                    context("with an empty response") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK)
+                            task = subject.requestJSON(request)
+                        }
+                        it("then the task should be rejected") {
+                            expect(task.state).toEventually(equal(TaskState.Rejected))
+                        }
                     }
                 }
-
-                describe("status code validation failure") {
+                context("with a failed status code (404 Not Found)") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(testJSON)
+                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
                         task = subject.requestJSON(request)
                     }
-
-                    it("task should be rejected") {
+                    it("then task should be rejected") {
                         expect(task.state).toEventually(equal(TaskState.Rejected))
                     }
-                    it("error should contain response data") {
+                    it("then the response should not return any JSON"){
+                        expect(task.state).toEventually(equal(TaskState.Rejected))
+                        expect(task.value?.value).to(beNil())
+                    }
+                    it("then the response.data should still return the unparsed JSON"){
                         expect({ () -> JSON? in
                             guard let data = task.errorInfo?.error?.response?.data else { return nil }
                             return try? JSON(data: data)
-                        }()).toEventually(equal(testJSON))
-                    }
-                    it("error should calculate json") {
-                        expect(task.errorInfo?.error?.json).toEventually(equal(testJSON))
+                            }()).toEventually(equal(userJSON))
                     }
                 }
             }
-
-            describe(".request<T>") {
+            
+            describe(".request<T> - Given a request to deserialize an object") {
                 var task: Task<Float, ResponseValue<User>, NetworkError>!
-
-                describe("200 OK") {
-                    beforeEach {
-                        stubAnyRequest().andReturn(.Code200OK).withJSON(testJSON)
-                        task = subject.request(request)
+                context("given a successful response (200 OK)") {
+                    context("with a valid object") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK).withJSON(userJSON)
+                            task = subject.request(request)
+                        }
+                        it("then it should fulfill with the correct JSON") {
+                            expect({ () -> JSON? in
+                                guard let data = task.value?.response?.data else { return nil }
+                                return try? JSON(data: data)
+                                }()).toEventually(equal(userJSON))
+                        }
+                        it("then the response should contain the expected User") {
+                            expect(task.value?.value).toEventually(equal(expectedUser))
+                        }
                     }
-                    it("fulfills with the correct User") {
-                        expect({ () -> JSON? in
-                            guard let data = task.value?.response?.data else { return nil }
-                            return try? JSON(data: data)
-                            }()).toEventually(equal(testJSON))
-                    }
-                    it("response should contain the parsed JSON") {
-                        expect(task.value?.value).toEventually(equal(User(userID: "1", email: "user@example.com")))
+                    context("with an empty response") {
+                        
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK)
+                            task = subject.request(request)
+                        }
+                        it("then the task should be rejected") {
+                            expect(task.state).toEventually(equal(TaskState.Rejected))
+                        }
                     }
                 }
-
-                describe("status code validation failure") {
+                context("with a failed status code (404 Not Found)") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(testJSON)
+                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
                         task = subject.request(request)
                     }
-                    it("task should be rejected") {
+                    it("then task should be rejected") {
+                        expect(task.state).toEventually(equal(TaskState.Rejected))
+                    }
+                }
+            }
+            describe(".request<T?> - Given a request to deserialize an nillable object") {
+                var task: Task<Float, ResponseValue<User?>, NetworkError>!
+                context("Given a successful response (200 OK)") {
+                    context("with a valid object") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK).withJSON(userJSON)
+                            task = subject.request(request)
+                        }
+                        it("then it should fulfills with the correct JSON") {
+                            expect({ () -> JSON? in
+                                guard let data = task.value?.response?.data else { return nil }
+                                return try? JSON(data: data)
+                                }()).toEventually(equal(userJSON))
+                        }
+                        it("then the response should contain the expected User") {
+                            expect(task.value?.value).toEventually(equal(expectedUser))
+                        }
+                    }
+                    context("with an empty response") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK)
+                            task = subject.request(request)
+                        }
+                        it("then the task should be fulfilled") {
+                            expect(task.state).toEventually(equal(TaskState.Fulfilled))
+                        }
+                        it("then the response should be nil") {
+                            expect(task.state).toEventually(equal(TaskState.Fulfilled))
+                            expect(task.value?.value).to(beNil())
+                        }
+                    }
+                }
+                context("Given a failed status code (404 Not Found)") {
+                    beforeEach {
+                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        task = subject.request(request)
+                    }
+                    it("then task should be rejected") {
+                        expect(task.state).toEventually(equal(TaskState.Rejected))
+                    }
+                }
+            }
+            describe(".request<[T]> - Given a request to deserialize an array of objects") {
+                var task: Task<Float, ResponseValue<[User]>, NetworkError>!
+                context("Given a successful response (200 OK)") {
+                    context("with a valid array") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK).withJSON(userArrayJSON)
+                            task = subject.request(request)
+                        }
+                        it("then it should fulfill with the correct Users") {
+                            expect(task.state).toEventually(equal(TaskState.Fulfilled))
+                            expect(task.value?.value.count).toEventually(equal(2))
+                            expect(task.value?.value[0]).toEventually(equal(expectedUser))
+                            expect(task.value?.value[1]).toEventually(equal(expectedUser))
+                        }
+                    }
+                    context("with an empty response") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK)
+                            task = subject.request(request)
+                        }
+                        it("then the task should be rejected") {
+                            expect(task.state).toEventually(equal(TaskState.Rejected))
+                        }
+                    }
+                }
+                context("Given a failed status code (404 Not Found)") {
+                    beforeEach {
+                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        task = subject.request(request)
+                    }
+                    it("then task should be rejected") {
+                        expect(task.state).toEventually(equal(TaskState.Rejected))
+                    }
+                }
+            }
+            describe(".request<[T]?> - Given a request to deserialize a nillable array of object") {
+                var task: Task<Float, ResponseValue<[User]?>, NetworkError>!
+                context("Given a successful response (200 OK)") {
+                    context("with a valid array") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK).withJSON(userArrayJSON)
+                            task = subject.request(request)
+                        }
+                        it("then it should fulfill with the correct user") {
+                            expect(task.state).toEventually(equal(TaskState.Fulfilled))
+                            expect(task.value?.value?.count).toEventually(equal(2))
+                            expect(task.value?.value?[0]).toEventually(equal(expectedUser))
+                            expect(task.value?.value?[1]).toEventually(equal(expectedUser))
+                        }
+                    }
+                    context("with an empty response") {
+                        beforeEach {
+                            stubAnyRequest().andReturn(.Code200OK)
+                            task = subject.request(request)
+                        }
+                        it("then the task should be fulfilled") {
+                            expect(task.state).toEventually(equal(TaskState.Fulfilled))
+                        }
+                        it("then the response should be nil") {
+                            expect(task.state).toEventually(equal(TaskState.Fulfilled))
+                            expect(task.value?.value).to(beNil())
+                        }
+                    }
+                }
+                context("Given a failed status code (404 Not Found)") {
+                    beforeEach {
+                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        task = subject.request(request)
+                    }
+                    it("then task should be rejected") {
                         expect(task.state).toEventually(equal(TaskState.Rejected))
                     }
                 }
