@@ -62,6 +62,7 @@ import Foundation
     case Code415UnsupportedMediaType = 415
     case Code416RequestedRangeNotSatisfiable = 416
     case Code417ExpectationFailed = 417
+    case Code429TooManyRequests = 429
 
     // Server errors - 5xx codes
     case Code500InternalServerError = 500
