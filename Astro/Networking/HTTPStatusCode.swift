@@ -218,7 +218,7 @@ extension HTTPStatusCode {
         case .Code403Forbidden: return "If the issue persists, please contact support."
         case .Code404NotFound: return "If you think this is incorrect, please contact support."
         case .Code410Gone: return "If you think this is incorrect, please contact support."
-        case .Code429TooManyRequests: return "Rate request limit exeeded, try again soon."
+        case .Code429TooManyRequests: return "The system has received too many requests and has stopped responding, you can try again shortly but if the issue persists please contact support."
 
         // Server errors - 5xx codes
         case .Code500InternalServerError: return "You can try the same action again, but if the issue persists please contact support."

@@ -59,6 +59,7 @@ class HTTPStatusCodeSpec: QuickSpec {
                     expect(HTTPStatusCode.Code307TemporaryRedirect.isClientError).to(beFalse())
                     expect(HTTPStatusCode.Code400BadRequest.isClientError).to(beTrue())
                     expect(HTTPStatusCode.Code500InternalServerError.isClientError).to(beFalse())
+                    expect(HTTPStatusCode.Code429TooManyRequests.isClientError).to(beTrue())
                 }
                 it("is an error") {
                     expect(HTTPStatusCode.Code307TemporaryRedirect.isError).to(beFalse())
