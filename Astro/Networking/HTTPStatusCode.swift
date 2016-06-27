@@ -121,6 +121,7 @@ import Foundation
         case .Code415UnsupportedMediaType: return "Unsupported Media Type"
         case .Code416RequestedRangeNotSatisfiable: return "Requested Range Not Satisfiable"
         case .Code417ExpectationFailed: return "Expectation Failed"
+        case .Code429TooManyRequests: return "Too Many Requests"
         case .Code500InternalServerError: return "Internal Server Error"
         case .Code501NotImplemented: return "Not Implemented"
         case .Code502BadGateway: return "Bad Gateway"
@@ -191,7 +192,8 @@ extension HTTPStatusCode {
         case Code415UnsupportedMediaType: return "The server doesn't support the type of media in that request."
         case Code416RequestedRangeNotSatisfiable: return "The requested range isn't able to be satisfied by the server."
         case Code417ExpectationFailed: return "An expectation failed."
-
+        case Code429TooManyRequests: return "The user has sent too many requests in a given amount of time."
+ 
         // Server errors - 5xx codes
         case Code500InternalServerError: return "An error occurred in the server."
         case Code501NotImplemented: return "That feature of the server isn't implemented."
@@ -216,6 +218,7 @@ extension HTTPStatusCode {
         case .Code403Forbidden: return "If the issue persists, please contact support."
         case .Code404NotFound: return "If you think this is incorrect, please contact support."
         case .Code410Gone: return "If you think this is incorrect, please contact support."
+        case .Code429TooManyRequests: return "Rate request limit exeeded, try again soon."
 
         // Server errors - 5xx codes
         case .Code500InternalServerError: return "You can try the same action again, but if the issue persists please contact support."
