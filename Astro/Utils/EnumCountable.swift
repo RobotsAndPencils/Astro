@@ -32,11 +32,11 @@
  }
  */
 
-protocol EnumCountable {
+public protocol EnumCountable {
     static var count : Int { get }
 }
 
-extension EnumCountable where Self : RawRepresentable, Self.RawValue == Int {
+public extension EnumCountable where Self : RawRepresentable, Self.RawValue == Int {
     
     // Counts the number of cases in the enum, starting at 0
     static func countCases() -> Int {
