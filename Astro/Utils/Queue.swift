@@ -25,6 +25,9 @@ public extension ExecutableQueue {
     }
 }
 
+/**
+ Queue provides a prettier interface for the most common needs of dispatching onto different GCD Queues. If you require something more powerfull consider Async.
+ */
 public enum Queue: ExecutableQueue {
     case Main
     case UserInteractive

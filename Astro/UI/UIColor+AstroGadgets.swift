@@ -11,6 +11,9 @@
 
 import UIKit
 
+/**
+ Includes a UIColor extension for hex code (e.g. #FF0000) support. You can now create your project's color palette in another class extension that brings all those pesky colors into one place and with names that are easy to understand:
+ */
 extension UIColor {
     /**
        Create a color from a string of hexadecimal characters.

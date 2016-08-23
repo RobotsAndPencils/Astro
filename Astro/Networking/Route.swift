@@ -12,6 +12,9 @@
 import Alamofire
 import Freddy
 
+/**
+ Route provides a simple abstraction for working with NSURLRequests. Recommended approach is to add extensions to Route to add a default baseURL value and static functions for your specific API.
+ */
 public struct Route: URLRequestConvertible {
     public let baseURL: NSURL
     public let path: String
@@ -91,6 +94,11 @@ public enum RequestParameters {
     }
 }
 
+/**
+ Allows a String to be base64 encoded so you can safely transport it across the network
+ 
+ - Returns: A new string that has been base64 encoded
+ */
 public extension String {
     public func base64Encode() -> String {
         let data = self.dataUsingEncoding(NSUTF8StringEncoding)

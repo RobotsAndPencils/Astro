@@ -10,14 +10,12 @@
 //
 
 /**
- EnumCountable allows you to add a "count" constant to Swift enums of type Int.
+ EnumCountable provides an easy way to add a static count constant to Swift enums of type Int.
  
- Requirements:
- - The enum must be of type Int
- - The first case must start at 0  
- - All cases must be continous
+ It requires that the first case start at 0 and all cases must be continuous.
  
  Usage:
+ ```
  enum MyEnum: Int, EnumCountable {
     case case1 = 0
     case case2
@@ -25,15 +23,17 @@
  
     static let count = MyEnum.countCases()  // Lazy-initialize the constant 'count' to the number of enum cases
  }
+ ```
  */
-
 public protocol EnumCountable {
     static var count : Int { get }
 }
 
 public extension EnumCountable where Self : RawRepresentable, Self.RawValue == Int {
     
-    // Counts the number of cases in the enum, starting at 0
+    /**
+    Counts the number of cases in the enum, starting at 0
+    */
     static func countCases() -> Int {
         var count = 0
         while let _ = Self(rawValue: count) {

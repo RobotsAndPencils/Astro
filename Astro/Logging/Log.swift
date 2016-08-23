@@ -11,12 +11,33 @@
 
 import Foundation
 
+/**
+ Prototol that allows you to define your own Logger implementations and use them for logging messages.
+ */
 public protocol Logger {
+    /**
+     Log a message with a given log level
+     
+     - Parameter level: Importance level of the message to be logged
+     - Parameter message: Message contents that will be logged
+    */
     func log(level: Log.Level, message: String);
 }
 
+/**
+ Log is a structure that streamlines the printing of log messages and has a basic logger implementation that logs to NSLog.
+ */
 public struct Log {
     
+    /**
+     The available levels that can be logged by the Logger. 
+     
+     - Debug - is good for dumping variable values and runtime details and is typically only turned on for dev builds
+     - Info - is good for tracing application flow and is typically only turned on for dev builds
+     - Warning - is good for logging application problems that aren't fatal or user affecting
+     - Error - is good for logging application errors that are fatal or impact users
+     - Silent - allows you to shut off the logger completely with minimal performance impacts
+    */
     public enum Level: Int {
         case Debug
         case Info
@@ -25,6 +46,9 @@ public struct Log {
         case Silent
     }
     
+    /**
+     A default logger implementation that logs to NSLog with the log message prefixed by its log Level
+    */
     public struct BasicLogger: Logger {
         public func log(level: Level, message: String) {
             var prefix = ""
@@ -49,27 +73,46 @@ public struct Log {
         }
     }
     
+    /**
+     Contains the current logging level that is configured
+     */
     public static var level = Level.Error
+    
+    /**
+     Contains the current logger that is configured
+     */
     public static var logger: Logger = BasicLogger()
     
+    /**
+     Log a debug message
+     */
     public static func debug(@autoclosure msg: () -> String) {
         if level.rawValue <= Level.Debug.rawValue {
             logger.log(.Debug, message: msg())
         }
     }
     
+    /**
+     Log an info message
+     */
     public static func info(@autoclosure msg: () -> String) {
         if level.rawValue <= Level.Info.rawValue {
             logger.log(.Info, message: msg())
         }
     }
     
+    /**
+     Log a warning message
+     */
     public static func warn(@autoclosure msg: () -> String) {
         if level.rawValue <= Level.Warning.rawValue {
             logger.log(.Warning, message: msg())
         }
     }
     
+    /**
+     Log an error message
+     */
     public static func error(@autoclosure msg: () -> String) {
         if level.rawValue <= Level.Error.rawValue {
             logger.log(.Error, message: msg())
