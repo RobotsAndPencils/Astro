@@ -342,12 +342,16 @@ public class NetworkService: NetworkServiceType {
     
     public func requestData(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<NSData>, NetworkError> {
         return Task { [weak self] progress, fulfill, reject, configure in
+            self?.postNotification(NetworkService.Notifications.DidRequest, request: URLRequest)
+
             let request = self?.requestManager.request(URLRequest)
                 .progress { bytesRead, totalBytesRead, totalExpectedBytes -> Void in
                     progress(Float(totalBytesRead) / Float(totalExpectedBytes))
                 }
                 .validate() // Covers error status code and content type mismatch
                 .responseData { response in
+                    self?.postNotification(NetworkService.Notifications.DidReceive, request: URLRequest, response: response)
+
                     guard let data = response.result.value where response.result.isSuccess else {
                         // We should always have an error in the non success case but use AssertionError to avoid a bang (!)
                         let error: ErrorType = response.result.error ?? AssertionError()
@@ -363,59 +367,30 @@ public class NetworkService: NetworkServiceType {
     }
 }
 
-private extension URLRequestConvertible {
-    func logRequest(headers includeHeaders: Bool = false, body includeBody: Bool = false) -> String {
-        let request = self.URLRequest
-        let method = request.HTTPMethod
+public extension NetworkService {
+    public struct Notifications {
+        public static let DidRequest = "astro.networkingservice.notifications.didRequest"
+        public static let DidReceive = "astro.networkingservice.notifications.didReceive"
+    }
 
-        guard let url = request.URL?.absoluteString else {
-            return "**Unable to log request**"
+    public static let NotificationInfoKey = "NotificationInfo"
+
+    // This is a box/wrapper for the request and response because we can't directly
+    // add the response to the UserInfo dict (since it's not an NSObject)
+    public class NotificationInfo: NSObject {
+        public let request: NSMutableURLRequest
+        public let response: Response<NSData, NSError>?
+
+        private init(request: URLRequestConvertible, response: Response<NSData, NSError>? = nil) {
+            self.request = request.URLRequest
+            self.response = response
         }
+    }
 
-        var result = "\(method) \(url)"
+    private func postNotification(notificationName: String, request: URLRequestConvertible, response: Response<NSData, NSError>? = nil) {
+        let info = NotificationInfo(request: request, response: response)
 
-        if includeHeaders {
-            let headers = request.allHTTPHeaderFields?.map { "\($0): \($1)" }
-            if let headers = headers {
-                result.appendContentsOf(": \(headers)")
-            }
-        }
-
-        if includeBody {
-            if let bodyData = request.HTTPBody,
-                body = String(data: bodyData, encoding: NSUTF8StringEncoding) {
-                result.appendContentsOf("\n")
-                result.appendContentsOf(body)
-            }
-        }
-        return result
+        NSNotificationCenter.defaultCenter().postNotificationName(notificationName, object: self, userInfo: [NetworkService.NotificationInfoKey: info])
     }
 }
 
-private extension Response {
-    func logResponse(headers includeHeaders: Bool = false, body includeBody: Bool = false) -> String {
-        guard let url = request?.URL?.absoluteString,
-            statusCodeInt = self.response?.statusCode,
-            statusCode = HTTPStatusCode(intValue: statusCodeInt) else {
-                return "**Unable to log response**"
-        }
-
-        var result = "\(statusCodeInt) \(url)"
-
-        if includeHeaders || statusCode.isError {
-            let headers = self.response?.allHeaderFields.map { "\($0): \($1)" }
-            if let headers = headers {
-                result.appendContentsOf(": \(headers)")
-            }
-        }
-
-        if includeBody || statusCode.isError {
-            if let bodyData = self.data,
-                body = String(data: bodyData, encoding: NSUTF8StringEncoding) {
-                result.appendContentsOf("\n")
-                result.appendContentsOf(body)
-            }
-        }
-        return result
-    }
-}
