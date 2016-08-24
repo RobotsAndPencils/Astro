@@ -15,6 +15,7 @@ Astro is a library, built in swift, used to hold common utility methods.
     - [HTTPStatusCode](#httpstatuscode)
     - [Route](#route)
     - [NetworkService](#networkservice)
+    - [NetworkServiceLogger](#networkservicelogger)
   - [Security](#security)
   - [UI](#ui)
     - [UIColor Extension](#uicolor-extension)
@@ -172,6 +173,22 @@ Now you can easily stub your login `Route` like this:
 
 ```swift
 stubRoute(Route.login(username: "user", password: "pass")).andReturn(.Code200OK).withJSON(["token": "[TOKEN]"])
+```
+
+#### NetworkServiceLogger
+
+`NetworkServiceLogger` logs HTTP requests and responses issued by `NetworkService`. Usage is pretty simple:
+
+```swift
+// Optionally enable or disable output of headers and body
+NetworkServiceLogger.sharedInstance.includeHeaders = true
+NetworkServiceLogger.sharedInstance.includeBody = true
+
+// Start logging
+NetworkServiceLogger.sharedInstance.start()
+
+// Stop logging
+NetworkServiceLogger.sharedInstance.stop()
 ```
 
 ### Security

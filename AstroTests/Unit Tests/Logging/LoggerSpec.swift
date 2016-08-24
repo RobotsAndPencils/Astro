@@ -13,18 +13,17 @@ import Quick
 import Nimble
 @testable import Astro
 
+class LogRecorder: Logger {
+    var messages = [String]()
+
+    func log(level: Log.Level, message: String) {
+        messages.append(message)
+    }
+}
+
 class LogSpec: QuickSpec {
-    
     override func spec() {
 
-        class LogRecorder: Logger {
-            var messages = [String]()
-            
-            func log(level: Log.Level, message: String) {
-                messages.append(message)
-            }
-        }
-        
         let generateLogs = { () -> () in
             Log.debug("debug")
             Log.info("info")

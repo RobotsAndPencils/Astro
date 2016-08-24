@@ -13,8 +13,11 @@
 		2E93487124A5E044E0199250 /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E934F99FFAF39F046F75750 /* HTTPStatusCode.swift */; };
 		2E934B8A416AF015C76347DC /* UIViewController+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9348D0FB90D68FC7E5C3D7 /* UIViewController+AstroGadgets.swift */; };
 		2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9348C107F407A4402AB69F /* UIViewController+AstroGadgetsSpec.swift */; };
+		3ED7E0B3E861F8023637D769 /* NetworkRequestLoggerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7E5AEE115EFAF2A2BD59D /* NetworkRequestLoggerSpec.swift */; };
+		3ED7E5160B9194EFD65AD935 /* SpecHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7EC64410D69E252806A27 /* SpecHelpers.swift */; };
+		3ED7E70C2A0CC260E6CB6884 /* NetworkServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F41CCA801000E0B4DD /* NetworkServiceSpec.swift */; };
+		3ED7EA386EBCBC334F309446 /* NetworkServiceLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED7E67DD474017D8D6536AD /* NetworkServiceLogger.swift */; };
 		3F78B5501CC35D4900A0E30C /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F78B54F1CC35D4900A0E30C /* Queue.swift */; };
-		3F8E16F51CCA801000E0B4DD /* NetworkServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F41CCA801000E0B4DD /* NetworkServiceSpec.swift */; };
 		3F8E16FA1CCA843100E0B4DD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F71CCA843100E0B4DD /* NetworkService.swift */; };
 		3F8E16FB1CCA843100E0B4DD /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E16F81CCA843100E0B4DD /* Route.swift */; };
 		3FCD95D71CCC2D3400A5442F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCD95D61CCC2D3400A5442F /* User.swift */; };
@@ -31,13 +34,13 @@
 		CA5380CD1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */; };
 		D0C3176529877E28CFD27E77 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C31A257874127AD224738D /* Log.swift */; };
 		D6F831A48F327D5367262464 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D24B772E4EC6454D9C2C893 /* Pods_AstroTests.framework */; };
-		F454FB4E1A6FC16378B23DF1 /* Pods_Astro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273FFD8472B2BF5BD8B6DF9F /* Pods_Astro.framework */; };
-		E62F9D221D623675005402BF /* ReusableViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F9D211D623675005402BF /* ReusableViewSpec.swift */; };
 		E62F9D1C1D62264F005402BF /* UICollectionView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F9D1B1D62264F005402BF /* UICollectionView+AstroGadgets.swift */; };
 		E62F9D1E1D6227DE005402BF /* UITableView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F9D1D1D6227DE005402BF /* UITableView+AstroGadgets.swift */; };
+		E62F9D221D623675005402BF /* ReusableViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F9D211D623675005402BF /* ReusableViewSpec.swift */; };
 		E665B02B1D35BB4B0099C89E /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E665B02A1D35BB4B0099C89E /* NibLoadableView.swift */; };
 		E6D5F8841D35B55600CB4D5F /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D5F8831D35B55600CB4D5F /* ReusableView.swift */; };
 		E6F32EE51D6264FE00D31F64 /* NibLoadableViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F32EE41D6264FE00D31F64 /* NibLoadableViewSpec.swift */; };
+		F454FB4E1A6FC16378B23DF1 /* Pods_Astro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273FFD8472B2BF5BD8B6DF9F /* Pods_Astro.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		2E9348D0FB90D68FC7E5C3D7 /* UIViewController+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AstroGadgets.swift"; sourceTree = "<group>"; };
 		2E934B3DCE343BE7D9CECCCD /* HTTPStatusCodeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodeSpec.swift; sourceTree = "<group>"; };
 		2E934F99FFAF39F046F75750 /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
+		3ED7E5AEE115EFAF2A2BD59D /* NetworkRequestLoggerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequestLoggerSpec.swift; sourceTree = "<group>"; };
+		3ED7E67DD474017D8D6536AD /* NetworkServiceLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceLogger.swift; sourceTree = "<group>"; };
+		3ED7EC64410D69E252806A27 /* SpecHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelpers.swift; sourceTree = "<group>"; };
 		3F78B54F1CC35D4900A0E30C /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Utils/Queue.swift; sourceTree = "<group>"; };
 		3F8E16F41CCA801000E0B4DD /* NetworkServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceSpec.swift; sourceTree = "<group>"; };
 		3F8E16F71CCA843100E0B4DD /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -83,13 +89,12 @@
 		CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AstroGadgetsSpec.swift"; sourceTree = "<group>"; };
 		D0C31A257874127AD224738D /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D5D8E2A7279FA75989658B29 /* Pods-Astro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Astro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Astro/Pods-Astro.debug.xcconfig"; sourceTree = "<group>"; };
-		E62F9D211D623675005402BF /* ReusableViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewSpec.swift; sourceTree = "<group>"; };
 		E62F9D1B1D62264F005402BF /* UICollectionView+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+AstroGadgets.swift"; sourceTree = "<group>"; };
 		E62F9D1D1D6227DE005402BF /* UITableView+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+AstroGadgets.swift"; sourceTree = "<group>"; };
+		E62F9D211D623675005402BF /* ReusableViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewSpec.swift; sourceTree = "<group>"; };
 		E665B02A1D35BB4B0099C89E /* NibLoadableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		E6D5F8831D35B55600CB4D5F /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		E6F32EE41D6264FE00D31F64 /* NibLoadableViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadableViewSpec.swift; sourceTree = "<group>"; };
-		FB15C2DB1FFCE31DEC4C7201 /* Pods-AstroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +123,7 @@
 			children = (
 				2E934B3DCE343BE7D9CECCCD /* HTTPStatusCodeSpec.swift */,
 				3F8E16F41CCA801000E0B4DD /* NetworkServiceSpec.swift */,
+				3ED7E5AEE115EFAF2A2BD59D /* NetworkRequestLoggerSpec.swift */,
 				3FCD95D61CCC2D3400A5442F /* User.swift */,
 			);
 			path = Networking;
@@ -159,6 +165,7 @@
 				63379D771C06394900DDD95B /* Security */,
 				2E934BF4A4C69C31C5403859 /* UI */,
 				BD62EA491C929C04004A02DF /* Utils */,
+				3ED7EC64410D69E252806A27 /* SpecHelpers.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -168,6 +175,7 @@
 			children = (
 				2E934F99FFAF39F046F75750 /* HTTPStatusCode.swift */,
 				3F8E16F71CCA843100E0B4DD /* NetworkService.swift */,
+				3ED7E67DD474017D8D6536AD /* NetworkServiceLogger.swift */,
 				3F8E16F81CCA843100E0B4DD /* Route.swift */,
 			);
 			path = Networking;
@@ -499,6 +507,7 @@
 				3F78B5501CC35D4900A0E30C /* Queue.swift in Sources */,
 				3F8E16FB1CCA843100E0B4DD /* Route.swift in Sources */,
 				CA5380CB1C5C195900204A68 /* UIColor+AstroGadgets.swift in Sources */,
+				3ED7EA386EBCBC334F309446 /* NetworkServiceLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,13 +520,15 @@
 				2E9342BC5B4FE98B693084A6 /* UIView+AstroGadgetsSpec.swift in Sources */,
 				E6F32EE51D6264FE00D31F64 /* NibLoadableViewSpec.swift in Sources */,
 				63379D811C063BA900DDD95B /* KeychainAccessSpec.swift in Sources */,
-				3F8E16F51CCA801000E0B4DD /* NetworkServiceSpec.swift in Sources */,
 				B69726CE1BD9162F0047EEB9 /* LoggerSpec.swift in Sources */,
 				CA5380CD1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift in Sources */,
 				2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */,
 				3FCD95D71CCC2D3400A5442F /* User.swift in Sources */,
 				E62F9D221D623675005402BF /* ReusableViewSpec.swift in Sources */,
 				BD62EA4B1C929C1C004A02DF /* EnumCountableSpec.swift in Sources */,
+				3ED7E0B3E861F8023637D769 /* NetworkRequestLoggerSpec.swift in Sources */,
+				3ED7E70C2A0CC260E6CB6884 /* NetworkServiceSpec.swift in Sources */,
+				3ED7E5160B9194EFD65AD935 /* SpecHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
