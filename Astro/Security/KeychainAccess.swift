@@ -24,7 +24,7 @@ let KeychainAccessServiceBundleID: String = {
 let KeychainAccessErrorDomain = "\(KeychainAccessServiceBundleID).error"
 
 /**
- KeychainAccess provides the app access to a device's Keychain store. Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then recover those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app.
+ KeychainAccess provides the app access to a device's Keychain store. Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then retrieve those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app.
  */
 public class KeychainAccess {
     

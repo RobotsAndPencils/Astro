@@ -34,7 +34,7 @@ public struct Log {
      
      - Debug - is good for dumping variable values and runtime details and is typically only turned on for dev builds
      - Info - is good for tracing application flow and is typically only turned on for dev builds
-     - Warning - is good for logging application problems that aren't fatal or user affecting
+     - Warning - is good for logging application problems that aren't fatal or affect users
      - Error - is good for logging application errors that are fatal or impact users
      - Silent - allows you to shut off the logger completely with minimal performance impacts
     */
