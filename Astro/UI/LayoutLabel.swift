@@ -15,6 +15,7 @@ import UIKit
  LayoutLabel implements some logic to ensure that a UILabel properly resizes itself based on its content.
  Used in situations like determining cell height in a UITableView, ensuring that labels fit their content
  after a constraint change, etc...
+ 
  Based on http://stackoverflow.com/questions/18118021/how-to-resize-superview-to-fit-all-subviews-with-autolayout
  */
 public class LayoutLabel: UILabel {

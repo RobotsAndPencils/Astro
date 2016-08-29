@@ -15,6 +15,17 @@
 
 import Foundation
 
+/**
+ HTTPStatusCode is an enum that allows you to clarify status codes returned by your server and includes some more user friendly messaging for failureReason and recoverySuggestion.
+ 
+ Codes are grouped into the following bands:
+ 
+ - Information codes (100-199)
+ - Success codes (200-299)
+ - Redirection codes (300-399)
+ - Client error codes (400-499)
+ - Server error codes (>500)
+ */
 @objc public enum HTTPStatusCode: Int, CustomStringConvertible, CustomDebugStringConvertible {
     // Informational - 1xx codes
     case Code100Continue = 100
@@ -76,10 +87,16 @@ import Foundation
 
     // MARK: CustomDebugStringConvertible
 
+    /**
+     - Returns: a detailed string representation (code + string) of this HTTPStatusCode
+     */
     public var debugDescription: String {
         return "HTTPStatusCode: \(rawValue) - \(string)"
     }
 
+    /**
+     - Returns: a string representation of the HTTPStatusCode
+     */
     public var string: String {
         switch self {
         case .Code100Continue: return "Continue"
@@ -128,6 +145,9 @@ import Foundation
 
     // MARK: Lifecycle
 
+    /**
+     Initializer that takes a raw HTTP Status Code and creates a HTTPStatusCode representation. Will return nil if the code is not known.
+     */
     public init?(intValue: Int) {
         guard let statusCode = HTTPStatusCode(rawValue: intValue) else {
             return nil
@@ -138,32 +158,53 @@ import Foundation
 
     // MARK: Public
 
+    /**
+     - Returns: true if the HTTPStatusCode is in the range of 100-199
+     */
     public var isInformational: Bool {
         return rawValue >= 100 && rawValue < 200
     }
 
+    /**
+     - Returns: true if the HTTPStatusCode is in the range of 200-299
+     */
     public var isSuccessful: Bool {
         return rawValue >= 200 && rawValue < 300
     }
 
+    /**
+     - Returns: true if the HTTPStatusCode is in the range of 300-399
+     */
     public var isRedirection: Bool {
         return rawValue >= 300 && rawValue < 400
     }
 
+    /**
+     - Returns: true if the HTTPStatusCode is in the range of 400-499
+     */
     public var isClientError: Bool {
         return rawValue >= 400 && rawValue < 500
     }
 
+    /**
+     - Returns: true if the HTTPStatusCode is in the range of >=500
+     */
     public var isServerError: Bool {
         return rawValue >= 500
     }
 
+    /**
+     - Returns: true if the HTTPStatusCode is either a Server of Client error (i.e. >= 400)
+     */
     public var isError: Bool {
         return isServerError || isClientError
     }
 }
 
 extension HTTPStatusCode {
+    /**
+     - Returns: a more detailed failure reason for this HTTPStatusCode error condition
+     */
     public var failureReason: String {
         if !self.isError { return "" }
 
@@ -201,6 +242,9 @@ extension HTTPStatusCode {
         }
     }
 
+    /**
+     - Returns: a suggestion on how you might recover from this HTTPStatusCode error condition
+     */
     public var recoverySuggestion: String {
         if !self.isError { return "" }
 

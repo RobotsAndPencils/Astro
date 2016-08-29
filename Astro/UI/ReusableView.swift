@@ -12,13 +12,11 @@
 import UIKit
 
 /**
+ A protocol for reusable-type views to provide a default reuse identifier
+
  ReusableView is a way to generalize the pattern of declaring a constant for
  every reuse identifier. Much of this is based off of the ideas from:
  https://medium.com/@gonzalezreal/ios-cell-registration-reusing-with-swift-protocol-extensions-and-generics-c5ac4fb5b75e
- */
-
-/**
- A protocol for reusable-type views to provide a default reuse identifier 
  */
 public protocol ReusableView: class {
     static var defaultReuseIdentifier: String { get }

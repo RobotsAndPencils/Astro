@@ -23,10 +23,18 @@ let KeychainAccessServiceBundleID: String = {
 
 let KeychainAccessErrorDomain = "\(KeychainAccessServiceBundleID).error"
 
+/**
+ KeychainAccess provides the app access to a device's Keychain store. Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then retrieve those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app.
+ */
 public class KeychainAccess {
     
     let keychainAccessAccount: String?
     
+    /**
+     Initialize a new instance of KeychainAccess given a unique account identifier
+     
+     - parameter account: the account for which the keys will be appended in the keychain
+     */
     public init(account: String) {
         keychainAccessAccount = account
     }
@@ -147,7 +155,7 @@ public class KeychainAccess {
     }
 
     /**
-       Delete the all keys and data for the app.
+       Delete all keys and data for the app.
      
        - returns: true if the delete was successful, false if there was an error
      */

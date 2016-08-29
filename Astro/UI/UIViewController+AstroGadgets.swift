@@ -11,12 +11,18 @@
 
 import UIKit
 
+/**
+ Extensions to help deliver additional UIViewController functionality
+ */
 public extension UIViewController {
     
     // MARK: General
     
     /**
-       Ensure that a view controller is added properly to another view controller
+     Ensure that a view controller is added properly to another view controller
+     
+     - parameter childViewController: to be added inside of the parent view controller (i.e. self)
+     - parameter inContainer: the UIView where the childViewController's UIView will be added as a subview
     */
     public func addChildViewController(childViewController: UIViewController, inContainer view: UIView) {
         self.addChildViewController(childViewController)
@@ -31,8 +37,11 @@ public extension UIViewController {
     // MARK: Alerts
     
     /**
-       Shorten way to prompt an alert
-    */
+     A quick way to show an alert with a single Ok button
+     
+     - parameter title: - of the alert
+     - parameter message: - of the alert
+     */
     public func quickAlert(title title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
@@ -40,7 +49,7 @@ public extension UIViewController {
     }
     
     /**
-       Prompts an alert indicating that the feature has not been implemented
+     Show an alert indicating that the feature has not been implemented. Useful when developing new features and you quickly want to stub out an unfinished areas.
     */
     public func featureNotImplemented() {
         NSLog("FEATURE NOT IMPLEMENTED")

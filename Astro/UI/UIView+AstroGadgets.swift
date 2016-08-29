@@ -11,9 +11,10 @@
 
 import UIKit
 
+/**
+ Shortcuts for getting and setting the frame properties
+ */
 public extension UIView {
-    
-    // MARK: Shortcuts for getting and setting the frame properties
     
     public var frameSize:CGSize {
         get {
