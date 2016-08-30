@@ -369,24 +369,65 @@ public class NetworkService: NetworkServiceType {
 
 public extension NetworkService {
     public struct Notifications {
+        /**
+            Notification for when a request is submitted. The `userInfo` dictionary will contain an instance of `NetworkService.NotificationInfo` via the `NotificationInfoKey` key. For example,
+            ```
+            func networkServiceDidRequest(notification: Notification) {
+                let info = userInfo?[NetworkService.NotificationInfoKey] as? NetworkService.NotificationInfo
+                NSLog("request: \(info.request)")
+            }
+            ```
+        */
         public static let DidRequest = "astro.networkingservice.notifications.didRequest"
+
+        /**
+            Notification for when a response is received. The `userInfo` dictionary will contain an instance of `NetworkService.NotificationInfo` via the `NotificationInfoKey` key. For example,
+            ```
+            func networkServiceDidReceive(notification: Notification) {
+                let info = userInfo?[NetworkService.NotificationInfoKey] as? NetworkService.NotificationInfo
+                NSLog("response: \(info.response)")
+            }
+            ```
+        */
         public static let DidReceive = "astro.networkingservice.notifications.didReceive"
     }
 
+    /**
+        The key to the network notification info in the notification `userInfo` dictionary
+    */
     public static let NotificationInfoKey = "NotificationInfo"
 
-    // This is a box/wrapper for the request and response because we can't directly
-    // add the response to the UserInfo dict (since it's not an NSObject)
+    /**
+     This is a box/wrapper for the request and response because we can't directly add the response to the UserInfo dict (since it's not an NSObject)
+    */
     public class NotificationInfo: NSObject {
+        /**
+            The request that was performed by the NetworkService
+        */
         public let request: NSMutableURLRequest
+
+        /**
+            The response that is received in response to `request`. This value will only have a value for the `Notifications.DidReceive` notification.
+        */
         public let response: Response<NSData, NSError>?
 
+        /**
+            Creates an instance with the specified request and optional response.
+            - parameter request: the request being performed by the NetworkService
+            - parameter response: an option response received by the NetworkService
+        */
         private init(request: URLRequestConvertible, response: Response<NSData, NSError>? = nil) {
             self.request = request.URLRequest
             self.response = response
         }
     }
 
+    /**
+        Posts a network notification for the given request and response.
+        - parameter notficationName: The name of the notification. This should be one of the notification constants in NetworkService.Notifications (.DidRequest and .DidReceive)
+        - parameter request: The request made by the network service
+        - parameter response: The response received by the network service. This will only have a value for Notifications.DidReceive
+    */
     private func postNotification(notificationName: String, request: URLRequestConvertible, response: Response<NSData, NSError>? = nil) {
         let info = NotificationInfo(request: request, response: response)
 
