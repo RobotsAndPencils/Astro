@@ -342,7 +342,7 @@ public class NetworkService: NetworkServiceType {
     
     public func requestData(URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<NSData>, NetworkError> {
         return Task { [weak self] progress, fulfill, reject, configure in
-            self?.postNotification(NetworkService.Notifications.DidRequest, request: URLRequest)
+            NetworkService.postNotification(NetworkService.Notifications.DidRequest, request: URLRequest)
 
             let request = self?.requestManager.request(URLRequest)
                 .progress { bytesRead, totalBytesRead, totalExpectedBytes -> Void in
@@ -350,7 +350,7 @@ public class NetworkService: NetworkServiceType {
                 }
                 .validate() // Covers error status code and content type mismatch
                 .responseData { response in
-                    self?.postNotification(NetworkService.Notifications.DidReceive, request: URLRequest, response: response)
+                    NetworkService.postNotification(NetworkService.Notifications.DidReceive, request: URLRequest, response: response)
 
                     guard let data = response.result.value where response.result.isSuccess else {
                         // We should always have an error in the non success case but use AssertionError to avoid a bang (!)
@@ -428,7 +428,7 @@ public extension NetworkService {
         - parameter request: The request made by the network service
         - parameter response: The response received by the network service. This will only have a value for Notifications.DidReceive
     */
-    private func postNotification(notificationName: String, request: URLRequestConvertible, response: Response<NSData, NSError>? = nil) {
+    private static func postNotification(notificationName: String, request: URLRequestConvertible, response: Response<NSData, NSError>? = nil) {
         let info = NotificationInfo(request: request, response: response)
 
         NSNotificationCenter.defaultCenter().postNotificationName(notificationName, object: self, userInfo: [NetworkService.NotificationInfoKey: info])

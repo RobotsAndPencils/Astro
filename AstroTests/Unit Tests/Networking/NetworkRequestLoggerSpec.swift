@@ -87,5 +87,19 @@ class NetworkServiceLoggerSpec: QuickSpec {
                 }
             }
         }
+
+        context("network service not retained") {
+            beforeEach {
+                subject.start()
+
+                stubAnyRequest().andReturn(.Code200OK).withJSON(json)
+
+                NetworkService().requestData(request)
+            }
+
+            it("should log both send and receive messages") {
+                expect(logRecorder.messages).toEventually(haveCount(2))
+            }
+        }
     }
 }
