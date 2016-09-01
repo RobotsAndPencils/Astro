@@ -449,27 +449,3 @@ public func ==(a: JSON.Error, b: JSON.Error) -> Bool {
     default: return false
     }
 }
-
-// Improved DSL for Nocilla
-
-func stubRoute(route: Route) -> LSStubRequestDSL {
-    return stubRequest(route.method.rawValue, route.URL.absoluteString).withHeaders(route.URLRequest.allHTTPHeaderFields).withBody(route.URLRequest.HTTPBody)
-}
-
-extension LSStubRequestDSL {
-    func andReturn(status: HTTPStatusCode) -> LSStubResponseDSL {
-        return andReturn(status.rawValue)
-    }
-}
-
-extension LSStubResponseDSL {
-    func withJSON(json: JSON) -> LSStubResponseDSL {
-        let body = try? json.serialize() ?? NSData()
-        return withHeader("Content-Type", "application/json").withBody(body)
-    }
-}
-
-func stubAnyRequest() -> LSStubRequestDSL {
-    return stubRequest(nil, ".*".regex())
-}
-
