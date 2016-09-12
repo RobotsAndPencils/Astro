@@ -35,7 +35,7 @@ public struct Route: URLRequestConvertible {
     }
 
     public var URL: NSURL {
-        return baseURL.URLByAppendingPathComponent(self.path)
+        return baseURL.URLByAppendingPathComponent(self.path)!
     }
 
     // MARK: - URLRequestConvertible
