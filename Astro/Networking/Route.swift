@@ -16,26 +16,20 @@ import Freddy
  Route provides a simple abstraction for working with NSURLRequests. Recommended approach is to add extensions to Route to add a default baseURL value and static functions for your specific API.
  */
 public struct Route: URLRequestConvertible {
-    public let baseURL: NSURL
-    public let path: String
+    public let URL: NSURL
     public let method: Alamofire.Method
     public let parameters: RequestParameters?
     public let additionalHeaders: [String: String]
 
-    public init(baseURL: NSURL, path: String, method: Alamofire.Method = .GET, JSON: Freddy.JSON, additionalHeaders: [String: String] = [:]) {
-        self.init(baseURL: baseURL, path: path, method: method, parameters: RequestParameters.JSON(parameters: JSON), additionalHeaders: additionalHeaders)
+    public init(URL: NSURL, method: Alamofire.Method = .GET, JSON: Freddy.JSON, additionalHeaders: [String: String] = [:]) {
+        self.init(URL: URL, method: method, parameters: RequestParameters.JSON(parameters: JSON), additionalHeaders: additionalHeaders)
     }
 
-    public init(baseURL: NSURL, path: String, method: Alamofire.Method = .GET, parameters: RequestParameters? = nil, additionalHeaders: [String: String] = [:]) {
-        self.baseURL = baseURL
-        self.path = path
+    public init(URL: NSURL, method: Alamofire.Method = .GET, parameters: RequestParameters? = nil, additionalHeaders: [String: String] = [:]) {
+        self.URL = URL
         self.method = method
         self.parameters = parameters
         self.additionalHeaders = additionalHeaders
-    }
-
-    public var URL: NSURL {
-        return baseURL.URLByAppendingPathComponent(self.path)!
     }
 
     // MARK: - URLRequestConvertible
