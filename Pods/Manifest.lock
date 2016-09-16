@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.4.1)
+  - Alamofire (3.5.0)
   - Astro (1.1.0):
     - Astro/Logging (= 1.1.0)
     - Astro/Networking (= 1.1.0)
@@ -17,30 +17,33 @@ PODS:
   - Astro/UI (1.1.0)
   - Astro/Utils (1.1.0)
   - Freddy (2.1.0)
-  - Nimble (3.2.0)
+  - Nimble (4.1.0)
   - Nocilla (0.11.0)
   - Quick (0.9.3)
   - SwiftTask (5.0.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 3.5)
   - Astro (from `.`)
-  - Nimble (~> 3.2)
-  - Nocilla (~> 0.10)
+  - Freddy (~> 2.1)
+  - Nimble (~> 4.1)
+  - Nocilla (~> 0.11)
   - Quick (~> 0.9)
+  - SwiftTask (~> 5.0)
 
 EXTERNAL SOURCES:
   Astro:
     :path: .
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
   Astro: b02e8db13f5ed43a6a8e52fc5b994d5647f9f434
   Freddy: bbdca013977db29638b24baf6572ce94452bec29
-  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
+  Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
   Nocilla: 7af7a386071150cc8aa5da4da97d060f049dd61c
   Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
   SwiftTask: 7fcd92f8ac16876e82c0e4ced0cea7e028456b6b
 
-PODFILE CHECKSUM: a35a9d005c349b88979b52ac7969d36fb863b8f1
+PODFILE CHECKSUM: bf8bba49840cacfd0f5a3521a329338860c29863
 
 COCOAPODS: 1.0.1

@@ -8,12 +8,15 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Astro' do
     pod "Astro", :path => "."
+    pod 'Alamofire', '~> 3.5'
+    pod 'Freddy', '~> 2.1'
+    pod 'SwiftTask', '~> 5.0'
 
 	target 'AstroTests' do
 	  inherit! :search_paths
 
 	  pod 'Quick', '~> 0.9'
-	  pod 'Nimble', '~> 3.2'
-	  pod 'Nocilla', '~> 0.10'
+	  pod 'Nimble', '~> 4.1'
+	  pod 'Nocilla', '~> 0.11'
 	end
 end

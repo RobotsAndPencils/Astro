@@ -1,7 +1,7 @@
 general:
 machine:
   xcode:
-    version: 7.3
+    version: 8.0
 test:
   override:
     - set -o pipefail &&
@@ -10,7 +10,7 @@ test:
       CODE_SIGN_IDENTITY=
       PROVISIONING_PROFILE=
       -sdk iphonesimulator
-      -destination 'platform=iOS Simulator,OS=9.3,name=iPhone 6'
+      -destination 'platform=iOS Simulator,name=iPhone 6'
       -workspace Astro.xcworkspace
       -scheme "Astro"
       clean build test |
