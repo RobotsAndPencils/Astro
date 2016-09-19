@@ -12,16 +12,16 @@
 import Foundation
 
 public protocol ExecutableQueue {
-    var queue: dispatch_queue_t { get }
+    var queue: DispatchQueue { get }
 }
 
 public extension ExecutableQueue {
-    public func execute(closure: () -> Void) {
-        dispatch_async(queue, closure)
+    public func execute(_ closure: @escaping () -> Void) {
+        queue.async(execute: closure)
     }
-    public func executeAfter(delay delay: NSTimeInterval, closure: () -> Void) {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, queue, closure)
+    public func executeAfter(delay: TimeInterval, closure: @escaping () -> Void) {
+        let delayTime = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        queue.asyncAfter(deadline: delayTime, execute: closure)
     }
 }
 
@@ -29,24 +29,24 @@ public extension ExecutableQueue {
  Queue provides a prettier interface for the most common needs of dispatching onto different GCD Queues. If you require something more powerfull consider Async.
  */
 public enum Queue: ExecutableQueue {
-    case Main
-    case UserInteractive
-    case UserInitiated
-    case Utility
-    case Background
+    case main
+    case userInteractive
+    case userInitiated
+    case utility
+    case background
 
-    public var queue: dispatch_queue_t {
+    public var queue: DispatchQueue {
         switch self {
-        case .Main:
-            return dispatch_get_main_queue()
-        case .UserInteractive:
-            return dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)
-        case .UserInitiated:
-            return dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)
-        case .Utility:
-            return dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)
-        case .Background:
-            return dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
+        case .main:
+            return DispatchQueue.main
+        case .userInteractive:
+            return DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive)
+        case .userInitiated:
+            return DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated)
+        case .utility:
+            return DispatchQueue.global(qos: DispatchQoS.QoSClass.utility)
+        case .background:
+            return DispatchQueue.global(qos: DispatchQoS.QoSClass.background)
         }
     }
 }

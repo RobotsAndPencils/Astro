@@ -14,10 +14,10 @@ import Security
 
 let KeychainAccessServiceBundleID: String = {
     if NSClassFromString("XCTestCase") != nil {
-        Log.level = Log.Level.Debug
+        Log.level = Log.Level.debug
         return "com.robotsandpencils.TestTarget"
     } else {
-        return NSBundle.mainBundle().bundleIdentifier ?? ""
+        return Bundle.main.bundleIdentifier ?? ""
     }
 }()
 
@@ -26,7 +26,7 @@ let KeychainAccessErrorDomain = "\(KeychainAccessServiceBundleID).error"
 /**
  KeychainAccess provides the app access to a device's Keychain store. Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then retrieve those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app.
  */
-public class KeychainAccess {
+open class KeychainAccess {
     
     let keychainAccessAccount: String?
     
@@ -45,11 +45,11 @@ public class KeychainAccess {
        - parameter key: the key to find the string in the keychain
        - returns: the value stored for that key as a string. nil if there is no value or the value is not a string
     */
-    public func getString(key: String) -> String? {
+    open func getString(_ key: String) -> String? {
         guard let data = self.get(key) else {
             return nil
         }
-        return NSString(data: data, encoding: NSUTF8StringEncoding) as? String
+        return NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String
     }
     
     /**
@@ -58,14 +58,14 @@ public class KeychainAccess {
        - parameter key: the key to find the data in the keychain
        - returns: the value stored for that key as NSData. nil if there is no value or the value is not NSData
     */
-    public func get(key: String) -> NSData? {
+    open func get(_ key: String) -> Data? {
         let query = self.query(key, get: true)
         
         var result: AnyObject?
-        let status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(query, UnsafeMutablePointer($0)) }
+        let status = withUnsafeMutablePointer(to: &result) { SecItemCopyMatching(query, UnsafeMutablePointer($0)) }
         
         if status == errSecSuccess {
-            guard let data = result as? NSData else {
+            guard let data = result as? Data else {
                 Log.debug("No data fetched for the key from keychain with status=\(status). Attempted to get value for key [\(key)]")
                 return nil
             }
@@ -83,8 +83,8 @@ public class KeychainAccess {
        - parameter value: the string to store in the keychain (if nil then no data will be stored for the key)
        - returns: true if the store was successful, false if there was an error
     */
-    public func putString(key: String, value: String?) -> Bool {
-        return self.put(key, data: value?.dataUsingEncoding(NSUTF8StringEncoding))
+    open func putString(_ key: String, value: String?) -> Bool {
+        return self.put(key, data: value?.data(using: String.Encoding.utf8))
     }
     
     /**
@@ -94,17 +94,17 @@ public class KeychainAccess {
        - parameter value: the data to store in the keychain (if nil then no data will be stored for the key)
        - returns: true if the store was successful, false if there was an error
     */
-    public func put(key: String, data: NSData?) -> Bool {
-        let query = self.query(key, value: data)
+    open func put(_ key: String, data: Data?) -> Bool {
+        let query = self.query(key, value: data as AnyObject?)
         var result: AnyObject?
         
-        var status = withUnsafeMutablePointer(&result) { SecItemCopyMatching(query, UnsafeMutablePointer($0)) }
+        var status = withUnsafeMutablePointer(to: &result) { SecItemCopyMatching(query, UnsafeMutablePointer($0)) }
         if status == errSecSuccess {
             // Key previously existed
             if let data = data {
                 // Updating the data to a new value
-                let attributesToUpdate: [String: AnyObject] = [kSecValueData as String : data]
-                status = SecItemUpdate(query, attributesToUpdate as CFDictionaryRef)
+                let attributesToUpdate: [String: AnyObject] = [kSecValueData as String : data as AnyObject]
+                status = SecItemUpdate(query, attributesToUpdate as CFDictionary)
                 if status == errSecSuccess {
                     return true
                 }
@@ -142,7 +142,7 @@ public class KeychainAccess {
        - parameter key: the key to delete the data for in the keychain
        - returns: true if the delete was successful, false if there was an error
     */
-    public func delete(key: String) -> Bool {
+    open func delete(_ key: String) -> Bool {
         let query = self.query(key)
         let status = SecItemDelete(query)
 
@@ -159,11 +159,11 @@ public class KeychainAccess {
      
        - returns: true if the delete was successful, false if there was an error
      */
-    public func deleteAllKeysAndDataForApp() -> Bool {
+    open func deleteAllKeysAndDataForApp() -> Bool {
         var query: [String: AnyObject] = [:]
         query[kSecClass as String] = kSecClassGenericPassword
         
-        let status = SecItemDelete(query)
+        let status = SecItemDelete(query as CFDictionary)
         if status == errSecSuccess || status == errSecItemNotFound {
             return true
         } else {
@@ -172,7 +172,7 @@ public class KeychainAccess {
         }
     }
 
-    public subscript(key: String) -> String? {
+    open subscript(key: String) -> String? {
         get {
             return self.getString(key)
         }
@@ -182,7 +182,7 @@ public class KeychainAccess {
         }
     }
 
-    public subscript(data key: String) -> NSData? {
+    open subscript(data key: String) -> Data? {
         get {
             return self.get(key)
         }
@@ -201,10 +201,10 @@ public class KeychainAccess {
        - parameter get: the query is for retrieving data and should have the parameters to do that
        - returns: a dictionary for use as the query
     */
-    private func query(key: String, value: AnyObject? = nil, get: Bool = false) -> CFDictionaryRef {
+    fileprivate func query(_ key: String, value: AnyObject? = nil, get: Bool = false) -> CFDictionary {
         var query: [String: AnyObject] = [:]
-        query[kSecAttrService as String] = key
-        query[kSecAttrAccount as String] = self.keychainAccessAccount
+        query[kSecAttrService as String] = key as AnyObject?
+        query[kSecAttrAccount as String] = self.keychainAccessAccount as AnyObject?
         query[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
         query[kSecClass as String] = kSecClassGenericPassword
         
@@ -217,7 +217,7 @@ public class KeychainAccess {
             query[kSecMatchLimit as String] = kSecMatchLimitOne
         }
         
-        return query as CFDictionaryRef
+        return query as CFDictionary
     }
     
 }

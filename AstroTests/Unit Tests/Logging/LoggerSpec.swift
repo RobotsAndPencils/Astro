@@ -16,7 +16,7 @@ import Nimble
 class LogRecorder: Logger {
     var messages = [String]()
 
-    func log(level: Log.Level, message: String) {
+    func log(_ level: Log.Level, message: String) {
         messages.append(message)
     }
 }

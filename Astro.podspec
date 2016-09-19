@@ -40,8 +40,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.subspec 'Networking' do | net |
     net.source_files = 'Astro/Networking/**/*.swift'
     net.dependency 'Astro/Logging'
-    net.dependency 'Alamofire', '~> 3.3'
-    net.dependency 'Freddy', '~> 2.0'
+    net.dependency 'Alamofire', '~> 4.0'
+    net.dependency 'Freddy', '3.0'
     net.dependency 'SwiftTask', '5.0'
   end
 

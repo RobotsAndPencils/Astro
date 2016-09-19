@@ -1,6 +1,0 @@
-framework module Astro {
-  umbrella header "Astro-umbrella.h"
-
-  export *
-  module * { export * }
-}

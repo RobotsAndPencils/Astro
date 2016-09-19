@@ -15,7 +15,7 @@ import Alamofire
 /**
     A simple logger that listens for NetworkService request/response events and logs the related information in a nicely formatted message for debugging.
 */
-public class NetworkServiceLogger: NSObject {
+open class NetworkServiceLogger: NSObject {
 
     /**
         Use this instance for the simplest use case. For example, starting the logger can be as simple as:
@@ -23,17 +23,17 @@ public class NetworkServiceLogger: NSObject {
             NetworkServiceLogger.sharedInstance.start()
          ```
     */
-    public static let sharedInstance = NetworkServiceLogger()
+    open static let sharedInstance = NetworkServiceLogger()
 
     /**
         Set this option to include or exclude the request and response headers in the formatted log message. Defaults to false (forced to true when logging response errors).
     */
-    public var includeHeaders = false
+    open var includeHeaders = false
 
     /**
         Set this option to include or exclude the request and response body in the formatted log message. Defaults to true (forced to true when logging response errors).
     */
-    public var includeBody = true
+    open var includeBody = true
 
     deinit {
         stop()
@@ -42,22 +42,22 @@ public class NetworkServiceLogger: NSObject {
     /**
         Starts observing and logging network service notifications.
     */
-    public func start() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didRequest(_:)), name: NetworkService.Notifications.DidRequest, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didReceive(_:)), name: NetworkService.Notifications.DidReceive, object: nil)
+    open func start() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didRequest(_:)), name: NSNotification.Name(rawValue: NetworkService.Notifications.DidRequest), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceive(_:)), name: NSNotification.Name(rawValue: NetworkService.Notifications.DidReceive), object: nil)
     }
 
     /**
         Stops observing and logging network service notifications.
     */
-    public func stop() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    open func stop() {
+        NotificationCenter.default.removeObserver(self)
     }
 
     /**
         Internal method for handling request notifications
     */
-    func didRequest(notification: NSNotification) {
+    func didRequest(_ notification: Notification) {
         guard let request = notification.info?.request else { return }
 
         Log.info(request.debugDescription(headers: includeHeaders, body: includeBody))
@@ -66,7 +66,7 @@ public class NetworkServiceLogger: NSObject {
     /**
         Internal method for handling response notifications
     */
-    func didReceive(notification: NSNotification) {
+    func didReceive(_ notification: Notification) {
         guard let response = notification.info?.response else { return }
 
         switch response.result {
@@ -78,7 +78,7 @@ public class NetworkServiceLogger: NSObject {
     }
 }
 
-private extension NSNotification {
+private extension Notification {
     /**
         Private convenience extension to make extracting the network info from the notification simple.
     */
@@ -95,22 +95,22 @@ private extension NSMutableURLRequest {
         - returns: A formatted string representing the request
     */
     func debugDescription(headers includeHeaders: Bool = false, body includeBody: Bool = false) -> String {
-        let method = HTTPMethod
-        let url = URL?.absoluteString ?? ""
+        let method = httpMethod
+        let url = url?.absoluteString ?? ""
         var result = "\(method) \(url)"
 
         if includeHeaders {
             let headers = allHTTPHeaderFields?.map { "\($0): \($1)" }
             if let headers = headers {
-                result.appendContentsOf(":\n\(headers)\n")
+                result.append(":\n\(headers)\n")
             }
         }
 
         if includeBody {
-            if let bodyData = HTTPBody,
-            body = String(data: bodyData, encoding: NSUTF8StringEncoding) {
-                result.appendContentsOf("\n")
-                result.appendContentsOf(body)
+            if let bodyData = httpBody,
+            let body = String(data: bodyData, encoding: String.Encoding.utf8) {
+                result.append("\n")
+                result.append(body)
             }
         }
         return result
@@ -140,7 +140,7 @@ private extension Response {
 
         if includeBody || statusCode?.isError == true {
             if let bodyData = self.data,
-            body = String(data: bodyData, encoding: NSUTF8StringEncoding) {
+            let body = String(data: bodyData, encoding: NSUTF8StringEncoding) {
                 result.appendContentsOf("\n")
                 result.appendContentsOf(body)
             }

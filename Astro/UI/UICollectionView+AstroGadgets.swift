@@ -20,8 +20,8 @@ public extension UICollectionView {
      
      - parameter cellType: The cell subclass type that conforms to the ReusableView protocol
      */
-    public func register<T: UICollectionViewCell where T: ReusableView>(cellType: T.Type) {
-        registerClass(cellType.self, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
+    public func register<T: UICollectionViewCell>(_ cellType: T.Type) where T: ReusableView {
+        self.register(cellType.self, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
     }
     
     /**
@@ -30,10 +30,10 @@ public extension UICollectionView {
      
      - parameter cellType: The cell subclass type that conforms to both ReusableView and NibLoadableView protocols
      */
-    public func register<T: UICollectionViewCell where T: ReusableView, T: NibLoadableView>(cellType: T.Type) {
-        let bundle = NSBundle(forClass: cellType.self)
+    public func register<T: UICollectionViewCell>(_ cellType: T.Type) where T: ReusableView, T: NibLoadableView {
+        let bundle = Bundle(for: cellType.self)
         let nib = UINib(nibName: cellType.nibName, bundle: bundle)
-        registerNib(nib, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
+        self.register(nib, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
     }
     
     /**
@@ -43,8 +43,8 @@ public extension UICollectionView {
      
      - parameter indexPath: The index path of the cell to dequeue
      */
-    public func dequeueReusableCell<T: UICollectionViewCell where T: ReusableView>(forIndexPath indexPath: NSIndexPath) -> T {
-        guard let cell = dequeueReusableCellWithReuseIdentifier(T.defaultReuseIdentifier, forIndexPath: indexPath) as? T else {
+    public func dequeueReusableCell<T: UICollectionViewCell>(forIndexPath indexPath: IndexPath) -> T where T: ReusableView {
+        guard let cell = self.dequeueReusableCell(withReuseIdentifier: T.defaultReuseIdentifier, for: indexPath) as? T else {
             fatalError("Could not dequeue collection view cell with identifier: \(T.defaultReuseIdentifier)")
         }
         return cell

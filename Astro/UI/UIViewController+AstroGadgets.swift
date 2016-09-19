@@ -24,10 +24,10 @@ public extension UIViewController {
      - parameter childViewController: to be added inside of the parent view controller (i.e. self)
      - parameter inContainer: the UIView where the childViewController's UIView will be added as a subview
     */
-    public func addChildViewController(childViewController: UIViewController, inContainer view: UIView) {
+    public func addChildViewController(_ childViewController: UIViewController, inContainer view: UIView) {
         self.addChildViewController(childViewController)
         view.addSubview(childViewController.view)
-        childViewController.didMoveToParentViewController(self)
+        childViewController.didMove(toParentViewController: self)
     }
 }
 
@@ -42,10 +42,10 @@ public extension UIViewController {
      - parameter title: - of the alert
      - parameter message: - of the alert
      */
-    public func quickAlert(title title: String?, message: String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+    public func quickAlert(title: String?, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     /**

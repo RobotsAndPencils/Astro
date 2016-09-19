@@ -21,7 +21,7 @@ public protocol Logger {
      - Parameter level: Importance level of the message to be logged
      - Parameter message: Message contents that will be logged
     */
-    func log(level: Log.Level, message: String);
+    func log(_ level: Log.Level, message: String);
 }
 
 /**
@@ -39,31 +39,31 @@ public struct Log {
      - Silent - allows you to shut off the logger completely with minimal performance impacts
     */
     public enum Level: Int {
-        case Debug
-        case Info
-        case Warning
-        case Error
-        case Silent
+        case debug
+        case info
+        case warning
+        case error
+        case silent
     }
     
     /**
      A default logger implementation that logs to NSLog with the log message prefixed by its log Level
     */
     public struct BasicLogger: Logger {
-        public func log(level: Level, message: String) {
+        public func log(_ level: Level, message: String) {
             var prefix = ""
             
             switch level {
-            case .Debug:
+            case .debug:
                 prefix = "DEBUG"
                 break
-            case .Info:
+            case .info:
                 prefix = "INFO"
                 break
-            case .Warning:
+            case .warning:
                 prefix = "WARN"
                 break
-            case .Error:
+            case .error:
                 prefix = "ERROR"
                 break
             default:
@@ -76,7 +76,7 @@ public struct Log {
     /**
      Contains the current logging level that is configured
      */
-    public static var level = Level.Error
+    public static var level = Level.error
     
     /**
      Contains the current logger that is configured
@@ -86,36 +86,36 @@ public struct Log {
     /**
      Log a debug message
      */
-    public static func debug(@autoclosure msg: () -> String) {
-        if level.rawValue <= Level.Debug.rawValue {
-            logger.log(.Debug, message: msg())
+    public static func debug(_ msg: @autoclosure () -> String) {
+        if level.rawValue <= Level.debug.rawValue {
+            logger.log(.debug, message: msg())
         }
     }
     
     /**
      Log an info message
      */
-    public static func info(@autoclosure msg: () -> String) {
-        if level.rawValue <= Level.Info.rawValue {
-            logger.log(.Info, message: msg())
+    public static func info(_ msg: @autoclosure () -> String) {
+        if level.rawValue <= Level.info.rawValue {
+            logger.log(.info, message: msg())
         }
     }
     
     /**
      Log a warning message
      */
-    public static func warn(@autoclosure msg: () -> String) {
-        if level.rawValue <= Level.Warning.rawValue {
-            logger.log(.Warning, message: msg())
+    public static func warn(_ msg: @autoclosure () -> String) {
+        if level.rawValue <= Level.warning.rawValue {
+            logger.log(.warning, message: msg())
         }
     }
     
     /**
      Log an error message
      */
-    public static func error(@autoclosure msg: () -> String) {
-        if level.rawValue <= Level.Error.rawValue {
-            logger.log(.Error, message: msg())
+    public static func error(_ msg: @autoclosure () -> String) {
+        if level.rawValue <= Level.error.rawValue {
+            logger.log(.error, message: msg())
         }
     }
 }

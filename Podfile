@@ -8,9 +8,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Astro' do
     pod "Astro", :path => "."
-    pod 'Alamofire', '~> 3.5'
-    pod 'Freddy', '~> 2.1'
-    pod 'SwiftTask', '~> 5.0'
+    pod 'Alamofire', '~> 4.0'
+    pod 'Freddy', '~> 3.0'
+    pod 'SwiftTask'
 
 	target 'AstroTests' do
 	  inherit! :search_paths
