@@ -29,9 +29,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   }
   s.source           = { :git => "https://github.com/RobotsAndPencils/Astro.git", :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
-  s.platform     = :ios, '8.0'
+  s.ios.deployment_target = '9.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
   
   s.subspec 'Logging' do | log |
     log.source_files = 'Astro/Logging/**/*.swift'
@@ -41,8 +42,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     net.source_files = 'Astro/Networking/**/*.swift'
     net.dependency 'Astro/Logging'
     net.dependency 'Alamofire', '~> 4.0'
-    net.dependency 'Freddy', '3.0'
-    net.dependency 'SwiftTask', '5.0'
+    net.dependency 'Freddy', '~> 3.0'
+    net.dependency 'SwiftTask', '~> 5.0'
   end
 
   s.subspec 'Security' do | security |

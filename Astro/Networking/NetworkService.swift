@@ -208,19 +208,19 @@ public extension NetworkServiceType {
 open class NetworkService: NetworkServiceType {
 
     public struct AssertionError: Error {}
-    fileprivate let requestManager: Alamofire.Manager
+    fileprivate let requestManager: Alamofire.SessionManager
 
     public convenience init() {
-        let requestManager: Alamofire.Manager = {
+        let requestManager: Alamofire.SessionManager = {
             let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-            configuration.HTTPAdditionalHeaders = Alamofire.Manager.defaultHTTPHeaders
+            configuration.HTTPAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
 
-            return Alamofire.Manager(configuration: configuration)
+            return Alamofire.SessionManager(configuration: configuration)
         }()
         self.init(requestManager: requestManager)
     }
 
-    public init(requestManager: Alamofire.Manager) {
+    public init(requestManager: Alamofire.SessionManager) {
         self.requestManager = requestManager
     }
 

@@ -18,9 +18,12 @@
     "tag": "2.0.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "requires_arc": true,
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "3.0"
+  },
   "subspecs": [
     {
       "name": "Logging",
@@ -37,10 +40,10 @@
           "~> 4.0"
         ],
         "Freddy": [
-          "3.0.0"
+          "~> 3.0"
         ],
         "SwiftTask": [
-          "5.0"
+          "~> 5.0"
         ]
       }
     },

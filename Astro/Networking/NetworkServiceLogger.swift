@@ -96,8 +96,8 @@ private extension NSMutableURLRequest {
     */
     func debugDescription(headers includeHeaders: Bool = false, body includeBody: Bool = false) -> String {
         let method = httpMethod
-        let url = url?.absoluteString ?? ""
-        var result = "\(method) \(url)"
+        let absoluteUrlString = url?.absoluteString ?? ""
+        var result = "\(method) \(absoluteUrlString)"
 
         if includeHeaders {
             let headers = allHTTPHeaderFields?.map { "\($0): \($1)" }

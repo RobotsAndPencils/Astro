@@ -21,7 +21,7 @@ public struct Route: URLRequestConvertible {
     public let parameters: RequestParameters?
     public let additionalHeaders: [String: String]
 
-    public init(URL: NSURL, method: Alamofire.Method = .GET, JSON: Freddy.JSON, additionalHeaders: [String: String] = [:]) {
+    public init(URL: NSURL, method: Alamofire.Method = .get, JSON: Freddy.JSON, additionalHeaders: [String: String] = [:]) {
         self.init(URL: URL, method: method, parameters: RequestParameters.JSON(parameters: JSON), additionalHeaders: additionalHeaders)
     }
 
