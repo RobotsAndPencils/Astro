@@ -71,4 +71,4 @@ That's it! You should be good to go...
 - run `pod lib lint Astro.podspec` (to make sure there aren't any errors)
 - push that code back up to your release branch in github
 - after reviewing/merging back into master then you’ll need to create/tag the release
-- run `pod repo push Astro.podspec`
+- run `pod trunk push Astro.podspec`
