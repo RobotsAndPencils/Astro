@@ -369,6 +369,8 @@ subset easily.
 So if you want to add some classes in, think about the existing modules and decide if it belongs with one
 or if it should have a new home. If you don't know then please ask.
 
+Finally, if you have been tasked with helping maintain this library you can check out the [CocoaPods Admin page](Documentation/CocoaPodsAdmin.md) for more details 
+
 ## Contact
 
 [![Robots & Pencils Logo](http://f.cl.ly/items/2W3n1r2R0j2p2b3n3j3c/rnplogo.png)](http://www.robotsandpencils.com)

@@ -76,7 +76,7 @@ task :release, :version do |task, args|
   sh "git push --follow-tags"
 
   puts "Pushing to Astro.podspec"
-  sh "pod trunk push Astro.podspec --allow-warnings"
+  sh "pod trunk push Astro.podspec"
 
   puts "Pushing as a GitHub Release."
   require 'octokit'
