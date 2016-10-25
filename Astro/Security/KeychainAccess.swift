@@ -178,7 +178,7 @@ open class KeychainAccess {
         }
 
         set {
-            self.putString(key, value: newValue)
+            _ = self.putString(key, value: newValue)
         }
     }
 
@@ -188,7 +188,7 @@ open class KeychainAccess {
         }
 
         set {
-            self.put(key, data: newValue)
+            _ = self.put(key, data: newValue)
         }
     }
 

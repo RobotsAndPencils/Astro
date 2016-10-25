@@ -70,9 +70,9 @@ open class NetworkServiceLogger: NSObject {
         guard let response = notification.info?.response else { return }
 
         switch response.result {
-        case .Failure(let error):
+        case .failure(let error):
             Log.error(response.debugDescription(headers: includeHeaders, body: includeBody) + ": \(error)")
-        case .Success:
+        case .success:
             Log.info(response.debugDescription(headers: includeHeaders, body: includeBody))
         }
     }
@@ -87,7 +87,7 @@ private extension Notification {
     }
 }
 
-private extension NSMutableURLRequest {
+private extension URLRequest {
     /**
         Private extension for formatting a request into a debug string.
         - parameter headers: option to include request headers in the output
@@ -117,7 +117,7 @@ private extension NSMutableURLRequest {
     }
 }
 
-private extension Response {
+private extension DataResponse {
     /**
         Private extension for formatting a response into a debug string.
         - parameter headers: option to include response headers in the output
@@ -127,22 +127,22 @@ private extension Response {
     func debugDescription(headers includeHeaders: Bool = false, body includeBody: Bool = false) -> String {
         let statusCode = HTTPStatusCode(intValue: response?.statusCode ?? 0)
         let durationMillis = Int(timeline.totalDuration * 1000)
-        let url = request?.URL?.absoluteString ?? ""
+        let url = request?.url?.absoluteString ?? ""
         let status = statusCode.flatMap { "\($0.rawValue)" } ?? ""
         var result = "[\(durationMillis)ms] \(status) \(url)"
 
         if includeHeaders || statusCode?.isError == true {
             let headers = response?.allHeaderFields.map { "\($0): \($1)" }
             if let headers = headers {
-                result.appendContentsOf(":\n\(headers)\n")
+                result.append(":\n\(headers)\n")
             }
         }
 
         if includeBody || statusCode?.isError == true {
             if let bodyData = self.data,
-            let body = String(data: bodyData, encoding: NSUTF8StringEncoding) {
-                result.appendContentsOf("\n")
-                result.appendContentsOf(body)
+            let body = String(data: bodyData, encoding: String.Encoding.utf8) {
+                result.append("\n")
+                result.append(body)
             }
         }
         return result

@@ -16,7 +16,7 @@ import Freddy
 
 /// Error Type.
 public struct NetworkError {
-    public let response: Response<NSData, NSError>?
+    public let response: DataResponse<Data>?
     public let error: Error
 
     public var statusCode: HTTPStatusCode? {
@@ -29,7 +29,7 @@ public struct NetworkError {
         return try? JSON(data: data)
     }
 
-    public init(response: Response<NSData, NSError>? = nil, error: Error) {
+    public init(response: DataResponse<Data>? = nil, error: Error) {
         self.response = response
         self.error = error
     }
@@ -37,7 +37,7 @@ public struct NetworkError {
 
 /// Success Type.
 public struct ResponseValue<T> {
-    public let response: Response<NSData, NSError>?
+    public let response: DataResponse<Data>?
     public let value: T
 
     public var statusCode: HTTPStatusCode? {
@@ -45,7 +45,7 @@ public struct ResponseValue<T> {
         return HTTPStatusCode(intValue: response.statusCode)
     }
 
-    public init(response: Response<NSData, NSError>? = nil, value: T) {
+    public init(response: DataResponse<Data>? = nil, value: T) {
         self.response = response
         self.value = value
     }
@@ -146,9 +146,9 @@ public protocol NetworkServiceType {
        Performs the specified request for some data.
 
        - parameter URLRequest: the request
-       - returns: A task for NSData
+       - returns: A task for Data
      */
-    func requestData(_ URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<NSData>, NetworkError>
+    func requestData(_ URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<Data>, NetworkError>
 }
 
 /// Convenience methods without underlying NSHTTPURLResponse
@@ -193,7 +193,7 @@ public extension NetworkServiceType {
         return requestJSON(URLRequest).success { $0.value }
     }
 
-    func requestData(_ URLRequest: URLRequestConvertible) -> Task<Float, NSData, NetworkError> {
+    func requestData(_ URLRequest: URLRequestConvertible) -> Task<Float, Data, NetworkError> {
         return self.requestData(URLRequest).success { return $0.value }
     }
 }
@@ -212,8 +212,8 @@ open class NetworkService: NetworkServiceType {
 
     public convenience init() {
         let requestManager: Alamofire.SessionManager = {
-            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-            configuration.HTTPAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+            let configuration = URLSessionConfiguration.default
+            configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
 
             return Alamofire.SessionManager(configuration: configuration)
         }()
@@ -283,8 +283,8 @@ open class NetworkService: NetworkServiceType {
     open func requestJSONDictionary(_ URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[String: JSON]>, NetworkError> {
         return requestJSON(URLRequest).success { (value: ResponseValue<JSON>) -> Task<Float, ResponseValue<[String: JSON]>, NetworkError> in
             let json = value.value
-            guard case let JSON.Dictionary(dictionary) = json else {
-                let error = JSON.Error.ValueNotConvertible(value: json, to: Swift.Dictionary<String, JSON>)
+            guard case let JSON.dictionary(dictionary) = json else {
+                let error = JSON.Error.valueNotConvertible(value: json, to: Swift.Dictionary<String, JSON>)
                 return Task<Float, ResponseValue<[String: JSON]>, NetworkError>(error: NetworkError(response: value.response, error: error))
             }
             return Task(value: ResponseValue(response: value.response, value: dictionary))
@@ -294,8 +294,8 @@ open class NetworkService: NetworkServiceType {
     open func requestJSONArray(_ URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<[JSON]>, NetworkError> {
         return requestJSON(URLRequest).success { (value: ResponseValue<JSON>) -> Task<Float, ResponseValue<[JSON]>, NetworkError> in
             let json = value.value
-            guard case let JSON.Array(array) = json else {
-                let error = JSON.Error.ValueNotConvertible(value: json, to: Swift.Array<JSON>)
+            guard case let JSON.array(array) = json else {
+                let error = JSON.Error.valueNotConvertible(value: json, to: Swift.Array<JSON>)
                 return Task<Float, ResponseValue<[JSON]>, NetworkError>(error: NetworkError(response: value.response, error: error))
             }
             return Task(value: ResponseValue(response: value.response, value: array))
@@ -307,8 +307,8 @@ open class NetworkService: NetworkServiceType {
             guard let json = value.value else {
                 return Task(value: ResponseValue(response: value.response, value: nil))
             }
-            guard case let JSON.Array(array) = json else {
-                let error = JSON.Error.ValueNotConvertible(value: json, to: Swift.Array<JSON>)
+            guard case let JSON.array(array) = json else {
+                let error = JSON.Error.valueNotConvertible(value: json, to: Swift.Array<JSON>)
                 return Task<Float, ResponseValue<[JSON]?>, NetworkError>(error: NetworkError(response: value.response, error: error))
             }
             return Task(value: ResponseValue(response: value.response, value: array))
@@ -328,7 +328,7 @@ open class NetworkService: NetworkServiceType {
     
     open func requestJSON(_ URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<JSON?>, NetworkError> {
         return requestData(URLRequest).success { value -> Task<Float, ResponseValue<JSON?>, NetworkError> in
-            if value.value.length == 0 {
+            if value.value.count == 0 {
                 return Task(value: ResponseValue(response: value.response, value: nil))
             }
             do {
@@ -340,21 +340,21 @@ open class NetworkService: NetworkServiceType {
         }
     }
     
-    open func requestData(_ URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<NSData>, NetworkError> {
+    open func requestData(_ URLRequest: URLRequestConvertible) -> Task<Float, ResponseValue<Data>, NetworkError> {
         return Task { [weak self] progress, fulfill, reject, configure in
-            NetworkService.postNotification(NetworkService.Notifications.DidRequest, request: URLRequest)
+            try? NetworkService.postNotification(NetworkService.Notifications.DidRequest, request: URLRequest)
 
             let request = self?.requestManager.request(URLRequest)
-                .progress { bytesRead, totalBytesRead, totalExpectedBytes -> Void in
-                    progress(Float(totalBytesRead) / Float(totalExpectedBytes))
+                .downloadProgress { downloadProgress in
+                    progress(Float(downloadProgress.fractionCompleted))
                 }
                 .validate() // Covers error status code and content type mismatch
                 .responseData { response in
-                    NetworkService.postNotification(NetworkService.Notifications.DidReceive, request: URLRequest, response: response)
+                    try? NetworkService.postNotification(NetworkService.Notifications.DidReceive, request: URLRequest, response: response)
 
                     guard let data = response.result.value , response.result.isSuccess else {
                         // We should always have an error in the non success case but use AssertionError to avoid a bang (!)
-                        let error: ErrorType = response.result.error ?? AssertionError()
+                        let error: Error = response.result.error ?? AssertionError()
                         reject(NetworkError(response: response, error: error))
                         return
                     }
@@ -400,24 +400,24 @@ public extension NetworkService {
     /**
      This is a box/wrapper for the request and response because we can't directly add the response to the UserInfo dict (since it's not an NSObject)
     */
-    open class NotificationInfo: NSObject {
+    public class NotificationInfo: NSObject {
         /**
             The request that was performed by the NetworkService
         */
-        open let request: NSMutableURLRequest
+        open let request: URLRequest
 
         /**
             The response that is received in response to `request`. This value will only have a value for the `Notifications.DidReceive` notification.
         */
-        open let response: Response<NSData, NSError>?
+        open let response: DataResponse<Data>?
 
         /**
             Creates an instance with the specified request and optional response.
             - parameter request: the request being performed by the NetworkService
             - parameter response: an option response received by the NetworkService
         */
-        fileprivate init(request: URLRequestConvertible, response: Response<NSData, NSError>? = nil) {
-            self.request = request.URLRequest
+        fileprivate init(request: URLRequestConvertible, response: DataResponse<Data>? = nil) throws {
+            self.request = try request.asURLRequest()
             self.response = response
         }
     }
@@ -428,10 +428,9 @@ public extension NetworkService {
         - parameter request: The request made by the network service
         - parameter response: The response received by the network service. This will only have a value for Notifications.DidReceive
     */
-    fileprivate static func postNotification(_ notificationName: String, request: URLRequestConvertible, response: Response<NSData, NSError>? = nil) {
-        let info = NotificationInfo(request: request, response: response)
-
-        NotificationCenter.defaultCenter().postNotificationName(notificationName, object: self, userInfo: [NetworkService.NotificationInfoKey: info])
+    fileprivate static func postNotification(_ notificationName: String, request: URLRequestConvertible, response: DataResponse<Data>? = nil) throws {
+        let info = try NotificationInfo(request: request, response: response)
+        NotificationCenter.default.post(name: Notification.Name(notificationName), object: self, userInfo: [NetworkService.NotificationInfoKey: info])
     }
 }
 

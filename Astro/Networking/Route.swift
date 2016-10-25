@@ -16,16 +16,16 @@ import Freddy
  Route provides a simple abstraction for working with NSURLRequests. Recommended approach is to add extensions to Route to add a default baseURL value and static functions for your specific API.
  */
 public struct Route: URLRequestConvertible {
-    public let URL: NSURL
-    public let method: Alamofire.Method
+    public let URL: URL
+    public let method: Alamofire.HTTPMethod
     public let parameters: RequestParameters?
     public let additionalHeaders: [String: String]
 
-    public init(URL: NSURL, method: Alamofire.Method = .get, JSON: Freddy.JSON, additionalHeaders: [String: String] = [:]) {
-        self.init(URL: URL, method: method, parameters: RequestParameters.JSON(parameters: JSON), additionalHeaders: additionalHeaders)
+    public init(URL: URL, method: Alamofire.HTTPMethod = .get, JSON: Freddy.JSON, additionalHeaders: [String: String] = [:]) {
+        self.init(URL: URL, method: method, parameters: RequestParameters.json(parameters: JSON), additionalHeaders: additionalHeaders)
     }
 
-    public init(URL: NSURL, method: Alamofire.Method = .GET, parameters: RequestParameters? = nil, additionalHeaders: [String: String] = [:]) {
+    public init(URL: URL, method: Alamofire.HTTPMethod = .get, parameters: RequestParameters? = nil, additionalHeaders: [String: String] = [:]) {
         self.URL = URL
         self.method = method
         self.parameters = parameters
@@ -34,9 +34,9 @@ public struct Route: URLRequestConvertible {
 
     // MARK: - URLRequestConvertible
 
-    public var URLRequest: NSMutableURLRequest {
-        var mutableURLRequest = NSMutableURLRequest(URL: self.URL)
-        mutableURLRequest.HTTPMethod = self.method.rawValue
+    public func asURLRequest() throws -> URLRequest {
+        var mutableURLRequest = URLRequest(url: self.URL)
+        mutableURLRequest.httpMethod = self.method.rawValue
 
         for (header, value) in self.additionalHeaders {
             mutableURLRequest.setValue(value, forHTTPHeaderField: header)
@@ -52,10 +52,14 @@ public struct Route: URLRequestConvertible {
 
 extension Route: CustomStringConvertible {
     public var description: String {
-        let request = URLRequest
-        let method = request.HTTPMethod ?? ""
-        let url = request.URLString ?? ""
-        return "\(method) \(url)"
+        do {
+            let request = try asURLRequest()
+            let method = request.httpMethod ?? ""
+            let url = request.url?.absoluteString ?? ""
+            return "\(method) \(url)"
+        } catch {
+            return ""
+        }
     }
 }
 
@@ -63,27 +67,31 @@ public enum RequestParameters {
     case json(parameters: Freddy.JSON)
     case dictionary(parameters: [String: AnyObject], parameterEncoding: Alamofire.ParameterEncoding)
 
-    public func encode(_ URLRequest: URLRequestConvertible) -> (NSMutableURLRequest, NSError?) {
+    public func encode(_ URLRequest: URLRequest) -> (URLRequest, NSError?) {
         switch self {
-        case .JSON(let parameters):
-            let mutableURLRequest = URLRequest.URLRequest
+        case .json(let parameters):
+            var mutableURLRequest = URLRequest
             var encodingError: NSError? = nil
             do {
                 let data = try parameters.serialize()
 
-                if mutableURLRequest.valueForHTTPHeaderField("Content-Type") == nil {
+                if mutableURLRequest.value(forHTTPHeaderField: "Content-Type") == nil {
                     mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 }
 
-                mutableURLRequest.HTTPBody = data
+                mutableURLRequest.httpBody = data
             } catch {
                 encodingError = error as NSError
                 Log.error("Unable to encode JSON parameters: \(encodingError)")
             }
             return (mutableURLRequest, encodingError)
 
-        case .Dictionary(let parameters, let encoding):
-            return encoding.encode(URLRequest, parameters: parameters)
+        case .dictionary(let parameters, let encoding):
+            do {
+                return (try encoding.encode(URLRequest, with: parameters), nil)
+            } catch {
+                return (URLRequest, error as NSError)
+            }
         }
     }
 }
@@ -95,7 +103,7 @@ public enum RequestParameters {
  */
 public extension String {
     public func base64Encode() -> String {
-        let data = self.dataUsingEncoding(NSUTF8StringEncoding)
-        return data!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        let data = self.data(using: String.Encoding.utf8)
+        return data!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
     }
 }
