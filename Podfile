@@ -15,8 +15,8 @@ target 'Astro' do
 	target 'AstroTests' do
 	  inherit! :search_paths
 
-	  pod 'Quick', '~> 0.9'
-	  pod 'Nimble', '~> 4.1'
+	  pod 'Quick', '~> 0.10'
+	  pod 'Nimble', '~> 5.0'
 	  pod 'Nocilla', '~> 0.11'
 	end
 end
