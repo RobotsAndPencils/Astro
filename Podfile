@@ -17,6 +17,6 @@ target 'Astro' do
 
 	  pod 'Quick', '~> 0.10'
 	  pod 'Nimble', '~> 5.0'
-	  pod 'Nocilla', '~> 0.11'
+      pod 'Nocilla', :git => 'git@github.com:RobotsAndPencils/Nocilla.git', :branch => 'swift/3.0'
 	end
 end
