@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Astro"
-  s.version      = "2.0.0"
+  s.version      = "3.0.0"
   s.summary          = "A RoboPod containing a small collection of utilities for project reuse"
   s.homepage         = "https://RobotsAndPencils.com"
   s.license      = {
@@ -25,7 +25,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     "Chad Sykes" => "Chad.Sykes@RobotsAndPencils.com",
     "Colin Gislason" => "Colin.Gislason@RobotsAndPencils.com",
     "Dominic Pepin" => "Dominic.Pepin@RobotsAndPencils.com", 
-    "Michael Beaureguard" => "Michael.Beauregard@RobotsAndPencils.com" 
+    "Michael Beaureguard" => "Michael.Beauregard@RobotsAndPencils.com",
+    "Stephen Gazzard" => "Stephen.Gazzard@RobotsAndPencils.com"  
   }
   s.source           = { :git => "https://github.com/RobotsAndPencils/Astro.git", :tag => s.version.to_s }
 
