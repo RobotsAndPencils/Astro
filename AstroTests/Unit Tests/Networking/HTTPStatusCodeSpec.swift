@@ -20,9 +20,9 @@ class HTTPStatusCodeSpec: QuickSpec {
                 it("then we should get the expected status code") {
                     // Arrange
                     // Act
-                    let statusCode = HTTPStatusCode(intValue: HTTPStatusCode.Code200OK.rawValue)
+                    let statusCode = HTTPStatusCode(intValue: HTTPStatusCode.code200OK.rawValue)
                     // Assert
-                    expect(statusCode).to(equal(HTTPStatusCode.Code200OK))
+                    expect(statusCode).to(equal(HTTPStatusCode.code200OK))
                 }
             }
             context("when using an enum value that does not exist") {
@@ -39,43 +39,43 @@ class HTTPStatusCodeSpec: QuickSpec {
         describe("Given a Status Code") {
             context("when the code between 100 and 199"){
                 it("then it should have an informational status"){
-                    expect(HTTPStatusCode.Code100Continue.isInformational).to(beTrue())
-                    expect(HTTPStatusCode.Code200OK.isInformational).to(beFalse())
+                    expect(HTTPStatusCode.code100Continue.isInformational).to(beTrue())
+                    expect(HTTPStatusCode.code200OK.isInformational).to(beFalse())
                 }
             }
             context("when the code between 200 and 299"){
                 it("then it should have a successful status"){
-                    expect(HTTPStatusCode.Code101SwitchingProtocols.isSuccessful).to(beFalse())
-                    expect(HTTPStatusCode.Code200OK.isSuccessful).to(beTrue())
-                    expect(HTTPStatusCode.Code300MultipleChoices.isSuccessful).to(beFalse())
+                    expect(HTTPStatusCode.code101SwitchingProtocols.isSuccessful).to(beFalse())
+                    expect(HTTPStatusCode.code200OK.isSuccessful).to(beTrue())
+                    expect(HTTPStatusCode.code300MultipleChoices.isSuccessful).to(beFalse())
                 }
             }
             context("when the code between 300 and 399"){
                 it("then should have a redirection status"){
-                    expect(HTTPStatusCode.Code206PartialContent.isRedirection).to(beFalse())
-                    expect(HTTPStatusCode.Code300MultipleChoices.isRedirection).to(beTrue())
-                    expect(HTTPStatusCode.Code400BadRequest.isRedirection).to(beFalse())
+                    expect(HTTPStatusCode.code206PartialContent.isRedirection).to(beFalse())
+                    expect(HTTPStatusCode.code300MultipleChoices.isRedirection).to(beTrue())
+                    expect(HTTPStatusCode.code400BadRequest.isRedirection).to(beFalse())
                 }
             }
             context("when the code between 400 and 499"){
                 it("then should have a client error status"){
-                    expect(HTTPStatusCode.Code307TemporaryRedirect.isClientError).to(beFalse())
-                    expect(HTTPStatusCode.Code400BadRequest.isClientError).to(beTrue())
-                    expect(HTTPStatusCode.Code500InternalServerError.isClientError).to(beFalse())
-                    expect(HTTPStatusCode.Code429TooManyRequests.isClientError).to(beTrue())
+                    expect(HTTPStatusCode.code307TemporaryRedirect.isClientError).to(beFalse())
+                    expect(HTTPStatusCode.code400BadRequest.isClientError).to(beTrue())
+                    expect(HTTPStatusCode.code500InternalServerError.isClientError).to(beFalse())
+                    expect(HTTPStatusCode.code429TooManyRequests.isClientError).to(beTrue())
                 }
                 it("is an error") {
-                    expect(HTTPStatusCode.Code307TemporaryRedirect.isError).to(beFalse())
-                    expect(HTTPStatusCode.Code400BadRequest.isError).to(beTrue())
+                    expect(HTTPStatusCode.code307TemporaryRedirect.isError).to(beFalse())
+                    expect(HTTPStatusCode.code400BadRequest.isError).to(beTrue())
                 }
             }
             context("when the code between 500 and 599"){
                 it("then should have a server error status"){
-                    expect(HTTPStatusCode.Code417ExpectationFailed.isServerError).to(beFalse())
-                    expect(HTTPStatusCode.Code500InternalServerError.isServerError).to(beTrue())
+                    expect(HTTPStatusCode.code417ExpectationFailed.isServerError).to(beFalse())
+                    expect(HTTPStatusCode.code500InternalServerError.isServerError).to(beTrue())
                 }
                 it("is an error"){
-                    expect(HTTPStatusCode.Code500InternalServerError.isError).to(beTrue())
+                    expect(HTTPStatusCode.code500InternalServerError.isError).to(beTrue())
                 }
             }
         }

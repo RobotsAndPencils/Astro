@@ -19,22 +19,22 @@ struct User {
 extension User: JSONDecodable {
     init(json: JSON) throws {
         // Extract id as a string or a int
-        if let userID = try? json.string("id") {
+        if let userID = try? json.getString(at: "id") {
             self.userID = userID
         } else {
-            let userID = try json.int("id")
+            let userID = try json.getInt(at: "id")
             self.userID = String(userID)
         }
 
-        email = try json.string("email")
+        email = try json.getString(at: "email")
     }
 }
 
 extension User: JSONEncodable {
     func toJSON() -> JSON {
-        return .Dictionary([
-            "id": .String(userID),
-            "email": .String(email)
+        return .dictionary([
+            "id": .string(userID),
+            "email": .string(email)
             ])
     }
 }

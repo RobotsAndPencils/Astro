@@ -31,7 +31,7 @@ class NetworkServiceLoggerSpec: QuickSpec {
         var subject: NetworkServiceLogger!
         var networkService: NetworkService!
         var json: JSON!
-        var request: NSMutableURLRequest!
+        var request: URLRequest!
         var logRecorder: LogRecorder!
 
         beforeEach {
@@ -39,11 +39,11 @@ class NetworkServiceLoggerSpec: QuickSpec {
                 "field1": "value1",
                 "field2": "value2"
             ]
-            request = NSMutableURLRequest(URL: NSURL(string: "https://example.com/logger/path")!)
+            request = URLRequest(url: URL(string: "https://example.com/logger/path")!)
 
             logRecorder = LogRecorder()
             Log.logger = logRecorder
-            Log.level = .Debug
+            Log.level = .debug
 
             networkService = NetworkService()
 
@@ -52,7 +52,7 @@ class NetworkServiceLoggerSpec: QuickSpec {
 
         context("not started") {
             beforeEach {
-                stubAnyRequest().andReturn(.Code200OK).withJSON(json)
+                stubAnyRequest().andReturn(.code200OK).withJSON(json)
                 networkService.requestData(request).waitUntilDone()
             }
 
@@ -65,7 +65,7 @@ class NetworkServiceLoggerSpec: QuickSpec {
             beforeEach {
                 subject.start()
 
-                stubAnyRequest().andReturn(.Code200OK).withJSON(json)
+                stubAnyRequest().andReturn(.code200OK).withJSON(json)
                 networkService.requestData(request).waitUntilDone()
             }
 
@@ -78,7 +78,7 @@ class NetworkServiceLoggerSpec: QuickSpec {
                     logRecorder.messages.removeAll()
                     subject.stop()
 
-                    stubAnyRequest().andReturn(.Code200OK).withJSON(json)
+                    stubAnyRequest().andReturn(.code200OK).withJSON(json)
                     networkService.requestData(request).waitUntilDone()
                 }
 
@@ -92,9 +92,9 @@ class NetworkServiceLoggerSpec: QuickSpec {
             beforeEach {
                 subject.start()
 
-                stubAnyRequest().andReturn(.Code200OK).withJSON(json)
+                stubAnyRequest().andReturn(.code200OK).withJSON(json)
 
-                NetworkService().requestData(request)
+                _ = NetworkService().requestData(request)
             }
 
             it("should log both send and receive messages") {

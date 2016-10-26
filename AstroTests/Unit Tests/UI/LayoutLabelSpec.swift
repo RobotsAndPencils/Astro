@@ -13,7 +13,7 @@ import Quick
 import Nimble
 @testable import Astro
 
-let mockFrame = CGRectMake(1, 2, 3, 4)
+let mockFrame = CGRect(x: 1, y:2, width: 3, height:4)
 
 class LayoutLabelSpec: QuickSpec {
     override func spec() {
@@ -55,8 +55,8 @@ class LayoutLabelSpec: QuickSpec {
                         
                         it("then contentSize should remain the same") {
                             //Act
-                            let contentSize = label.intrinsicContentSize()
-                            let comparableContentSize = comparableLabel.intrinsicContentSize()
+                            let contentSize = label.intrinsicContentSize
+                            let comparableContentSize = comparableLabel.intrinsicContentSize
                             
                             //Assert
                             expect(contentSize.height).to(equal(comparableContentSize.height))
@@ -72,8 +72,8 @@ class LayoutLabelSpec: QuickSpec {
                         
                         it("then contentSize should be 1pt taller") {
                             //Act
-                            let contentSize = label.intrinsicContentSize()
-                            let comparableContentSize = comparableLabel.intrinsicContentSize()
+                            let contentSize = label.intrinsicContentSize
+                            let comparableContentSize = comparableLabel.intrinsicContentSize
                             
                             //Assert
                             expect(contentSize.height).to(equal(comparableContentSize.height+1))
@@ -90,8 +90,8 @@ class LayoutLabelSpec: QuickSpec {
                     
                     it("then content size should remain the same") {
                         //Act
-                        let contentSize = label.intrinsicContentSize()
-                        let comparableContentSize = comparableLabel.intrinsicContentSize()
+                        let contentSize = label.intrinsicContentSize
+                        let comparableContentSize = comparableLabel.intrinsicContentSize
                         
                         //Assert
                         expect(contentSize.height).to(equal(comparableContentSize.height))

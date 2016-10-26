@@ -33,7 +33,7 @@ class NetworkServiceSpec: QuickSpec {
             var subject: NetworkService!
             var userJSON: JSON!
             var userArrayJSON: JSON!
-            var request: NSMutableURLRequest!
+            var request: URLRequest!
             let expectedUser = User(userID: "1", email: "user@example.com")
             
             beforeEach {
@@ -43,7 +43,7 @@ class NetworkServiceSpec: QuickSpec {
                     "email": "user@example.com",
                 ]
                 userArrayJSON = [userJSON, userJSON]
-                request = NSMutableURLRequest(URL: NSURL(string: "https://example.com/path")!)
+                request = URLRequest(url: URL(string: "https://example.com/path")!)
             }
             
             describe(".requestJSONDictionary") {
@@ -51,7 +51,7 @@ class NetworkServiceSpec: QuickSpec {
                 
                 describe("success") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code200OK).withJSON(userJSON)
+                        stubAnyRequest().andReturn(.code200OK).withJSON(userJSON)
                         dictTask = subject.requestJSONDictionary(request)
                     }
                     
@@ -60,14 +60,14 @@ class NetworkServiceSpec: QuickSpec {
                     }
                     it("should eventually return token JSON") {
                         expect({
-                            dictTask.value != nil ? JSON.Dictionary(dictTask.value!.value) : nil
+                            dictTask.value != nil ? JSON.dictionary(dictTask.value!.value) : nil
                             }()).toEventually(equal(userJSON))
                     }
                 }
                 
                 describe("401 Unauthorized") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code401Unauthorized).withJSON(["Error": "Unauthorized"])
+                        stubAnyRequest().andReturn(.code401Unauthorized).withJSON(["Error": "Unauthorized"])
                         dictTask = subject.requestJSONDictionary(request)
                     }
                     
@@ -99,7 +99,7 @@ class NetworkServiceSpec: QuickSpec {
                 
                 describe("invalid JSON in response") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code200OK).withBody("not valid JSON!")
+                        stubAnyRequest().andReturn(.code200OK).withBody("not valid JSON!")
                         dictTask = subject.requestJSONDictionary(request)
                     }
                     
@@ -113,7 +113,7 @@ class NetworkServiceSpec: QuickSpec {
                 
                 describe("received json [] instead of {}") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code200OK).withJSON([])
+                        stubAnyRequest().andReturn(.code200OK).withJSON([])
                         dictTask = subject.requestJSONDictionary(request)
                     }
                     
@@ -121,7 +121,7 @@ class NetworkServiceSpec: QuickSpec {
                         expect(dictTask.state).toEventually(equal(TaskState.Rejected))
                     }
                     it("should fail to parse json") {
-                        let expectedError = JSON.Error.ValueNotConvertible(value: [], to: Swift.Dictionary<String, JSON>)
+                        let expectedError = JSON.Error.valueNotConvertible(value: [], to: Swift.Dictionary<String, JSON>)
                         expect({
                             dictTask.errorInfo?.error?.error as? JSON.Error
                             }()).toEventually(equal(expectedError))
@@ -134,7 +134,7 @@ class NetworkServiceSpec: QuickSpec {
                 context("Given a successful response (200 OK)") {
                     context("with a valid array") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK).withJSON(userArrayJSON)
+                            stubAnyRequest().andReturn(.code200OK).withJSON(userArrayJSON)
                             arrayTask = subject.requestJSONArray(request)
                         }
                         it("then it should fulfill with the correct user JSON") {
@@ -146,7 +146,7 @@ class NetworkServiceSpec: QuickSpec {
                     }
                     context("with an empty response") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK)
+                            stubAnyRequest().andReturn(.code200OK)
                             arrayTask = subject.requestJSONArray(request)
                         }
                         it("then the task should be rejected") {
@@ -156,7 +156,7 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 context("Given a failed status code (404 Not Found)") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        stubAnyRequest().andReturn(.code404NotFound).withJSON(userJSON)
                         arrayTask = subject.requestJSONArray(request)
                     }
                     it("then task should be rejected") {
@@ -166,7 +166,7 @@ class NetworkServiceSpec: QuickSpec {
                 
                 describe("Given a invalid json {} instead of []") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code200OK).withJSON([:])
+                        stubAnyRequest().andReturn(.code200OK).withJSON([:])
                         arrayTask = subject.requestJSONArray(request)
                     }
                     it("task should be rejected") {
@@ -180,7 +180,7 @@ class NetworkServiceSpec: QuickSpec {
                 context("Given a successful response (200 OK)") {
                     context("with a valid array") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK).withJSON(userArrayJSON)
+                            stubAnyRequest().andReturn(.code200OK).withJSON(userArrayJSON)
                             arrayTask = subject.requestJSONArray(request)
                         }
                         it("then it should fulfill with the correct user JSON") {
@@ -192,7 +192,7 @@ class NetworkServiceSpec: QuickSpec {
                     }
                     context("with an empty response") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK)
+                            stubAnyRequest().andReturn(.code200OK)
                             arrayTask = subject.requestJSONArray(request)
                         }
                         it("then the task should be fulfilled") {
@@ -206,7 +206,7 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 context("Given a failed status code (404 Not Found)") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        stubAnyRequest().andReturn(.code404NotFound).withJSON(userJSON)
                         arrayTask = subject.requestJSONArray(request)
                     }
                     it("then task should be rejected") {
@@ -216,7 +216,7 @@ class NetworkServiceSpec: QuickSpec {
 
                 describe("Given a invalid json {} instead of []") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code200OK).withJSON([:])
+                        stubAnyRequest().andReturn(.code200OK).withJSON([:])
                         arrayTask = subject.requestJSONArray(request)
                     }
                     it("task should be rejected") {
@@ -230,7 +230,7 @@ class NetworkServiceSpec: QuickSpec {
                 context("given a successful response (200 OK)") {
                     context("with a valid object") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK).withJSON(userJSON)
+                            stubAnyRequest().andReturn(.code200OK).withJSON(userJSON)
                             task = subject.requestJSON(request)
                         }
                         it("then it should fulfill with the correct JSON") {
@@ -245,7 +245,7 @@ class NetworkServiceSpec: QuickSpec {
                     }
                     context("with an empty response") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK)
+                            _ = stubAnyRequest().andReturn(.code200OK)
                             task = subject.requestJSON(request)
                         }
                         it("then the task should be rejected") {
@@ -255,7 +255,7 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 context("with a failed status code (404 Not Found)") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        stubAnyRequest().andReturn(.code404NotFound).withJSON(userJSON)
                         task = subject.requestJSON(request)
                     }
                     it("then task should be rejected") {
@@ -279,7 +279,7 @@ class NetworkServiceSpec: QuickSpec {
                 context("given a successful response (200 OK)") {
                     context("with a valid object") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK).withJSON(userJSON)
+                            stubAnyRequest().andReturn(.code200OK).withJSON(userJSON)
                             task = subject.request(request)
                         }
                         it("then it should fulfill with the correct JSON") {
@@ -295,7 +295,7 @@ class NetworkServiceSpec: QuickSpec {
                     context("with an empty response") {
                         
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK)
+                            _ = stubAnyRequest().andReturn(.code200OK)
                             task = subject.request(request)
                         }
                         it("then the task should be rejected") {
@@ -305,7 +305,7 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 context("with a failed status code (404 Not Found)") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        stubAnyRequest().andReturn(.code404NotFound).withJSON(userJSON)
                         task = subject.request(request)
                     }
                     it("then task should be rejected") {
@@ -318,7 +318,7 @@ class NetworkServiceSpec: QuickSpec {
                 context("Given a successful response (200 OK)") {
                     context("with a valid object") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK).withJSON(userJSON)
+                            stubAnyRequest().andReturn(.code200OK).withJSON(userJSON)
                             task = subject.request(request)
                         }
                         it("then it should fulfills with the correct JSON") {
@@ -333,7 +333,7 @@ class NetworkServiceSpec: QuickSpec {
                     }
                     context("with an empty response") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK)
+                            _ = stubAnyRequest().andReturn(.code200OK)
                             task = subject.request(request)
                         }
                         it("then the task should be fulfilled") {
@@ -347,7 +347,7 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 context("Given a failed status code (404 Not Found)") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        stubAnyRequest().andReturn(.code404NotFound).withJSON(userJSON)
                         task = subject.request(request)
                     }
                     it("then task should be rejected") {
@@ -360,7 +360,7 @@ class NetworkServiceSpec: QuickSpec {
                 context("Given a successful response (200 OK)") {
                     context("with a valid array") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK).withJSON(userArrayJSON)
+                            stubAnyRequest().andReturn(.code200OK).withJSON(userArrayJSON)
                             task = subject.request(request)
                         }
                         it("then it should fulfill with the correct Users") {
@@ -372,7 +372,7 @@ class NetworkServiceSpec: QuickSpec {
                     }
                     context("with an empty response") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK)
+                            _ = stubAnyRequest().andReturn(.code200OK)
                             task = subject.request(request)
                         }
                         it("then the task should be rejected") {
@@ -382,7 +382,7 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 context("Given a failed status code (404 Not Found)") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        stubAnyRequest().andReturn(.code404NotFound).withJSON(userJSON)
                         task = subject.request(request)
                     }
                     it("then task should be rejected") {
@@ -395,7 +395,7 @@ class NetworkServiceSpec: QuickSpec {
                 context("Given a successful response (200 OK)") {
                     context("with a valid array") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK).withJSON(userArrayJSON)
+                            stubAnyRequest().andReturn(.code200OK).withJSON(userArrayJSON)
                             task = subject.request(request)
                         }
                         it("then it should fulfill with the correct user") {
@@ -407,7 +407,7 @@ class NetworkServiceSpec: QuickSpec {
                     }
                     context("with an empty response") {
                         beforeEach {
-                            stubAnyRequest().andReturn(.Code200OK)
+                            _ = stubAnyRequest().andReturn(.code200OK)
                             task = subject.request(request)
                         }
                         it("then the task should be fulfilled") {
@@ -421,7 +421,7 @@ class NetworkServiceSpec: QuickSpec {
                 }
                 context("Given a failed status code (404 Not Found)") {
                     beforeEach {
-                        stubAnyRequest().andReturn(.Code404NotFound).withJSON(userJSON)
+                        stubAnyRequest().andReturn(.code404NotFound).withJSON(userJSON)
                         task = subject.request(request)
                     }
                     it("then task should be rejected") {
