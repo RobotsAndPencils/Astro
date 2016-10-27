@@ -352,7 +352,7 @@ open class NetworkService: NetworkServiceType {
                 .responseData { response in
                     try? NetworkService.postNotification(NetworkService.Notifications.DidReceive, request: URLRequest, response: response)
 
-                    guard let data = response.result.value , response.result.isSuccess else {
+                    guard let data = response.result.value, response.result.isSuccess else {
                         // We should always have an error in the non success case but use AssertionError to avoid a bang (!)
                         let error: Error = response.result.error ?? AssertionError()
                         reject(NetworkError(response: response, error: error))

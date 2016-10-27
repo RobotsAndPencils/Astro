@@ -21,7 +21,7 @@ public extension UICollectionView {
      - parameter cellType: The cell subclass type that conforms to the ReusableView protocol
      */
     public func register<T: UICollectionViewCell>(_ cellType: T.Type) where T: ReusableView {
-        self.register(cellType.self, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
+        register(cellType.self, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
     }
     
     /**
@@ -33,7 +33,7 @@ public extension UICollectionView {
     public func register<T: UICollectionViewCell>(_ cellType: T.Type) where T: ReusableView, T: NibLoadableView {
         let bundle = Bundle(for: cellType.self)
         let nib = UINib(nibName: cellType.nibName, bundle: bundle)
-        self.register(nib, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
+        register(nib, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
     }
     
     /**
