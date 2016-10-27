@@ -28,6 +28,6 @@ public protocol ReusableView: class {
  */
 public extension ReusableView where Self: UIView {
     static var defaultReuseIdentifier: String {
-        return String(Self)
+        return String(describing: self)
     }
 }

@@ -15,14 +15,14 @@ import Nimble
 
 class EnumCountableSpec: QuickSpec {
 
-    private enum Enum2: Int, EnumCountable {
+    fileprivate enum Enum2: Int, EnumCountable {
         case case1 = 0
         case case2
         
         static let count = Enum2.countCases()
     }
     
-    private enum Enum6: Int, EnumCountable {
+    fileprivate enum Enum6: Int, EnumCountable {
         case case1 = 0
         case case2
         case case3
@@ -33,7 +33,7 @@ class EnumCountableSpec: QuickSpec {
         static let count = Enum6.countCases()
     }
     
-    private enum EnumBad: Int, EnumCountable {
+    fileprivate enum EnumBad: Int, EnumCountable {
         case case1 = 5
         case case2
         

@@ -29,8 +29,8 @@ extension UIColor {
         var parsedBlue: UInt32 = 255
         var parsedAlpha: UInt32 = 255
         
-        let hexCharacterSet = NSCharacterSet(charactersInString: "0123456789abcdefABCDEF")
-        let hexOnlyString = hexString.componentsSeparatedByCharactersInSet(hexCharacterSet.invertedSet).joinWithSeparator("")
+        let hexCharacterSet = CharacterSet(charactersIn: "0123456789abcdefABCDEF")
+        let hexOnlyString = hexString.components(separatedBy: hexCharacterSet.inverted).joined(separator: "")
         
         guard hexOnlyString.characters.count >= 6 else {
             // There is a bug in stable Xcode 7.3 (SR-704) where returning nil
@@ -41,16 +41,16 @@ extension UIColor {
             return nil
         }
         
-        let redCharacterRange = hexOnlyString.startIndex..<hexOnlyString.startIndex.advancedBy(2)
-        NSScanner(string: hexOnlyString.substringWithRange(redCharacterRange)).scanHexInt(&parsedRed)
-        let greenCharacterRange = hexOnlyString.startIndex.advancedBy(2)..<hexOnlyString.startIndex.advancedBy(4)
-        NSScanner(string: hexOnlyString.substringWithRange(greenCharacterRange)).scanHexInt(&parsedGreen)
-        let blueCharacterRange = hexOnlyString.startIndex.advancedBy(4)..<hexOnlyString.startIndex.advancedBy(6)
-        NSScanner(string: hexOnlyString.substringWithRange(blueCharacterRange)).scanHexInt(&parsedBlue)
+        let redCharacterRange = hexOnlyString.startIndex..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 2)
+        Scanner(string: hexOnlyString.substring(with: redCharacterRange)).scanHexInt32(&parsedRed)
+        let greenCharacterRange = hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 2)..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 4)
+        Scanner(string: hexOnlyString.substring(with: greenCharacterRange)).scanHexInt32(&parsedGreen)
+        let blueCharacterRange = hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 4)..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 6)
+        Scanner(string: hexOnlyString.substring(with: blueCharacterRange)).scanHexInt32(&parsedBlue)
         
         if hexOnlyString.characters.count == 8 {
-            let alphaCharacterRange = hexOnlyString.startIndex.advancedBy(6)..<hexOnlyString.startIndex.advancedBy(8)
-            NSScanner(string: hexOnlyString.substringWithRange(alphaCharacterRange)).scanHexInt(&parsedAlpha)
+            let alphaCharacterRange = hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 6)..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 8)
+            Scanner(string: hexOnlyString.substring(with: alphaCharacterRange)).scanHexInt32(&parsedAlpha)
         }
         
         self.init(red: CGFloat(parsedRed) / 255.0, green: CGFloat(parsedGreen) / 255.0, blue: CGFloat(parsedBlue) / 255.0, alpha: (CGFloat(alpha) * CGFloat(parsedAlpha)) / 255.0)

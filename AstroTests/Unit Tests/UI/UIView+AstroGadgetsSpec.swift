@@ -19,12 +19,12 @@ class UIView_AstroGadgetsSpec: QuickSpec {
             let view = UIView()
             beforeEach(){
                 // Arrange
-                view.frame = CGRectMake(1, 2, 3, 4)
+                view.frame = CGRect(x: 1, y: 2, width: 3, height: 4)
             }
             context("when updating a frame property") {
                 it("then the frameSize should match") {
                     // Arrange
-                    let expectedSize = CGSizeMake(23, 45)
+                    let expectedSize = CGSize(width: 23, height: 45)
                     // Act
                     view.frameSize = expectedSize
                     // Assert
@@ -51,7 +51,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                 }
                 it ("then the frameOrigin should match") {
                     // Arrange
-                    let expectedOrigin = CGPointMake(67,89)
+                    let expectedOrigin = CGPoint(x: 67, y: 89)
                     // Act
                     view.frameOrigin = expectedOrigin
                     // Assert

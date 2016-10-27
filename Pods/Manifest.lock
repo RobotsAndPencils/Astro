@@ -1,49 +1,63 @@
 PODS:
-  - Alamofire (3.5.0)
-  - Astro (1.1.0):
-    - Astro/Logging (= 1.1.0)
-    - Astro/Networking (= 1.1.0)
-    - Astro/Security (= 1.1.0)
-    - Astro/UI (= 1.1.0)
-    - Astro/Utils (= 1.1.0)
-  - Astro/Logging (1.1.0)
-  - Astro/Networking (1.1.0):
-    - Alamofire (~> 3.3)
+  - Alamofire (4.0.0)
+  - Astro (2.0.0):
+    - Astro/Logging (= 2.0.0)
+    - Astro/Networking (= 2.0.0)
+    - Astro/Security (= 2.0.0)
+    - Astro/UI (= 2.0.0)
+    - Astro/Utils (= 2.0.0)
+  - Astro/Logging (2.0.0)
+  - Astro/Networking (2.0.0):
+    - Alamofire (~> 4.0)
     - Astro/Logging
-    - Freddy (~> 2.0)
-    - SwiftTask (= 5.0)
-  - Astro/Security (1.1.0):
+    - Freddy (~> 3.0)
+    - SwiftTask (~> 5.0)
+  - Astro/Security (2.0.0):
     - Astro/Logging
-  - Astro/UI (1.1.0)
-  - Astro/Utils (1.1.0)
-  - Freddy (2.1.0)
-  - Nimble (4.1.0)
+  - Astro/UI (2.0.0)
+  - Astro/Utils (2.0.0)
+  - Freddy (3.0.0)
+  - Nimble (5.1.0)
   - Nocilla (0.11.0)
-  - Quick (0.9.3)
+  - Quick (0.10.0)
   - SwiftTask (5.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.5)
+  - Alamofire (~> 4.0)
   - Astro (from `.`)
-  - Freddy (~> 2.1)
-  - Nimble (~> 4.1)
-  - Nocilla (~> 0.11)
-  - Quick (~> 0.9)
-  - SwiftTask (~> 5.0)
+  - Freddy (~> 3.0)
+  - Nimble (~> 5.0)
+  - Nocilla (from `git@github.com:RobotsAndPencils/Nocilla.git`, branch `swift/3.0`)
+  - Quick (~> 0.10)
+  - SwiftTask (from `https://github.com/ReactKit/SwiftTask`, branch `swift/3.0`)
 
 EXTERNAL SOURCES:
   Astro:
     :path: .
+  Nocilla:
+    :branch: swift/3.0
+    :git: git@github.com:RobotsAndPencils/Nocilla.git
+  SwiftTask:
+    :branch: swift/3.0
+    :git: https://github.com/ReactKit/SwiftTask
+
+CHECKOUT OPTIONS:
+  Nocilla:
+    :commit: 4793459646076a6ce66137133cc4cfe6e5b9543a
+    :git: git@github.com:RobotsAndPencils/Nocilla.git
+  SwiftTask:
+    :commit: fb4af8a4e853eb62f0418f870cfb9ae1cf618961
+    :git: https://github.com/ReactKit/SwiftTask
 
 SPEC CHECKSUMS:
-  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
-  Astro: b02e8db13f5ed43a6a8e52fc5b994d5647f9f434
-  Freddy: bbdca013977db29638b24baf6572ce94452bec29
-  Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  Astro: 4cd8e4a684989a0506e48e548fea2c452476091e
+  Freddy: 367f994c88a90dd3987293b4b1bec94a4530745a
+  Nimble: 5ea121a2eda60440287054cde077fc0ad22227b3
   Nocilla: 7af7a386071150cc8aa5da4da97d060f049dd61c
-  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
+  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
   SwiftTask: 7fcd92f8ac16876e82c0e4ced0cea7e028456b6b
 
-PODFILE CHECKSUM: bf8bba49840cacfd0f5a3521a329338860c29863
+PODFILE CHECKSUM: c60266fc7f95a73234e164950072d9c6c2089643
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

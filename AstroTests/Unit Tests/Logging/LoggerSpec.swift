@@ -16,7 +16,7 @@ import Nimble
 class LogRecorder: Logger {
     var messages = [String]()
 
-    func log(level: Log.Level, message: String) {
+    func log(_ level: Log.Level, message: String) {
         messages.append(message)
     }
 }
@@ -50,7 +50,7 @@ class LogSpec: QuickSpec {
         
         describe("Given we are logging at the Debug level") {
             beforeEach {
-                Log.level = .Debug
+                Log.level = .debug
                 generateLogs()
             }
 
@@ -62,7 +62,7 @@ class LogSpec: QuickSpec {
         
         describe("Given we are logging at the Info level") {
             beforeEach {
-                Log.level = .Info
+                Log.level = .info
                 
                 generateLogs()
             }
@@ -74,7 +74,7 @@ class LogSpec: QuickSpec {
         
         describe("Given we are logging at the Warning level") {
             beforeEach {
-                Log.level = .Warning
+                Log.level = .warning
                 
                 generateLogs()
             }
@@ -86,7 +86,7 @@ class LogSpec: QuickSpec {
         
         describe("Given we are logging at the Error level") {
             beforeEach {
-                Log.level = .Error
+                Log.level = .error
                 
                 generateLogs()
             }
@@ -98,7 +98,7 @@ class LogSpec: QuickSpec {
         
         describe("Given we are logging at the Silent level") {
             beforeEach {
-                Log.level = .Silent
+                Log.level = .silent
                 
                 generateLogs()
             }
@@ -108,11 +108,11 @@ class LogSpec: QuickSpec {
         }
         
         struct VeryExpensiveThingToPrint : CustomStringConvertible {
-            static let interval: NSTimeInterval = 100
-            static let testThreshold: NSTimeInterval = 10
+            static let interval: TimeInterval = 100
+            static let testThreshold: TimeInterval = 10
             
             var description: String {
-                NSThread.sleepForTimeInterval(VeryExpensiveThingToPrint.interval)
+                Thread.sleep(forTimeInterval: VeryExpensiveThingToPrint.interval)
                 return "thing"
             }
         }
@@ -120,15 +120,15 @@ class LogSpec: QuickSpec {
         describe("Given we are logging a really expensive statement") {
             
             let thing = VeryExpensiveThingToPrint()
-            var logInterval: NSTimeInterval!
+            var logInterval: TimeInterval!
             
             beforeEach {
-                Log.level = .Silent
+                Log.level = .silent
                 
-                let start = NSDate()
+                let start = Date()
                 Log.debug("Really expensive log statement: \(thing)")
                 
-                logInterval = NSDate().timeIntervalSinceDate(start)
+                logInterval = Date().timeIntervalSince(start)
             }
             context("when that statement is not displayed because it's exclude by the logging level") {
                 it("then it should not log anything") {

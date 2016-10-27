@@ -30,20 +30,23 @@ extension Task {
 
 // Improved DSL for Nocilla
 
-func stubRoute(route: Route) -> LSStubRequestDSL {
-    return stubRequest(route.method.rawValue, route.URL.absoluteString).withHeaders(route.URLRequest.allHTTPHeaderFields).withBody(route.URLRequest.HTTPBody)
+func stubRoute(_ route: Route) -> LSStubRequestDSL {
+    let URLRequest = try! route.asURLRequest()
+    return stubRequest(route.method.rawValue, route.URL.absoluteString as NSString)
+        .withHeaders(URLRequest.allHTTPHeaderFields)
+        .withBody(URLRequest.httpBody! as NSData)
 }
 
 extension LSStubRequestDSL {
-    func andReturn(status: HTTPStatusCode) -> LSStubResponseDSL {
+    func andReturn(_ status: HTTPStatusCode) -> LSStubResponseDSL {
         return andReturn(status.rawValue)
     }
 }
 
 extension LSStubResponseDSL {
-    func withJSON(json: JSON) -> LSStubResponseDSL {
-        let body = try? json.serialize() ?? NSData()
-        return withHeader("Content-Type", "application/json").withBody(body)
+    @discardableResult func withJSON(_ json: JSON) -> LSStubResponseDSL {
+        let body = (try? json.serialize()) ?? Data()
+        return withHeader("Content-Type", "application/json").withBody(body as NSData)
     }
 }
 

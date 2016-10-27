@@ -87,9 +87,17 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Nimble/Nimble.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nocilla/Nocilla.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Quick/Quick.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Astro/Astro.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Freddy/Freddy.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftTask/SwiftTask.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Nimble/Nimble.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nocilla/Nocilla.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Quick/Quick.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Astro/Astro.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Freddy/Freddy.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftTask/SwiftTask.framework"
 fi

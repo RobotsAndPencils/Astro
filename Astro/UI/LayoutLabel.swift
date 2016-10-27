@@ -18,9 +18,9 @@ import UIKit
  
  Based on http://stackoverflow.com/questions/18118021/how-to-resize-superview-to-fit-all-subviews-with-autolayout
  */
-public class LayoutLabel: UILabel {
+open class LayoutLabel: UILabel {
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         if numberOfLines == 0 && preferredMaxLayoutWidth != frame.size.width {
@@ -29,8 +29,8 @@ public class LayoutLabel: UILabel {
         }
     }
     
-    override public func intrinsicContentSize() -> CGSize {
-        var contentSize = super.intrinsicContentSize()
+    override open var intrinsicContentSize : CGSize {
+        var contentSize = super.intrinsicContentSize
         
         guard let text = text else {
             return contentSize
