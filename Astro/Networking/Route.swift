@@ -65,7 +65,7 @@ extension Route: CustomStringConvertible {
 
 public enum RequestParameters {
     case json(parameters: Freddy.JSON)
-    case dictionary(parameters: [String: AnyObject], parameterEncoding: Alamofire.ParameterEncoding)
+    case dictionary(parameters: [String: Any], parameterEncoding: Alamofire.ParameterEncoding)
 
     public func encode(_ URLRequest: URLRequest) -> (URLRequest, NSError?) {
         switch self {
