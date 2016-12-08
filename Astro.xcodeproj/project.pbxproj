@@ -83,11 +83,11 @@
 		638C62511BD454FD0004ECE1 /* AstroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		638C62581BD454FD0004ECE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CC6FB4E4A3FE9D093738307 /* Pods-AstroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests.debug.xcconfig"; sourceTree = "<group>"; };
-		83593E90B43887E2AE664086 /* ComparableSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComparableSpec.swift; path = Utils/ComparableSpec.swift; sourceTree = "<group>"; };
+		83593E90B43887E2AE664086 /* ComparableSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparableSpec.swift; sourceTree = "<group>"; };
 		83593EEFC7D26F39183B2AE1 /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comparable.swift; path = Utils/Comparable.swift; sourceTree = "<group>"; };
 		B69726CD1BD9162F0047EEB9 /* LoggerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerSpec.swift; sourceTree = "<group>"; };
 		BD62EA471C929BF0004A02DF /* EnumCountable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnumCountable.swift; path = Utils/EnumCountable.swift; sourceTree = "<group>"; };
-		BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnumCountableSpec.swift; path = Utils/EnumCountableSpec.swift; sourceTree = "<group>"; };
+		BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumCountableSpec.swift; sourceTree = "<group>"; };
 		BD95704572604E86D00F715F /* Pods-Astro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Astro.release.xcconfig"; path = "Pods/Target Support Files/Pods-Astro/Pods-Astro.release.xcconfig"; sourceTree = "<group>"; };
 		CA5380CA1C5C195900204A68 /* UIColor+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AstroGadgets.swift"; sourceTree = "<group>"; };
 		CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AstroGadgetsSpec.swift"; sourceTree = "<group>"; };
@@ -258,7 +258,6 @@
 				3F78B54F1CC35D4900A0E30C /* Queue.swift */,
 				BD62EA471C929BF0004A02DF /* EnumCountable.swift */,
 				83593EEFC7D26F39183B2AE1 /* Comparable.swift */,
-				83593E90B43887E2AE664086 /* ComparableSpec.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -266,9 +265,10 @@
 		BD62EA491C929C04004A02DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				83593E90B43887E2AE664086 /* ComparableSpec.swift */,
 				BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */,
 			);
-			name = Utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		C03FAE7E5E2D5A7C58BAD5ED /* Frameworks */ = {
