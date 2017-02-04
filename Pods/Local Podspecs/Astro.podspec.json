@@ -1,6 +1,6 @@
 {
   "name": "Astro",
-  "version": "2.0.0",
+  "version": "3.1.0",
   "summary": "A RoboPod containing a small collection of utilities for project reuse",
   "homepage": "https://RobotsAndPencils.com",
   "license": {
@@ -11,11 +11,12 @@
     "Chad Sykes": "Chad.Sykes@RobotsAndPencils.com",
     "Colin Gislason": "Colin.Gislason@RobotsAndPencils.com",
     "Dominic Pepin": "Dominic.Pepin@RobotsAndPencils.com",
-    "Michael Beaureguard": "Michael.Beauregard@RobotsAndPencils.com"
+    "Michael Beaureguard": "Michael.Beauregard@RobotsAndPencils.com",
+    "Stephen Gazzard": "Stephen.Gazzard@RobotsAndPencils.com"
   },
   "source": {
     "git": "https://github.com/RobotsAndPencils/Astro.git",
-    "tag": "2.0.0"
+    "tag": "3.1.0"
   },
   "platforms": {
     "ios": "9.0"
@@ -28,24 +29,6 @@
     {
       "name": "Logging",
       "source_files": "Astro/Logging/**/*.swift"
-    },
-    {
-      "name": "Networking",
-      "source_files": "Astro/Networking/**/*.swift",
-      "dependencies": {
-        "Astro/Logging": [
-
-        ],
-        "Alamofire": [
-          "~> 4.0"
-        ],
-        "Freddy": [
-          "~> 3.0"
-        ],
-        "SwiftTask": [
-          "~> 5.0"
-        ]
-      }
     },
     {
       "name": "Security",
