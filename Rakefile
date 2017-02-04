@@ -29,7 +29,7 @@ end
 
 def devices
   return {
-    ios: "platform='iOS Simulator',OS='9.3',name='iPhone 6s'",
+    ios: "platform='iOS Simulator',OS='10.2',name='iPhone 7'",
     tvos: "name='Apple TV 1080p'"
   }
 end
