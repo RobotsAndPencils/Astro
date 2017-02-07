@@ -11,11 +11,6 @@ Astro is a library, built in swift, used to hold common utility methods.
     - [CocoaPods (iOS 8+)](#cocoapods-ios-8)
 - [Modules](#modules)
   - [Logging](#logging)
-  - [Networking](#networking)
-    - [HTTPStatusCode](#httpstatuscode)
-    - [Route](#route)
-    - [NetworkService](#networkservice)
-    - [NetworkServiceLogger](#networkservicelogger)
   - [Security](#security)
   - [UI](#ui)
     - [UIColor Extension](#uicolor-extension)
@@ -55,7 +50,6 @@ Or if you don't want the whole enchilada then grab one of the subspecs:
 
 ```ruby
 pod 'Astro/Logging'
-pod 'Astro/Networking'
 pod 'Astro/Security'
 pod 'Astro/UI'
 ```
@@ -89,106 +83,6 @@ Log.warning("I want to log a warning message with \(somethingOtherThanElse)")
 You can also write a custom logger as long as it conforms to the `Logger` protocol.
 ```swift
 Log.logger = MyCustomLogger()
-```
-
-### Networking
-
-#### HTTPStatusCode
-`HTTPStatusCode` is an enum that allows you to clarify status codes returned by your server and includes some more user friendly messaging for `failureReason` and `recoverySuggestion`.
-
-```swift 
-guard let code = HTTPStatusCode(rawValue: error.code) else { return }
-switch code {
-case .Code401Unauthorized:
-    // Handle unauthorized error, possibly by navigating back to the login screen
-    break
-default:
-    // Handle other cases by presenting an alert with the failure reason and recovery suggestion
-    let alertController = UIAlertController(title: code.failureReason, message: code.recoverySuggestion, preferredStyle: .Alert)
-    let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-    alertController.addAction(OKAction)
-    self.presentViewController(alertController, animated: true, completion: nil)
-    break
-}
-```
-
-#### Route
-`Route` provides a simple abstraction for working with `NSURLRequests`. Recommended approach is to add extensions to `Route` to add a default `baseURL` value and static functions for your specific API.
-
-```swift
-extension Route {
-    public init(path: String, method: Alamofire.Method = .GET, JSON: Freddy.JSON, additionalHeaders: [String: String] = [:]) {
-        self.init(baseURL: NSURL(string: "https://myapp.com/api/v1/")!, path: path, method: method, parameters: RequestParameters.JSON(parameters: JSON), additionalHeaders: additionalHeaders)
-    }
-    
-    static func login(username username: String, password: String) -> Route {
-        return Route(path: "token", method: .POST, JSON: ["username": username, "password": password].toJSON())
-    }
-}
-```
-
-#### NetworkService
-`NetworkService` brings in AlamoFire, Freddy, and SwiftTask in order to provide a simple networking layer that creates `Task`'s capable of performing network requests, decoding JSON, and mapping the JSON into model objects. Here is an example of a login call where `AuthToken` is a swift struct conforming to `JSONDecodable` (from Freddy):
-
-```swift
-self.networkService.request(Route.login(username: username, password: password)).success { (loginResponse: ResponseValue<AuthToken>) in
-	let networkResponse = loginResponse.response
-    let authToken = loginResponse.value // on success we directly get our model object(s)
-    // Do something with authToken and/or networkResponse...
-}.failure { errorInfo in
-    let networkResponse = errorInfo.error?.response
-    let error = errorInfo.error?.error
-    // Again, you have access to the error and the network response.     
-}
-```
-
-When testing the rest of your app you will want to stub the network layer. The recommended approach is to use the `Nocilla` library and add the following conveniences (I tried to put these into a subspec [but failed](https://github.com/CocoaPods/CocoaPods/issues/5191)):
-
-```swift
-// Improved DSL for Nocilla
-
-func stubRoute(route: Route) -> LSStubRequestDSL {
-    return stubRequest(route.method.rawValue, route.URL.absoluteString).withHeaders(route.URLRequest.allHTTPHeaderFields).withBody(route.URLRequest.HTTPBody)
-}
-
-extension LSStubRequestDSL {
-    func andReturn(status: HTTPStatusCode) -> LSStubResponseDSL {
-        return andReturn(status.rawValue)
-    }
-}
-
-extension LSStubResponseDSL {
-    func withJSON(json: JSON) -> LSStubResponseDSL {
-        let body = try? json.serialize() ?? NSData()
-        return withHeader("Content-Type", "application/json").withBody(body)
-    }
-}
-
-func stubAnyRequest() -> LSStubRequestDSL {
-    return stubRequest(nil, ".*".regex())
-}
-```
-
-Now you can easily stub your login `Route` like this:
-
-```swift
-stubRoute(Route.login(username: "user", password: "pass")).andReturn(.Code200OK).withJSON(["token": "[TOKEN]"])
-```
-
-#### NetworkServiceLogger
-
-`NetworkServiceLogger` logs HTTP requests and responses issued by `NetworkService`. Usage is pretty simple:
-
-```swift
-// Optionally enable or disable output of headers and body
-NetworkServiceLogger.sharedInstance.includeHeaders = true
-NetworkServiceLogger.sharedInstance.includeBody = true
-
-// Start logging
-NetworkServiceLogger.sharedInstance.start()
-
-// Stop logging
-NetworkServiceLogger.sharedInstance.stop()
 ```
 
 ### Security
