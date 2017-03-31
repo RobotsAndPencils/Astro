@@ -142,6 +142,58 @@ class KeychainAccessSpec: QuickSpec {
             }
 
         }
+
+        describe("A KeychainAccessibleAttribute") {
+
+            context("when unlocked") {
+                let attribute = KeychainAccessibleAttribute.WhenUnlocked
+                it("should return kSecAttrAccessibleWhenUnlocked") {
+                    expect(String(attribute.secAttrValue())).to(equal(String(kSecAttrAccessibleWhenUnlocked)))
+                }
+            }
+
+            context("when after first unlock") {
+                let attribute = KeychainAccessibleAttribute.AfterFirstUnlock
+                it("should return kSecAttrAccessibleAfterFirstUnlock") {
+                    expect(String(attribute.secAttrValue())).to(equal(String(kSecAttrAccessibleAfterFirstUnlock)))
+                }
+            }
+
+            context("when always") {
+                let attribute = KeychainAccessibleAttribute.Always
+                it("should return kSecAttrAccessibleAlways") {
+                    expect(String(attribute.secAttrValue())).to(equal(String(kSecAttrAccessibleAlways)))
+                }
+            }
+
+            context("when passcode set this device only") {
+                let attribute = KeychainAccessibleAttribute.WhenPasscodeSetThisDeviceOnly
+                it("should return kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly") {
+                    expect(String(attribute.secAttrValue())).to(equal(String(kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly)))
+                }
+            }
+
+            context("when unlocked this device only") {
+                let attribute = KeychainAccessibleAttribute.WhenUnlockedThisDeviceOnly
+                it("should return kSecAttrAccessibleWhenUnlockedThisDeviceOnly") {
+                    expect(String(attribute.secAttrValue())).to(equal(String(kSecAttrAccessibleWhenUnlockedThisDeviceOnly)))
+                }
+            }
+
+            context("when after first unlock this device only") {
+                let attribute = KeychainAccessibleAttribute.AfterFirstUnlockThisDeviceOnly
+                it("should return kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly") {
+                    expect(String(attribute.secAttrValue())).to(equal(String(kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly)))
+                }
+            }
+
+            context("when always this device only") {
+                let attribute = KeychainAccessibleAttribute.AlwaysThisDeviceOnly
+                it("should return kSecAttrAccessibleAlwaysThisDeviceOnly") {
+                    expect(String(attribute.secAttrValue())).to(equal(String(kSecAttrAccessibleAlwaysThisDeviceOnly)))
+                }
+            }
+        }
     }
     
 }

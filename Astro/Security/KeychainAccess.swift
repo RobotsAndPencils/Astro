@@ -23,6 +23,35 @@ let KeychainAccessServiceBundleID: String = {
 
 let KeychainAccessErrorDomain = "\(KeychainAccessServiceBundleID).error"
 
+enum KeychainAccessibleAttribute {
+    case WhenUnlocked
+    case AfterFirstUnlock
+    case Always
+    case WhenPasscodeSetThisDeviceOnly
+    case WhenUnlockedThisDeviceOnly
+    case AfterFirstUnlockThisDeviceOnly
+    case AlwaysThisDeviceOnly
+
+    func secAttrValue() -> CFString {
+        switch self {
+        case .WhenUnlocked:
+            return kSecAttrAccessibleWhenUnlocked
+        case .AfterFirstUnlock:
+            return kSecAttrAccessibleAfterFirstUnlock
+        case .Always:
+            return kSecAttrAccessibleAlways
+        case .WhenPasscodeSetThisDeviceOnly:
+            return kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly
+        case .WhenUnlockedThisDeviceOnly:
+            return kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+        case .AfterFirstUnlockThisDeviceOnly:
+            return kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
+        case .AlwaysThisDeviceOnly:
+            return kSecAttrAccessibleAlwaysThisDeviceOnly
+        }
+    }
+}
+
 /**
  KeychainAccess provides the app access to a device's Keychain store. Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then retrieve those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app.
  */
