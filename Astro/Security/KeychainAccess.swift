@@ -78,7 +78,7 @@ open class KeychainAccess {
         guard let data = self.get(key, accessibleAttribute: accessibleAttribute) else {
             return nil
         }
-        return NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String
+        return String(data: data, encoding: String.Encoding.utf8)
     }
     
     /**
@@ -157,7 +157,7 @@ open class KeychainAccess {
             if status == errSecSuccess {
                 return true
             }
-            Log.debug("Failed to add data to keychain with status=\(status). Attempted to add data [\(data)] for key [\(key)]")
+            Log.debug("Failed to add data to keychain with status=\(status). Attempted to add data [\(String(describing: data))] for key [\(key)]")
             return false
         } else {
             Log.debug("Failed to add key to keychain with status=\(status). Attempted to add key [\(key)]")
