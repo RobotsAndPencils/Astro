@@ -16,17 +16,13 @@ import Nimble
 class KeychainAccessSpec: QuickSpec {
     
     override func spec() {
-        
-    /**
-     NOTE: Unit tests will fail for the KeychainAccessSpec due to the an issue around Keychain entitlements (https://forums.developer.apple.com/thread/51071).
-     Radar's have been filed by the looks of it so now its just a waiting game until those tests will clear.
-         
+
         describe("A keychain") {
             let keychain = KeychainAccess(account: "Test@RobotsAndPencils.com")
             var testKey = "AccessKey"
             
             afterEach {
-                keychain.delete(testKey)
+                _ = keychain.delete(testKey)
             }
             
             it("returns nil for retrieving a key that doesn't exist") {
@@ -36,7 +32,7 @@ class KeychainAccessSpec: QuickSpec {
 
             it("can store and retrieve a string") {
                 let testString = "something really boring"
-                keychain.putString(testKey, value: testString)
+                _ = keychain.putString(testKey, value: testString)
                 
                 let storedString = keychain.getString(testKey)
                 expect(storedString).to(equal(testString))
@@ -44,12 +40,12 @@ class KeychainAccessSpec: QuickSpec {
             
             it("can store and retrieve data") {
                 testKey = "DataKey"
-                guard let testFilePath = NSBundle(forClass: KeychainAccessSpec.self).pathForResource("testdata", ofType: "json") else {
+                guard let testFilePath = Bundle(for: KeychainAccessSpec.self).url(forResource: "testdata", withExtension: "json") else {
                     fail("no test file")
                     return
                 }
-                let testData = NSData(contentsOfFile: testFilePath)
-                keychain.put(testKey, data: testData)
+                let testData = try! Data(contentsOf: testFilePath)
+                _ = keychain.put(testKey, data: testData)
                 
                 let storedData = keychain.get(testKey)
                 expect(storedData).toNot(beNil())
@@ -57,14 +53,14 @@ class KeychainAccessSpec: QuickSpec {
             }
             
             it("can set a string value to nil") {
-                keychain.putString(testKey, value: nil)
+                _ = keychain.putString(testKey, value: nil)
                 
                 let storedString = keychain.getString(testKey)
                 expect(storedString).to(beNil())
             }
             
             it("can set a data value to nil") {
-                keychain.putString(testKey, value: nil)
+                _ = keychain.putString(testKey, value: nil)
                 
                 let storedData = keychain.get(testKey)
                 expect(storedData).to(beNil())
@@ -80,11 +76,11 @@ class KeychainAccessSpec: QuickSpec {
             
             it("can be accessed using subscripting for data") {
                 testKey = "DataKey"
-                guard let testFilePath = NSBundle(forClass: KeychainAccessSpec.self).pathForResource("testdata", ofType: "json") else {
+                guard let testFilePath = Bundle(for: KeychainAccessSpec.self).url(forResource: "testdata", withExtension: "json") else {
                     fail("no test file")
                     return
                 }
-                let testData = NSData(contentsOfFile: testFilePath)
+                let testData = try! Data(contentsOf: testFilePath)
                 keychain[data: testKey] = testData
                 
                 let storedData = keychain[data: testKey]
@@ -96,20 +92,20 @@ class KeychainAccessSpec: QuickSpec {
                 let origString = "exciting stuff?"
                 let finalString = "boring stuff?"
 
-                keychain.putString(testKey, value: origString)
+                _ = keychain.putString(testKey, value: origString)
                 let storedOrigString = keychain.getString(testKey)
                 expect(storedOrigString).to(equal(origString))
                 
-                keychain.putString(testKey, value: finalString)
+                _ = keychain.putString(testKey, value: finalString)
                 let storedFinalString = keychain.getString(testKey)
                 expect(storedFinalString).to(equal(finalString))
             }
 
             it("can delete a value") {
                 let testString = "exciting stuff?"
-                keychain.putString(testKey, value: testString)
+                _ = keychain.putString(testKey, value: testString)
                 let storedString = keychain.getString(testKey)
-                keychain.putString(testKey, value: nil)
+                _ = keychain.putString(testKey, value: nil)
                 
                 let storedNil = keychain.getString(testKey)
                 expect(storedString).to(equal(testString))
@@ -119,7 +115,7 @@ class KeychainAccessSpec: QuickSpec {
             it("can delete all keys and data for the app") {
                 // Push in a key/data element and verify it exists
                 let testString = "exciting stuff?"
-                keychain.putString(testKey, value: testString)
+                _ = keychain.putString(testKey, value: testString)
                 var storedString = keychain.getString(testKey)
                 expect(storedString).to(equal(testString))
 
@@ -135,7 +131,7 @@ class KeychainAccessSpec: QuickSpec {
                 let testString = "you can't see me"
 
                 // Push in a key/data element and verify it exists in the main account
-                keychain.putString(testKey, value: testString)
+                _ = keychain.putString(testKey, value: testString)
                 var storedString = keychain.getString(testKey)
                 expect(storedString).to(equal(testString))
                 
@@ -146,8 +142,6 @@ class KeychainAccessSpec: QuickSpec {
             }
 
         }
-        
-    */
     }
     
 }
