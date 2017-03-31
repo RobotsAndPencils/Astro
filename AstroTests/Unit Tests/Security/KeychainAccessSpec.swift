@@ -22,125 +22,219 @@ class KeychainAccessSpec: QuickSpec {
             var testKey = "AccessKey"
             
             afterEach {
-                _ = keychain.delete(testKey)
-            }
-            
-            it("returns nil for retrieving a key that doesn't exist") {
-                let storedString = keychain.getString(testKey)
-                expect(storedString).to(beNil())
+                _ = keychain.delete(testKey, accessibleAttribute: .WhenUnlocked)
             }
 
-            it("can store and retrieve a string") {
-                let testString = "something really boring"
-                _ = keychain.putString(testKey, value: testString)
-                
-                let storedString = keychain.getString(testKey)
-                expect(storedString).to(equal(testString))
-            }
-            
-            it("can store and retrieve data") {
-                testKey = "DataKey"
-                guard let testFilePath = Bundle(for: KeychainAccessSpec.self).url(forResource: "testdata", withExtension: "json") else {
-                    fail("no test file")
-                    return
+            context("and you want it available when unlocked") {
+
+                it("returns nil for retrieving a key that doesn't exist") {
+                    let storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedString).to(beNil())
                 }
-                let testData = try! Data(contentsOf: testFilePath)
-                _ = keychain.put(testKey, data: testData)
-                
-                let storedData = keychain.get(testKey)
-                expect(storedData).toNot(beNil())
-                expect(storedData).to(equal(testData))
-            }
-            
-            it("can set a string value to nil") {
-                _ = keychain.putString(testKey, value: nil)
-                
-                let storedString = keychain.getString(testKey)
-                expect(storedString).to(beNil())
-            }
-            
-            it("can set a data value to nil") {
-                _ = keychain.putString(testKey, value: nil)
-                
-                let storedData = keychain.get(testKey)
-                expect(storedData).to(beNil())
-            }
-            
-            it("can be accessed using subscripting for strings") {
-                let testString = "something slightly less boring"
-                keychain[testKey] = testString
-                
-                let storedString = keychain[testKey]
-                expect(storedString).to(equal(testString))
-            }
-            
-            it("can be accessed using subscripting for data") {
-                testKey = "DataKey"
-                guard let testFilePath = Bundle(for: KeychainAccessSpec.self).url(forResource: "testdata", withExtension: "json") else {
-                    fail("no test file")
-                    return
+
+                it("can store and retrieve a string") {
+                    let testString = "something really boring"
+                    _ = keychain.putString(testKey, value: testString, accessibleAttribute: .WhenUnlocked)
+
+                    let storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedString).to(equal(testString))
                 }
-                let testData = try! Data(contentsOf: testFilePath)
-                keychain[data: testKey] = testData
-                
-                let storedData = keychain[data: testKey]
-                expect(storedData).toNot(beNil())
-                expect(storedData).to(equal(testData))
+
+                it("can store and retrieve data") {
+                    testKey = "DataKey"
+                    guard let testFilePath = Bundle(for: KeychainAccessSpec.self).url(forResource: "testdata", withExtension: "json") else {
+                        fail("no test file")
+                        return
+                    }
+                    let testData = try! Data(contentsOf: testFilePath)
+                    _ = keychain.put(testKey, data: testData, accessibleAttribute: .WhenUnlocked)
+
+                    let storedData = keychain.get(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedData).toNot(beNil())
+                    expect(storedData).to(equal(testData))
+                }
+
+                it("can set a string value to nil") {
+                    _ = keychain.putString(testKey, value: nil, accessibleAttribute: .WhenUnlocked)
+
+                    let storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedString).to(beNil())
+                }
+
+                it("can set a data value to nil") {
+                    _ = keychain.putString(testKey, value: nil, accessibleAttribute: .WhenUnlocked)
+
+                    let storedData = keychain.get(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedData).to(beNil())
+                }
+
+                it("can be accessed using subscripting for strings") {
+                    let testString = "something slightly less boring"
+                    keychain[testKey] = testString
+
+                    let storedString = keychain[testKey]
+                    expect(storedString).to(equal(testString))
+                }
+
+                it("can be accessed using subscripting for data") {
+                    testKey = "DataKey"
+                    guard let testFilePath = Bundle(for: KeychainAccessSpec.self).url(forResource: "testdata", withExtension: "json") else {
+                        fail("no test file")
+                        return
+                    }
+                    let testData = try! Data(contentsOf: testFilePath)
+                    keychain[data: testKey] = testData
+
+                    let storedData = keychain[data: testKey]
+                    expect(storedData).toNot(beNil())
+                    expect(storedData).to(equal(testData))
+                }
+
+                it("can override a value") {
+                    let origString = "exciting stuff?"
+                    let finalString = "boring stuff?"
+
+                    _ = keychain.putString(testKey, value: origString, accessibleAttribute: .WhenUnlocked)
+                    let storedOrigString = keychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedOrigString).to(equal(origString))
+
+                    _ = keychain.putString(testKey, value: finalString, accessibleAttribute: .WhenUnlocked)
+                    let storedFinalString = keychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedFinalString).to(equal(finalString))
+                }
+
+                it("can delete a value") {
+                    let testString = "exciting stuff?"
+                    _ = keychain.putString(testKey, value: testString, accessibleAttribute: .WhenUnlocked)
+                    let storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    _ = keychain.putString(testKey, value: nil, accessibleAttribute: .WhenUnlocked)
+
+                    let storedNil = keychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedString).to(equal(testString))
+                    expect(storedNil).to(beNil())
+                }
+
+                it("can delete all keys and data for the app") {
+                    // Push in a key/data element and verify it exists
+                    let testString = "exciting stuff?"
+                    _ = keychain.putString(testKey, value: testString, accessibleAttribute: .WhenUnlocked)
+                    var storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedString).to(equal(testString))
+
+                    // Delete everything and then verify you can't access the key/data any more
+                    let status = keychain.deleteAllKeysAndDataForApp()
+                    expect(status).to(beTrue())
+                    storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedString).to(beNil())
+                }
+
+                it("can't access a key from a different account") {
+                    testKey = "SuperSecretKey"
+                    let testString = "you can't see me"
+
+                    // Push in a key/data element and verify it exists in the main account
+                    _ = keychain.putString(testKey, value: testString, accessibleAttribute: .WhenUnlocked)
+                    var storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedString).to(equal(testString))
+                    
+                    // Try to gain access to a key from another account
+                    let otherKeychain = KeychainAccess(account: "SomeOtherAccount@RobotsAndPencils.com")
+                    storedString = otherKeychain.getString(testKey, accessibleAttribute: .WhenUnlocked)
+                    expect(storedString).to(beNil())
+                }
             }
-            
-            it("can override a value") {
-                let origString = "exciting stuff?"
-                let finalString = "boring stuff?"
 
-                _ = keychain.putString(testKey, value: origString)
-                let storedOrigString = keychain.getString(testKey)
-                expect(storedOrigString).to(equal(origString))
-                
-                _ = keychain.putString(testKey, value: finalString)
-                let storedFinalString = keychain.getString(testKey)
-                expect(storedFinalString).to(equal(finalString))
+            context("and you want it just on that device") {
+
+                it("can store and retrieve a string") {
+                    let testString = "something really boring"
+                    _ = keychain.putString(testKey, value: testString, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+
+                    let storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedString).to(equal(testString))
+                }
+
+                it("can store and retrieve data") {
+                    testKey = "DataKey"
+                    guard let testFilePath = Bundle(for: KeychainAccessSpec.self).url(forResource: "testdata", withExtension: "json") else {
+                        fail("no test file")
+                        return
+                    }
+                    let testData = try! Data(contentsOf: testFilePath)
+                    _ = keychain.put(testKey, data: testData, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+
+                    let storedData = keychain.get(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedData).toNot(beNil())
+                    expect(storedData).to(equal(testData))
+                }
+
+                it("can set a string value to nil") {
+                    _ = keychain.putString(testKey, value: nil, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+
+                    let storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedString).to(beNil())
+                }
+
+                it("can set a data value to nil") {
+                    _ = keychain.putString(testKey, value: nil, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+
+                    let storedData = keychain.get(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedData).to(beNil())
+                }
+
+                it("can override a value") {
+                    let origString = "exciting stuff?"
+                    let finalString = "boring stuff?"
+
+                    _ = keychain.putString(testKey, value: origString, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    let storedOrigString = keychain.getString(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedOrigString).to(equal(origString))
+
+                    _ = keychain.putString(testKey, value: finalString, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    let storedFinalString = keychain.getString(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedFinalString).to(equal(finalString))
+                }
+
+                it("can delete a value") {
+                    let testString = "exciting stuff?"
+                    _ = keychain.putString(testKey, value: testString, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    let storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    _ = keychain.putString(testKey, value: nil, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+
+                    let storedNil = keychain.getString(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedString).to(equal(testString))
+                    expect(storedNil).to(beNil())
+                }
+
+                it("can delete all keys and data for the app") {
+                    // Push in a key/data element and verify it exists
+                    let testString = "exciting stuff?"
+                    _ = keychain.putString(testKey, value: testString, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    var storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedString).to(equal(testString))
+
+                    // Delete everything and then verify you can't access the key/data any more
+                    let status = keychain.deleteAllKeysAndDataForApp()
+                    expect(status).to(beTrue())
+                    storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedString).to(beNil())
+                }
+
+                it("can't access a key from a different account") {
+                    testKey = "SuperSecretKey"
+                    let testString = "you can't see me"
+
+                    // Push in a key/data element and verify it exists in the main account
+                    _ = keychain.putString(testKey, value: testString, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    var storedString = keychain.getString(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedString).to(equal(testString))
+                    
+                    // Try to gain access to a key from another account
+                    let otherKeychain = KeychainAccess(account: "SomeOtherAccount@RobotsAndPencils.com")
+                    storedString = otherKeychain.getString(testKey, accessibleAttribute: .WhenUnlockedThisDeviceOnly)
+                    expect(storedString).to(beNil())
+                }
             }
-
-            it("can delete a value") {
-                let testString = "exciting stuff?"
-                _ = keychain.putString(testKey, value: testString)
-                let storedString = keychain.getString(testKey)
-                _ = keychain.putString(testKey, value: nil)
-                
-                let storedNil = keychain.getString(testKey)
-                expect(storedString).to(equal(testString))
-                expect(storedNil).to(beNil())
-            }
-
-            it("can delete all keys and data for the app") {
-                // Push in a key/data element and verify it exists
-                let testString = "exciting stuff?"
-                _ = keychain.putString(testKey, value: testString)
-                var storedString = keychain.getString(testKey)
-                expect(storedString).to(equal(testString))
-
-                // Delete everything and then verify you can't access the key/data any more
-                let status = keychain.deleteAllKeysAndDataForApp()
-                expect(status).to(beTrue())
-                storedString = keychain.getString(testKey)
-                expect(storedString).to(beNil())
-            }
-
-            it("can't access a key from a different account") {
-                testKey = "SuperSecretKey"
-                let testString = "you can't see me"
-
-                // Push in a key/data element and verify it exists in the main account
-                _ = keychain.putString(testKey, value: testString)
-                var storedString = keychain.getString(testKey)
-                expect(storedString).to(equal(testString))
-                
-                // Try to gain access to a key from another account
-                let otherKeychain = KeychainAccess(account: "SomeOtherAccount@RobotsAndPencils.com")
-                storedString = otherKeychain.getString(testKey)
-                expect(storedString).to(beNil())
-            }
-
         }
 
         describe("A KeychainAccessibleAttribute") {
