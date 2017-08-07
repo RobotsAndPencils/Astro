@@ -29,7 +29,7 @@ open class LayoutLabel: UILabel {
         }
     }
     
-    override open var intrinsicContentSize : CGSize {
+    override open var intrinsicContentSize: CGSize {
         var contentSize = super.intrinsicContentSize
         
         guard let text = text else {

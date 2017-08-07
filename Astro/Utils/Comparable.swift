@@ -11,6 +11,6 @@
 
 import Foundation
 
-func clamp<T: Comparable>(_ x: T, min minimum: T, max maximum: T) -> T {
-    return max(minimum, min(maximum, x))
+func clamp<T: Comparable>(_ comparisonValue: T, min minimum: T, max maximum: T) -> T {
+    return max(minimum, min(maximum, comparisonValue))
 }

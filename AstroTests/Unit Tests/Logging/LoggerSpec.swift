@@ -24,7 +24,7 @@ class LogRecorder: Logger {
 class LogSpec: QuickSpec {
     override func spec() {
 
-        let generateLogs = { () -> () in
+        let generateLogs = { () -> Void in
             Log.debug("debug")
             Log.info("info")
             Log.warn("warn")
@@ -107,16 +107,6 @@ class LogSpec: QuickSpec {
             }
         }
         
-        struct VeryExpensiveThingToPrint : CustomStringConvertible {
-            static let interval: TimeInterval = 100
-            static let testThreshold: TimeInterval = 10
-            
-            var description: String {
-                Thread.sleep(forTimeInterval: VeryExpensiveThingToPrint.interval)
-                return "thing"
-            }
-        }
-        
         describe("Given we are logging a really expensive statement") {
             
             let thing = VeryExpensiveThingToPrint()
@@ -139,5 +129,15 @@ class LogSpec: QuickSpec {
                 }
             }
         }
+    }
+}
+
+struct VeryExpensiveThingToPrint: CustomStringConvertible {
+    static let interval: TimeInterval = 100
+    static let testThreshold: TimeInterval = 10
+    
+    var description: String {
+        Thread.sleep(forTimeInterval: VeryExpensiveThingToPrint.interval)
+        return "thing"
     }
 }

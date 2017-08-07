@@ -26,7 +26,7 @@
  ```
  */
 public protocol EnumCountable {
-    static var count : Int { get }
+    static var count: Int { get }
 }
 
 public extension EnumCountable where Self : RawRepresentable, Self.RawValue == Int {

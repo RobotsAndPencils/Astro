@@ -13,7 +13,7 @@ import Quick
 import Nimble
 @testable import Astro
 
-class UIColor_AstroGadgetsSpec: QuickSpec {
+class UIColorAstroGadgetsSpec: QuickSpec {
     override func spec() {
         describe("init(hexColor:)") {
             var hexString: String!

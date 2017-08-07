@@ -21,7 +21,7 @@ public protocol Logger {
      - Parameter level: Importance level of the message to be logged
      - Parameter message: Message contents that will be logged
     */
-    func log(_ level: Log.Level, message: String);
+    func log(_ level: Log.Level, message: String)
 }
 
 /**

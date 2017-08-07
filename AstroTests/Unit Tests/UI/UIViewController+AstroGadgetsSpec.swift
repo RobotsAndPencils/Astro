@@ -13,14 +13,14 @@ import Quick
 import Nimble
 @testable import Astro
 
-class UIViewController_AstroGadgetsSpec: QuickSpec {
+class UIViewControllerAstroGadgetsSpec: QuickSpec {
     override func spec() {
         describe("addChildViewController() - Given a view controller") {
-            var parentViewController:UIViewController!
-            var childViewController:UIViewController!
+            var parentViewController: UIViewController!
+            var childViewController: UIViewController!
             
             context("when adding a child view controller") {
-                beforeEach(){
+                beforeEach {
                     // Arrange
                     parentViewController = UIViewController()
                     parentViewController.view = UIView()
