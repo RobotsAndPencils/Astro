@@ -12,7 +12,7 @@
 import Foundation
 import Security
 
-let KeychainAccessServiceBundleID: String = {
+let keychainAccessServiceBundleID: String = {
     if NSClassFromString("XCTestCase") != nil {
         Log.level = Log.Level.debug
         return "com.robotsandpencils.TestTarget"
@@ -22,7 +22,7 @@ let KeychainAccessServiceBundleID: String = {
     }
 }()
 
-let KeychainAccessErrorDomain = "\(KeychainAccessServiceBundleID).error"
+let keychainAccessErrorDomain = "\(keychainAccessServiceBundleID).error"
 
 /**
  KeychainAccess provides the app access to a device's Keychain store. Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then retrieve those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app.
