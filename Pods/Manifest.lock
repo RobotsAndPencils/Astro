@@ -1,31 +1,34 @@
 PODS:
-  - Astro (3.1.0):
-    - Astro/Logging (= 3.1.0)
-    - Astro/Security (= 3.1.0)
-    - Astro/UI (= 3.1.0)
-    - Astro/Utils (= 3.1.0)
-  - Astro/Logging (3.1.0)
-  - Astro/Security (3.1.0):
+  - Astro (4.0.0):
+    - Astro/Logging (= 4.0.0)
+    - Astro/Security (= 4.0.0)
+    - Astro/UI (= 4.0.0)
+    - Astro/Utils (= 4.0.0)
+  - Astro/Logging (4.0.0)
+  - Astro/Security (4.0.0):
     - Astro/Logging
-  - Astro/UI (3.1.0)
-  - Astro/Utils (3.1.0)
-  - Nimble (5.1.0)
-  - Quick (0.10.0)
+  - Astro/UI (4.0.0)
+  - Astro/Utils (4.0.0)
+  - Nimble (7.0.1)
+  - Quick (1.1.0)
+  - SwiftLint (0.21.0)
 
 DEPENDENCIES:
   - Astro (from `.`)
-  - Nimble (~> 5.0)
-  - Quick (~> 0.10)
+  - Nimble (~> 7.0)
+  - Quick (~> 1.1)
+  - SwiftLint (~> 0.20)
 
 EXTERNAL SOURCES:
   Astro:
     :path: "."
 
 SPEC CHECKSUMS:
-  Astro: 1420fa499aca84cf0666face9383d9b6b5a53f3a
-  Nimble: 5ea121a2eda60440287054cde077fc0ad22227b3
-  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
+  Astro: 8006a8e461a4e274c2cc6ee5e750a85ed76f19aa
+  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
 
-PODFILE CHECKSUM: a9aecf26b2813653ba8216c48324cbaf3cdedef9
+PODFILE CHECKSUM: '08eb0f0dec16246a92882c0ee74fdbd41a857afc'
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

@@ -9,10 +9,13 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'Astro' do
     pod "Astro", :path => "."
 
+    # Debugging / Analysis
+    pod 'SwiftLint', '~> 0.20'
+
 	target 'AstroTests' do
 	  inherit! :search_paths
 
-	  pod 'Quick', '~> 0.10'
-	  pod 'Nimble', '~> 5.0'
+	  pod 'Quick', '~> 1.1'
+	  pod 'Nimble', '~> 7.0', :inhibit_warnings => true
 	end
 end
