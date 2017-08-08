@@ -63,25 +63,39 @@ task :release, :version do |task, args|
   version = args[:version]
   abort "You must specify a version in semver format." if version.nil? || version.scan(/\d+\.\d+\.\d+/).length == 0
 
-  puts "Updating podspec."
-  filename = "Astro.podspec"
-  contents = File.read(filename)
-  contents.gsub!(/s\.version\s*=\s"\d+\.\d+\.\d+"/, "s.version      = \"#{version}\"")
-  File.open(filename, 'w') { |file| file.puts contents }
+  puts "Validating local github state"
+  git_status = `git status -b`
+  if (git_status.include? "up-to-date with 'origin/master'.") && (git_status.include? "nothing to commit, working tree clean
+")
+    puts "Updating podspec."
+    filename = "Astro.podspec"
+    contents = File.read(filename)
+    contents.gsub!(/s\.version\s*=\s"\d+\.\d+\.\d+"/, "s.version      = \"#{version}\"")
+    File.open(filename, 'w') { |file| file.puts contents }
 
-  puts "Comitting, tagging, and pushing."
-  message = "Releasing version #{version}."
-  sh "git commit -am '#{message}'"
-  sh "git tag #{version} -m '#{message}'"
-  sh "git push --follow-tags"
+    puts "Comitting, tagging, and pushing."
+    message = "Releasing version #{version}."
+    sh "git commit -am '#{message}'"
+    sh "git tag #{version} -m '#{message}'"
+    sh "git push --follow-tags"
 
-  puts "Pushing to Astro.podspec"
-  sh "pod trunk push Astro.podspec"
+    puts "Pushing to Astro.podspec"
+    sh "pod trunk push Astro.podspec"
 
-  puts "Pushing as a GitHub Release."
-  require 'octokit'
-  Octokit::Client.new(netrc: true).
-    create_release('RobotsAndPencils/Astro',
-                   version,
-                   name: version)
+    puts "Pushing as a GitHub Release."
+    require 'octokit'
+    Octokit::Client.new(netrc: true).
+      create_release('RobotsAndPencils/Astro',
+                     version,
+                     name: version)
+  else
+    puts "**********************************************************************"
+    puts "You need to run this command on Github master with no changes present!"
+    puts "Check the following output to verify your local github state..."
+    puts "******************************* OUTPUT *******************************"
+    puts git_status
+    puts "**********************************************************************"
+    
+    require 'octokit'
+  end
 end
