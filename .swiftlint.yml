@@ -1,0 +1,31 @@
+excluded:
+  - Pods
+disabled_rules:
+  - line_length
+  - trailing_newline
+  - operator_whitespace
+  - trailing_whitespace
+  - vertical_whitespace
+  - redundant_string_enum_value
+  - function_body_length
+  - type_body_length
+  - file_length
+  - force_try
+  - trailing_comma
+colon:
+  flexible_right_spacing: true
+variable_name:
+  max_length: 100
+  excluded:
+    - id
+statement_position:
+  statement_mode: uncuddled_else
+custom_rules:
+  pending_spec:
+    name: "Pending Spec"
+    included: ".*(Spec|Test)(s)?.swift" # only include test files
+    regex: "([^a-zA-Z0-9]pending[^a-zA-Z0-9])"
+    match_kinds:
+      - identifier
+    message: "Pending specs should be enabled as soon as possible."
+    severity: warning

@@ -13,11 +13,11 @@ import Quick
 import Nimble
 @testable import Astro
 
-class UIView_AstroGadgetsSpec: QuickSpec {
+class UIViewAstroGadgetsSpec: QuickSpec {
     override func spec() {
         describe("Given a UIView with a defined frame") {
             let view = UIView()
-            beforeEach(){
+            beforeEach {
                 // Arrange
                 view.frame = CGRect(x: 1, y: 2, width: 3, height: 4)
             }
@@ -33,7 +33,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                 }
                 it ("then the frameHeight should match") {
                     // Arrange
-                    let expectedHeight:CGFloat = 12.0
+                    let expectedHeight: CGFloat = 12.0
                     // Act
                     view.frameHeight = expectedHeight
                     // Assert
@@ -42,7 +42,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                 }
                 it ("then the frameWidth should match") {
                     // Arrange
-                    let expectedWidth:CGFloat = 347.0
+                    let expectedWidth: CGFloat = 347.0
                     // Act
                     view.frameWidth = expectedWidth
                     // Assert
@@ -60,7 +60,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                 }
                 it ("then the frameX should match") {
                     // Arrange
-                    let expectedX:CGFloat = 567.0
+                    let expectedX: CGFloat = 567.0
                     // Act
                     view.frameX = expectedX
                     // Assert
@@ -69,7 +69,7 @@ class UIView_AstroGadgetsSpec: QuickSpec {
                 }
                 it ("then the frameY should match") {
                     // Arrange
-                    let expectedY:CGFloat = 678.0
+                    let expectedY: CGFloat = 678.0
                     // Act
                     view.frameY = expectedY
                     // Assert

@@ -12,16 +12,17 @@
 import Foundation
 import Security
 
-let KeychainAccessServiceBundleID: String = {
+let keychainAccessServiceBundleID: String = {
     if NSClassFromString("XCTestCase") != nil {
         Log.level = Log.Level.debug
         return "com.robotsandpencils.TestTarget"
-    } else {
+    }
+    else {
         return Bundle.main.bundleIdentifier ?? ""
     }
 }()
 
-let KeychainAccessErrorDomain = "\(KeychainAccessServiceBundleID).error"
+let keychainAccessErrorDomain = "\(keychainAccessServiceBundleID).error"
 
 /**
  KeychainAccess provides the app access to a device's Keychain store. Usage is fairly straightforward, as part of an account, you can place strings (or data) for a key into the Keychain and then retrieve those values later. This makes it a good way to securely store a specific user's password or tokens for reuse in the app.
@@ -70,7 +71,8 @@ open class KeychainAccess {
                 return nil
             }
             return data
-        } else {
+        }
+        else {
             Log.debug("Failed to fetch value from keychain with status=\(status).Attempted to get value for key [\(key)]")
             return nil
         }
@@ -103,14 +105,15 @@ open class KeychainAccess {
             // Key previously existed
             if let data = data {
                 // Updating the data to a new value
-                let attributesToUpdate: [String: AnyObject] = [kSecValueData as String : data as AnyObject]
+                let attributesToUpdate: [String: AnyObject] = [kSecValueData as String: data as AnyObject]
                 status = SecItemUpdate(query, attributesToUpdate as CFDictionary)
                 if status == errSecSuccess {
                     return true
                 }
                 Log.debug("Failed to update data in keychain with status=\(status). Attempted to update data [\(data)] for key [\(key)]")
                 return false
-            } else {
+            }
+            else {
                 // Explicitly clearing the old data since we can't update to a nil value
                 var status = SecItemDelete(query)
                 if status == errSecSuccess {
@@ -122,7 +125,8 @@ open class KeychainAccess {
                 Log.debug("Failed to clear data in keychain with status=\(status). Attempted to clear data for key [\(key)]")
                 return false
             }
-        } else if status == errSecItemNotFound {
+        }
+        else if status == errSecItemNotFound {
             // Key doesn't exist so add it
             status = SecItemAdd(query, nil)
             if status == errSecSuccess {
@@ -130,7 +134,8 @@ open class KeychainAccess {
             }
             Log.debug("Failed to add data to keychain with status=\(status). Attempted to add data [\(String(describing: data))] for key [\(key)]")
             return false
-        } else {
+        }
+        else {
             Log.debug("Failed to add key to keychain with status=\(status). Attempted to add key [\(key)]")
             return false
         }
@@ -148,7 +153,8 @@ open class KeychainAccess {
 
         if status == errSecSuccess || status == errSecItemNotFound {
             return true
-        } else {
+        }
+        else {
             Log.debug("Failed to delete key from keychain with status=\(status). Attempted to delete key [\(key)]")
             return false
         }
@@ -166,7 +172,8 @@ open class KeychainAccess {
         let status = SecItemDelete(query as CFDictionary)
         if status == errSecSuccess || status == errSecItemNotFound {
             return true
-        } else {
+        }
+        else {
             Log.debug("Failed to delete all app keys and data from keychain with status=\(status).")
             return false
         }
@@ -192,7 +199,7 @@ open class KeychainAccess {
         }
     }
 
-    //MARK: Private
+    // MARK: Private
     /**
        Set up the query for use with the keychain functions.
         
