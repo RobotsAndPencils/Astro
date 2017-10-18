@@ -13,7 +13,7 @@ import Quick
 import Nimble
 @testable import Astro
 
-let mockFrame = CGRect(x: 1, y:2, width: 3, height:4)
+let mockFrame = CGRect(x: 1, y: 2, width: 3, height: 4)
 
 class LayoutLabelSpec: QuickSpec {
     override func spec() {

@@ -10,12 +10,12 @@ target 'Astro' do
     pod "Astro", :path => "."
 
     # Debugging / Analysis
-    pod 'SwiftLint', '~> 0.20'
+    pod 'SwiftLint', '~> 0.22'
 
 	target 'AstroTests' do
 	  inherit! :search_paths
 
-	  pod 'Quick', '~> 1.1'
-	  pod 'Nimble', '~> 7.0', :inhibit_warnings => true
+	  pod 'Quick', '~> 1.2'
+	  pod 'Nimble', '~> 7.0.2', :inhibit_warnings => true
 	end
 end

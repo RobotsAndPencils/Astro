@@ -56,16 +56,12 @@ public struct Log {
             switch level {
             case .debug:
                 prefix = "DEBUG"
-                break
             case .info:
                 prefix = "INFO"
-                break
             case .warning:
                 prefix = "WARN"
-                break
             case .error:
                 prefix = "ERROR"
-                break
             default:
                 prefix = ""
             }

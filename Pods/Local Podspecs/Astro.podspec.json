@@ -1,6 +1,6 @@
 {
   "name": "Astro",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "summary": "A RoboPod containing a small collection of utilities for project reuse",
   "homepage": "https://RobotsAndPencils.com",
   "license": {
@@ -16,7 +16,7 @@
   },
   "source": {
     "git": "https://github.com/RobotsAndPencils/Astro.git",
-    "tag": "4.0.0"
+    "tag": "4.1.0"
   },
   "platforms": {
     "ios": "9.0"
