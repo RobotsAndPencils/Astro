@@ -42,15 +42,15 @@ extension UIColor {
         }
         
         let redCharacterRange = hexOnlyString.startIndex..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 2)
-        Scanner(string: hexOnlyString.substring(with: redCharacterRange)).scanHexInt32(&parsedRed)
+        Scanner(string: String(hexOnlyString[redCharacterRange])).scanHexInt32(&parsedRed)
         let greenCharacterRange = hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 2)..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 4)
-        Scanner(string: hexOnlyString.substring(with: greenCharacterRange)).scanHexInt32(&parsedGreen)
+        Scanner(string: String(hexOnlyString[greenCharacterRange])).scanHexInt32(&parsedGreen)
         let blueCharacterRange = hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 4)..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 6)
-        Scanner(string: hexOnlyString.substring(with: blueCharacterRange)).scanHexInt32(&parsedBlue)
+        Scanner(string: String(hexOnlyString[blueCharacterRange])).scanHexInt32(&parsedBlue)
         
         if hexOnlyString.characters.count == 8 {
             let alphaCharacterRange = hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 6)..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 8)
-            Scanner(string: hexOnlyString.substring(with: alphaCharacterRange)).scanHexInt32(&parsedAlpha)
+            Scanner(string: String(hexOnlyString[alphaCharacterRange])).scanHexInt32(&parsedAlpha)
         }
         
         self.init(red: CGFloat(parsedRed) / 255.0, green: CGFloat(parsedGreen) / 255.0, blue: CGFloat(parsedBlue) / 255.0, alpha: (CGFloat(alpha) * CGFloat(parsedAlpha)) / 255.0)
@@ -67,7 +67,7 @@ extension UIColor {
         var b: CGFloat = 0
         var a: CGFloat = 0
         assert(getRed(&r, green: &g, blue: &b, alpha: &a), "Unable to get RGB channels from UIColor")
-        return NSString(format:"%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255)) as String
+        return NSString(format: "%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255)) as String
     }
 
     /**
