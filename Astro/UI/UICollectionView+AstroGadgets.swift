@@ -23,15 +23,6 @@ public extension UICollectionView {
     public func register<T: UICollectionViewCell>(_ cellType: T.Type) where T: ReusableView {
         register(cellType.self, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
     }
-    /**
-     Registration method for subclasses implementing only ReusableView
-
-     - parameter cellType: The cell subclass type that conforms to the ReusableView protocol
-     */
-    public func register<T: UICollectionReusableView>(_ cellType: T.Type) where T: ReusableView {
-        register(cellType.self, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
-    }
-
     
     /**
      Registration method for subclasses implementing both ReusableView and
@@ -43,12 +34,6 @@ public extension UICollectionView {
         let bundle = Bundle(for: cellType.self)
         let nib = UINib(nibName: cellType.nibName, bundle: bundle)
         register(nib, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
-    }
-
-    public func register<T: UICollectionReusableView>(_ cellType: T.Type, forSupplementaryViewOfKind: String) where T: ReusableView, T: NibLoadableView {
-        let bundle = Bundle(for: cellType.self)
-        let nib = UINib(nibName: cellType.nibName, bundle: bundle)
-        register(nib, forSupplementaryViewOfKind: forSupplementaryViewOfKind, withReuseIdentifier: cellType.defaultReuseIdentifier)
     }
     
     /**
@@ -64,12 +49,4 @@ public extension UICollectionView {
         }
         return cell
     }
-
-    public func dequeueReusableCell<T: UICollectionReusableView>(forSupplementaryViewOfKind: String, forIndexPath indexPath: IndexPath) -> T where T: ReusableView {
-        guard let cell = self.dequeueReusableSupplementaryView(ofKind: forSupplementaryViewOfKind, withReuseIdentifier: T.defaultReuseIdentifier, for: indexPath) as? T else {
-            fatalError("Could not dequeue collection view cell with identifier: \(T.defaultReuseIdentifier)")
-        }
-        return cell
-    }
-
 }
