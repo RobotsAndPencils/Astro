@@ -32,7 +32,7 @@ extension UIColor {
         let hexCharacterSet = CharacterSet(charactersIn: "0123456789abcdefABCDEF")
         let hexOnlyString = hexString.components(separatedBy: hexCharacterSet.inverted).joined(separator: "")
         
-        guard hexOnlyString.characters.count >= 6 else {
+        guard hexOnlyString.count >= 6 else {
             // There is a bug in stable Xcode 7.3 (SR-704) where returning nil
             // here will crash with EXC_BAD_ACCESS. Current workaround is to
             // call self/super.init() before returning nil.
@@ -41,15 +41,15 @@ extension UIColor {
             return nil
         }
         
-        let redCharacterRange = hexOnlyString.startIndex..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 2)
+        let redCharacterRange = hexOnlyString.startIndex..<hexOnlyString.index(hexOnlyString.startIndex, offsetBy: 2)
         Scanner(string: String(hexOnlyString[redCharacterRange])).scanHexInt32(&parsedRed)
-        let greenCharacterRange = hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 2)..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 4)
+        let greenCharacterRange = hexOnlyString.index(hexOnlyString.startIndex, offsetBy: 2)..<hexOnlyString.index(hexOnlyString.startIndex, offsetBy: 4)
         Scanner(string: String(hexOnlyString[greenCharacterRange])).scanHexInt32(&parsedGreen)
-        let blueCharacterRange = hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 4)..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 6)
+        let blueCharacterRange = hexOnlyString.index(hexOnlyString.startIndex, offsetBy: 4)..<hexOnlyString.index(hexOnlyString.startIndex, offsetBy: 6)
         Scanner(string: String(hexOnlyString[blueCharacterRange])).scanHexInt32(&parsedBlue)
         
-        if hexOnlyString.characters.count == 8 {
-            let alphaCharacterRange = hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 6)..<hexOnlyString.characters.index(hexOnlyString.startIndex, offsetBy: 8)
+        if hexOnlyString.count == 8 {
+            let alphaCharacterRange = hexOnlyString.index(hexOnlyString.startIndex, offsetBy: 6)..<hexOnlyString.index(hexOnlyString.startIndex, offsetBy: 8)
             Scanner(string: String(hexOnlyString[alphaCharacterRange])).scanHexInt32(&parsedAlpha)
         }
         
