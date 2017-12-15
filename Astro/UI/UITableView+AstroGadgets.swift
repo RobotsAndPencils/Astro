@@ -23,6 +23,10 @@ public extension UITableView {
     public func register<T: UITableViewCell>(_ cellType: T.Type) where T: ReusableView {
         self.register(cellType.self, forCellReuseIdentifier: cellType.defaultReuseIdentifier)
     }
+
+    public func register<T: UITableViewHeaderFooterView>(_ cellType: T.Type) where T: ReusableView {
+        register(cellType.self, forHeaderFooterViewReuseIdentifier: cellType.defaultReuseIdentifier)
+    }
     
     /**
      Registration method for subclasses implementing both ReusableView and
@@ -35,6 +39,12 @@ public extension UITableView {
         let nib = UINib(nibName: cellType.nibName, bundle: bundle)
         self.register(nib, forCellReuseIdentifier: cellType.defaultReuseIdentifier)
     }
+
+    public func register<T: UITableViewHeaderFooterView>(_ cellType: T.Type) where T: ReusableView, T: NibLoadableView {
+        let bundle = Bundle(for: cellType.self)
+        let nib = UINib(nibName: cellType.nibName, bundle: bundle)
+        register(nib, forHeaderFooterViewReuseIdentifier: cellType.defaultReuseIdentifier)
+    }
     
     /**
      Ideal cell dequeueing method for cell subclasses which conform to
@@ -45,6 +55,13 @@ public extension UITableView {
      */
     public func dequeueReusableCell<T: UITableViewCell>(forIndexPath indexPath: IndexPath) -> T where T: ReusableView {
         guard let cell = self.dequeueReusableCell(withIdentifier: T.defaultReuseIdentifier, for: indexPath) as? T else {
+            fatalError("Could not dequeue table view cell with identifier: \(T.defaultReuseIdentifier)")
+        }
+        return cell
+    }
+
+    public func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>(forIndexPath indexPath: IndexPath) -> T where T: ReusableView {
+        guard let cell = self.dequeueReusableHeaderFooterView(withIdentifier: T.defaultReuseIdentifier) as? T else {
             fatalError("Could not dequeue table view cell with identifier: \(T.defaultReuseIdentifier)")
         }
         return cell
