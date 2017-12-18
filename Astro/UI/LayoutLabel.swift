@@ -36,7 +36,7 @@ open class LayoutLabel: UILabel {
             return contentSize
         }
         
-        if numberOfLines == 0 && text.characters.count > 0 {
+        if numberOfLines == 0 && text.count > 0 {
             // found out that sometimes intrinsicContentSize is 1pt too short!
             contentSize.height += 1
         }
