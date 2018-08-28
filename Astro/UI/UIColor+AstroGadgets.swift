@@ -14,7 +14,6 @@ import UIKit
 /**
  Includes a UIColor extension for hex code (e.g. #FF0000) support. You can now create your project's color palette in another class extension that brings all those pesky colors into one place and with names that are easy to understand:
  */
-// swiftlint:disable identifier_name
 extension UIColor {
     /**
        Create a color from a string of hexadecimal characters.
@@ -89,4 +88,3 @@ extension UIColor {
         return NSString(format: "%02X%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255), Int(a * 255)) as String
     }
 }
-// swiftlint:enable identifier_name
