@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  build-test:
+    macos:
+      xcode: "9.4.1"
+    environment:
+      - BUNDLE_PATH: vendor/bundle
+      - LC_ALL: en_US.UTF-8
+      - LANG: en_US.UTF-8
+    shell: /bin/bash --login -eo pipefail
+    steps:
+      - checkout
+      - run:
+          name: Output ruby version
+          command: ruby -v
+      - run:
+          name: Output environment variables
+          command: env
+      - run:
+          name: Build and run tests
+          command: |
+            xcodebuild \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY= \
+            PROVISIONING_PROFILE= \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 6' \
+            -workspace Astro.xcworkspace \
+            -scheme "Astro" \
+            clean build test |
+            tee xcode_raw.log |
+            xcpretty --color --report junit --output test_results.xml 
+      - store_test_results:
+          path: test_results.xml
+      - store_artifacts:
+          path: xcode_raw.log
+
+workflows:
+  version: 2
+  build-test:
+    jobs:
+      - build-test:
+          context: ios
+
