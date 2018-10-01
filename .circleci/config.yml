@@ -11,6 +11,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Preboot simulator
+          command: xcrun instruments -w "iPhone 6 (11.4) [" || true
+      - run:
           name: Output ruby version
           command: ruby -v
       - run:
