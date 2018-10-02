@@ -29,7 +29,7 @@ public protocol EnumCountable {
     static var count: Int { get }
 }
 
-public extension EnumCountable where Self : RawRepresentable, Self.RawValue == Int {
+public extension EnumCountable where Self: RawRepresentable, Self.RawValue == Int {
     
     /**
     Counts the number of cases in the enum, starting at 0

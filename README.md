@@ -2,6 +2,8 @@
 
 Astro is a library, built in swift, used to hold common utility methods.
 
+[![CircleCI](https://circleci.com/gh/RobotsAndPencils/Astro.svg?style=svg)](https://circleci.com/gh/RobotsAndPencils/Astro)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
