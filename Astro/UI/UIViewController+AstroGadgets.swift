@@ -25,9 +25,9 @@ public extension UIViewController {
      - parameter inContainer: the UIView where the childViewController's UIView will be added as a subview
     */
     public func addChildViewController(_ childViewController: UIViewController, inContainer view: UIView) {
-        self.addChildViewController(childViewController)
+        self.addChild(childViewController)
         view.addSubview(childViewController.view)
-        childViewController.didMove(toParentViewController: self)
+        childViewController.didMove(toParent: self)
     }
 }
 
@@ -43,8 +43,8 @@ public extension UIViewController {
      - parameter message: - of the alert
      */
     public func quickAlert(title: String?, message: String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     

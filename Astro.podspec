@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Astro"
-  s.version      = "5.1.0"
+  s.version      = "5.2.0"
   s.summary          = "A RoboPod containing a small collection of utilities for project reuse"
   s.homepage         = "https://RobotsAndPencils.com"
   s.license      = {
@@ -33,7 +33,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.ios.deployment_target = '9.0'
   s.platform     = :ios, '9.0'
   s.requires_arc = true
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
   
   s.subspec 'Logging' do | log |
     log.source_files = 'Astro/Logging/**/*.swift'
