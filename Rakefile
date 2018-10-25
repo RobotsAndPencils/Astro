@@ -65,7 +65,7 @@ task :release, :version do |task, args|
 
   puts "Validating local github state"
   git_status = `git status -b`
-  if (git_status.include? "up-to-date with 'origin/master'.") && (git_status.include? "nothing to commit, working tree clean
+  if (git_status.include? "up to date with 'origin/master'.") && (git_status.include? "nothing to commit, working tree clean
 ")
     puts "Updating podspec."
     filename = "Astro.podspec"
