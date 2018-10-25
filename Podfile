@@ -16,6 +16,6 @@ target 'Astro' do
 	  inherit! :search_paths
 
 	  pod 'Quick', '~> 1.2'
-	  pod 'Nimble', '~> 7.0.2', :inhibit_warnings => true
+	  pod 'Nimble', '~> 7.3.1', :inhibit_warnings => true
 	end
 end
