@@ -1,14 +1,14 @@
 PODS:
-  - Astro (5.2.0):
-    - Astro/Logging (= 5.2.0)
-    - Astro/Security (= 5.2.0)
-    - Astro/UI (= 5.2.0)
-    - Astro/Utils (= 5.2.0)
-  - Astro/Logging (5.2.0)
-  - Astro/Security (5.2.0):
+  - Astro (6.0.0):
+    - Astro/Logging (= 6.0.0)
+    - Astro/Security (= 6.0.0)
+    - Astro/UI (= 6.0.0)
+    - Astro/Utils (= 6.0.0)
+  - Astro/Logging (6.0.0)
+  - Astro/Security (6.0.0):
     - Astro/Logging
-  - Astro/UI (5.2.0)
-  - Astro/Utils (5.2.0)
+  - Astro/UI (6.0.0)
+  - Astro/Utils (6.0.0)
   - Nimble (7.3.1)
   - Quick (1.3.2)
   - SwiftLint (0.27.0)
@@ -30,7 +30,7 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  Astro: 44cf3928eac701a28540a0b3ad4d5f61cf5c0d83
+  Astro: 6c77560c99740bc70c1b2afc430a4e49754cd4e5
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
   Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
