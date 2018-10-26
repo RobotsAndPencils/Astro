@@ -1,4 +1,4 @@
-//  Copyright © 2016 Robots and Pencils, Inc. All rights reserved.
+//  Copyright © 2018 Robots and Pencils, Inc. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 //
@@ -10,36 +10,24 @@
 //
 
 import UIKit
-import MapKit
-
-// MARK: - Reusable
 
 /**
- Has a reuse identifier appropriate for APIs that reuse conforming instances
+ Has an identifier for its type. Useful when an identifier is needed for
+ view instantiation, reuse, or registration, but not limited to use by UI code.
+
+ Note that this is different from an _instance's_ identifier.
  */
-public protocol ReusableView: IdentifiableType {
+public protocol IdentifiableType {
     /**
-     The default value is the type's identifier but can be overriden
+     The default value is the type's name but can be overriden
      */
-    static var reuseIdentifier: String { get }
+    static var identifier: String { get }
 }
 
-public extension ReusableView {
-    static var reuseIdentifier: String {
-        return identifier
+public extension IdentifiableType {
+    static var identifier: String {
+        return String(describing: self)
     }
 }
 
-extension UITableViewHeaderFooterView: ReusableView {}
-extension UICollectionReusableView: ReusableView {}
-extension MKAnnotationView: ReusableView {}
-
-// MARK: - ReusableCell
-
-/**
- Has a reuse identifier
- */
-public protocol ReusableCell: ReusableView {}
-
-extension UITableViewCell: ReusableCell {}
-extension UICollectionViewCell: ReusableCell {}
+extension UIViewController: IdentifiableType {}

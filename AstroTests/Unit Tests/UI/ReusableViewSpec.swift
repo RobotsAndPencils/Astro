@@ -13,13 +13,20 @@ import Quick
 import Nimble
 @testable import Astro
 
-class MockReusableCollectionViewCell: UICollectionViewCell, ReusableView {}
+class MockReusableView: UIView, ReusableView {}
+class MockReusableCollectionViewCell: UICollectionViewCell {}
 
 class ReusableViewSpec: QuickSpec {
     override func spec() {
         describe("Given a view subclass conforming to ReusableView") {
             it("should have a default reuse identifier") {
-                expect(MockReusableCollectionViewCell.defaultReuseIdentifier).to(equal("MockReusableCollectionViewCell"))
+                expect(MockReusableView.reuseIdentifier).to(equal("MockReusableView"))
+            }
+        }
+
+        describe("Given a cell subclass conforming to ReusableCell") {
+            it("should have a default reuse identifier") {
+                expect(MockReusableCollectionViewCell.reuseIdentifier).to(equal("MockReusableCollectionViewCell"))
             }
         }
     }

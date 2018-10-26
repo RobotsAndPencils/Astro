@@ -23,8 +23,11 @@
 		B69726CE1BD9162F0047EEB9 /* LoggerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69726CD1BD9162F0047EEB9 /* LoggerSpec.swift */; };
 		BD62EA481C929BF0004A02DF /* EnumCountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62EA471C929BF0004A02DF /* EnumCountable.swift */; };
 		BD62EA4B1C929C1C004A02DF /* EnumCountableSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */; };
+		CA1EF8AF2182AA7400554392 /* IdentifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1EF8AE2182AA7400554392 /* IdentifiableType.swift */; };
 		CA5380CB1C5C195900204A68 /* UIColor+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5380CA1C5C195900204A68 /* UIColor+AstroGadgets.swift */; };
 		CA5380CD1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */; };
+		CAB40CD1215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB40CD0215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift */; };
+		CAB40CD32153149F008CBE6B /* MKMapView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB40CD22153149F008CBE6B /* MKMapView+AstroGadgets.swift */; };
 		D0C3176529877E28CFD27E77 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C31A257874127AD224738D /* Log.swift */; };
 		D6F831A48F327D5367262464 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D24B772E4EC6454D9C2C893 /* Pods_AstroTests.framework */; };
 		E62F9D1C1D62264F005402BF /* UICollectionView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F9D1B1D62264F005402BF /* UICollectionView+AstroGadgets.swift */; };
@@ -71,8 +74,11 @@
 		BD62EA471C929BF0004A02DF /* EnumCountable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnumCountable.swift; path = Utils/EnumCountable.swift; sourceTree = "<group>"; };
 		BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumCountableSpec.swift; sourceTree = "<group>"; };
 		BD95704572604E86D00F715F /* Pods-Astro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Astro.release.xcconfig"; path = "Pods/Target Support Files/Pods-Astro/Pods-Astro.release.xcconfig"; sourceTree = "<group>"; };
+		CA1EF8AE2182AA7400554392 /* IdentifiableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableType.swift; sourceTree = "<group>"; };
 		CA5380CA1C5C195900204A68 /* UIColor+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AstroGadgets.swift"; sourceTree = "<group>"; };
 		CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AstroGadgetsSpec.swift"; sourceTree = "<group>"; };
+		CAB40CD0215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+AstroGadgets.swift"; sourceTree = "<group>"; };
+		CAB40CD22153149F008CBE6B /* MKMapView+AstroGadgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+AstroGadgets.swift"; sourceTree = "<group>"; };
 		D0C31A257874127AD224738D /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D5D8E2A7279FA75989658B29 /* Pods-Astro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Astro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Astro/Pods-Astro.debug.xcconfig"; sourceTree = "<group>"; };
 		E62F9D1B1D62264F005402BF /* UICollectionView+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+AstroGadgets.swift"; sourceTree = "<group>"; };
@@ -112,7 +118,10 @@
 				E62F9D1B1D62264F005402BF /* UICollectionView+AstroGadgets.swift */,
 				E62F9D1D1D6227DE005402BF /* UITableView+AstroGadgets.swift */,
 				2E9348D0FB90D68FC7E5C3D7 /* UIViewController+AstroGadgets.swift */,
+				CAB40CD0215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift */,
+				CAB40CD22153149F008CBE6B /* MKMapView+AstroGadgets.swift */,
 				535DF1091C87864E00961785 /* LayoutLabel.swift */,
+				CA1EF8AE2182AA7400554392 /* IdentifiableType.swift */,
 				E6D5F8831D35B55600CB4D5F /* ReusableView.swift */,
 				E665B02A1D35BB4B0099C89E /* NibLoadableView.swift */,
 			);
@@ -454,7 +463,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD62EA481C929BF0004A02DF /* EnumCountable.swift in Sources */,
+				CAB40CD32153149F008CBE6B /* MKMapView+AstroGadgets.swift in Sources */,
 				535DF10A1C87864E00961785 /* LayoutLabel.swift in Sources */,
+				CA1EF8AF2182AA7400554392 /* IdentifiableType.swift in Sources */,
+				CAB40CD1215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift in Sources */,
 				E6D5F8841D35B55600CB4D5F /* ReusableView.swift in Sources */,
 				2E9345EE0AEB18FB859A8D06 /* UIView+AstroGadgets.swift in Sources */,
 				2E934B8A416AF015C76347DC /* UIViewController+AstroGadgets.swift in Sources */,
