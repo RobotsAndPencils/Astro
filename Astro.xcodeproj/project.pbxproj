@@ -28,6 +28,7 @@
 		CA5380CD1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */; };
 		CAB40CD1215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB40CD0215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift */; };
 		CAB40CD32153149F008CBE6B /* MKMapView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB40CD22153149F008CBE6B /* MKMapView+AstroGadgets.swift */; };
+		CAEDCACF21892A600050AF0C /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDCACE21892A600050AF0C /* Change.swift */; };
 		D0C3176529877E28CFD27E77 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C31A257874127AD224738D /* Log.swift */; };
 		D6F831A48F327D5367262464 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D24B772E4EC6454D9C2C893 /* Pods_AstroTests.framework */; };
 		E62F9D1C1D62264F005402BF /* UICollectionView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F9D1B1D62264F005402BF /* UICollectionView+AstroGadgets.swift */; };
@@ -79,6 +80,7 @@
 		CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AstroGadgetsSpec.swift"; sourceTree = "<group>"; };
 		CAB40CD0215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+AstroGadgets.swift"; sourceTree = "<group>"; };
 		CAB40CD22153149F008CBE6B /* MKMapView+AstroGadgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+AstroGadgets.swift"; sourceTree = "<group>"; };
+		CAEDCACE21892A600050AF0C /* Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Change.swift; path = Utils/Change.swift; sourceTree = "<group>"; };
 		D0C31A257874127AD224738D /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D5D8E2A7279FA75989658B29 /* Pods-Astro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Astro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Astro/Pods-Astro.debug.xcconfig"; sourceTree = "<group>"; };
 		E62F9D1B1D62264F005402BF /* UICollectionView+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+AstroGadgets.swift"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				3F78B54F1CC35D4900A0E30C /* Queue.swift */,
 				BD62EA471C929BF0004A02DF /* EnumCountable.swift */,
 				83593EEFC7D26F39183B2AE1 /* Comparable.swift */,
+				CAEDCACE21892A600050AF0C /* Change.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				3F78B5501CC35D4900A0E30C /* Queue.swift in Sources */,
 				CA5380CB1C5C195900204A68 /* UIColor+AstroGadgets.swift in Sources */,
 				835937E4D0DE85A9286BACC6 /* Comparable.swift in Sources */,
+				CAEDCACF21892A600050AF0C /* Change.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
