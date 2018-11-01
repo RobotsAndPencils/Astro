@@ -11,6 +11,25 @@
 
 import Foundation
 
-func clamp<T: Comparable>(_ comparisonValue: T, min minimum: T, max maximum: T) -> T {
-    return max(minimum, min(maximum, comparisonValue))
+extension Comparable {
+    /**
+     Limits the value to the bounds of the given range.
+     */
+    public mutating func clamp(to range: ClosedRange<Self>) {
+        if range.lowerBound > self {
+            self = range.lowerBound
+        }
+        else if range.upperBound < self {
+            self = range.upperBound
+        }
+    }
+
+    /**
+     Returns a copy of this value made by limiting it to the bounds of the given range.
+     */
+    public func clamped(to range: ClosedRange<Self>) -> Self {
+        var clamped = self
+        clamped.clamp(to: range)
+        return clamped
+    }
 }

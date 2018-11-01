@@ -18,31 +18,69 @@ class ComparableSpec: QuickSpec {
         describe("clamp") {
             context("x is less than min") {
                 it("returns min") {
-                    let result = clamp(0, min: 5, max: 10)
+                    var result = 0
+                    result.clamp(to: 5...10)
                     expect(result).to(equal(5))
                 }
             }
             context("x is equal to min") {
                 it("returns min") {
-                    let result = clamp(5, min: 5, max: 10)
+                    var result = 5
+                    result.clamp(to: 5...10)
                     expect(result).to(equal(5))
                 }
             }
             context("x is between min and max") {
                 it("returns x") {
-                    let result = clamp(5, min: 0, max: 10)
+                    var result = 5
+                    result.clamp(to: 0...10)
                     expect(result).to(equal(5))
                 }
             }
             context("x is equal to max") {
                 it("returns max") {
-                    let result = clamp(10, min: 5, max: 10)
+                    var result = 10
+                    result.clamp(to: 5...10)
                     expect(result).to(equal(10))
                 }
             }
             context("x is greater than max") {
                 it("returns max") {
-                    let result = clamp(10, min: 0, max: 5)
+                    var result = 10
+                    result.clamp(to: 0...5)
+                    expect(result).to(equal(5))
+                }
+            }
+        }
+
+        describe("clamped") {
+            context("x is less than min") {
+                it("returns min") {
+                    let result = 0.clamped(to: 5...10)
+                    expect(result).to(equal(5))
+                }
+            }
+            context("x is equal to min") {
+                it("returns min") {
+                    let result = 5.clamped(to: 5...10)
+                    expect(result).to(equal(5))
+                }
+            }
+            context("x is between min and max") {
+                it("returns x") {
+                    let result = 5.clamped(to: 0...10)
+                    expect(result).to(equal(5))
+                }
+            }
+            context("x is equal to max") {
+                it("returns max") {
+                    let result = 10.clamped(to: 5...10)
+                    expect(result).to(equal(10))
+                }
+            }
+            context("x is greater than max") {
+                it("returns max") {
+                    let result = 10.clamped(to: 0...5)
                     expect(result).to(equal(5))
                 }
             }
