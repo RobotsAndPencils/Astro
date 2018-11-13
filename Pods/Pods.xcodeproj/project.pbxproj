@@ -119,6 +119,7 @@
 		C9976B28F0BDB89E552934A250463D52 /* ContainElementSatisfying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A17A87F5C21829EDCE4E61C23FB3751 /* ContainElementSatisfying.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		CA1EF8B52182B17900554392 /* IdentifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1EF8B42182B17900554392 /* IdentifiableType.swift */; };
 		CAEDCAD521892C410050AF0C /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDCAD421892C410050AF0C /* Change.swift */; };
+		CA66342C219A5C5800C90ECE /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66342B219A5C5800C90ECE /* Sequence.swift */; };
 		CC6EDE60A73201DABFC98BC7CAC386E3 /* MatcherProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838725A5D79D138A96E9A58370482809 /* MatcherProtocols.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		CF3E1677F05F5A14272D3119E3C873E7 /* BeLessThanOrEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B6A041827B2ED884C92F69B5CF56F /* BeLessThanOrEqual.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D0BBEAE1167C476BF9C2DBBF18D93046 /* Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC45A7599E83ACD3CD2BBE6827C89C9 /* Closures.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -311,6 +312,7 @@
 		CA4A67144474A12D0CEE78DFEA381F69 /* ReusableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReusableView.swift; path = Astro/UI/ReusableView.swift; sourceTree = "<group>"; };
 		CA5F841A373F755E79A64CE9F5990F1C /* Pods-AstroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AstroTests.release.xcconfig"; sourceTree = "<group>"; };
 		CAEDCAD421892C410050AF0C /* Change.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Change.swift; path = Astro/Utils/Change.swift; sourceTree = "<group>"; };
+		CA66342B219A5C5800C90ECE /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sequence.swift; path = Astro/Utils/Sequence.swift; sourceTree = "<group>"; };
 		D04405C8EBD220E451B7DDF4756F3DF0 /* Quick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Quick-dummy.m"; sourceTree = "<group>"; };
 		D06396285FFC7F0BD9E17FAD2E374CE4 /* Nimble-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-prefix.pch"; sourceTree = "<group>"; };
 		D16F20B15242D0164137D22DE3C44698 /* Pods-AstroTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AstroTests-umbrella.h"; sourceTree = "<group>"; };
@@ -646,6 +648,7 @@
 				8F1F3DC6EFAEE80A7CD156FDD034FF70 /* EnumCountable.swift */,
 				5B58BA9E5624966B089705BB2EF81137 /* Queue.swift */,
 				CAEDCAD421892C410050AF0C /* Change.swift */,
+				CA66342B219A5C5800C90ECE /* Sequence.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1039,6 +1042,7 @@
 				CA1EF8B52182B17900554392 /* IdentifiableType.swift in Sources */,
 				99F09E5687548D861CEFB9645D261373 /* NibLoadableView.swift in Sources */,
 				BC65707347AD3984D9C7AA5E23F863BA /* Queue.swift in Sources */,
+				CA66342C219A5C5800C90ECE /* Sequence.swift in Sources */,
 				AD7BC55EC12599E76E0225D2E263486D /* ReusableView.swift in Sources */,
 				0FE19C62E38ECF161713FE8B04E1D4BA /* UICollectionView+AstroGadgets.swift in Sources */,
 				959935A2C2765497644396E169C0E79A /* UIColor+AstroGadgets.swift in Sources */,
