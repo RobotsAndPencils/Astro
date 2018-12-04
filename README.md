@@ -23,7 +23,6 @@ Astro is a library, built in swift, used to hold common utility methods.
       - [NibLoadableView](#nibloadableview)
       - [ReusableCell + NibLoadableView in Tandem](#reusablecell--nibloadableview-in-tandem)
   - [Utils](#utils)
-    - [EnumCountable](#enumcountable)
     - [Queue](#queue)
     - [Change](#change)
 - [Module Management](#module-management)
@@ -219,30 +218,6 @@ class BookListViewController: UIViewController, UICollectionViewDataSource {
 ```
 
 ### Utils
-#### EnumCountable
-`EnumCountable` provides an easy way to add a static `count` constant to Swift enums of type Int.  
-
-It requires that the first case start at 0 and all cases must be continuous.
-
-Example:
-
-```swift
-class SettingsViewController : UICollectionViewController {
-enum Section: Int, EnumCountable {
-    case Customizations = 0
-    case Faqs
-    case Support
-    case Logout
- 
-    static let count = Section.countCases()  
-}
-...
-override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return Section.count
-    }
-}
-```
-
 #### Queue
 `Queue` provides a prettier interface for the most common needs of dispatching onto different GCD Queues. If you require something more powerful consider [Async](https://github.com/duemunk/Async).
 
