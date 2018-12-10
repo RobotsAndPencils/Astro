@@ -20,7 +20,7 @@ import UIKit
  every nib file. Much of this is based off of the ideas from:
  https://medium.com/@gonzalezreal/ios-cell-registration-reusing-with-swift-protocol-extensions-and-generics-c5ac4fb5b75e
  */
-public protocol NibLoadableView: class {
+public protocol NibLoadableView: IdentifiableType {
     static var nibName: String { get }
 }
 
@@ -30,6 +30,12 @@ public protocol NibLoadableView: class {
  */
 public extension NibLoadableView where Self: UIView {
     static var nibName: String {
-        return String(describing: Self.self)
+        return identifier
+    }
+
+    static var nib: UINib {
+        let bundle = Bundle(for: self)
+        let nib = UINib(nibName: nibName, bundle: bundle)
+        return nib
     }
 }

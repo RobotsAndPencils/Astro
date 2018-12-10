@@ -18,35 +18,73 @@ public extension UITableView {
     /**
      Registration method for subclasses implementing only ReusableView
      
-     - parameter cellType: The cell subclass type that conforms to the ReusableView protocol
+     - parameter type: The cell subclass type that conforms to the ReusableView
+     protocol
      */
-    public func register<T: UITableViewCell>(_ cellType: T.Type) where T: ReusableView {
-        self.register(cellType.self, forCellReuseIdentifier: cellType.defaultReuseIdentifier)
+    public func registerCell<Cell: UITableViewCell>(ofType type: Cell.Type) {
+        register(type.self, forCellReuseIdentifier: type.reuseIdentifier)
     }
     
     /**
      Registration method for subclasses implementing both ReusableView and
      NibLoadableView
      
-     - parameter cellType: The cell subclass type that conforms to both ReusableView and NibLoadableView protocols
+     - parameter type: The cell subclass type that conforms to both ReusableView
+     and NibLoadableView protocols
      */
-    public func register<T: UITableViewCell>(_ cellType: T.Type) where T: ReusableView, T: NibLoadableView {
-        let bundle = Bundle(for: cellType.self)
-        let nib = UINib(nibName: cellType.nibName, bundle: bundle)
-        self.register(nib, forCellReuseIdentifier: cellType.defaultReuseIdentifier)
+    public func registerCell<Cell: UITableViewCell>(ofType type: Cell.Type) where Cell: NibLoadableView {
+        register(type.nib, forCellReuseIdentifier: type.reuseIdentifier)
+    }
+
+    /**
+     Registration method for subclasses implementing only ReusableView
+
+     - parameter type: The cell subclass type that conforms to the ReusableView
+     protocol
+     */
+    func registerHeaderFooterView<View: UITableViewHeaderFooterView>(ofType type: View.Type) {
+        register(type.self, forHeaderFooterViewReuseIdentifier: type.reuseIdentifier)
+    }
+
+    /**
+     Registration method for subclasses implementing both ReusableView and
+     NibLoadableView
+
+     - parameter type: The cell subclass type that conforms to both ReusableView
+     and NibLoadableView protocols
+     */
+    func registerHeaderFooterView<View: UITableViewHeaderFooterView>(ofType type: View.Type) where View: NibLoadableView {
+        register(type.nib, forHeaderFooterViewReuseIdentifier: type.reuseIdentifier)
     }
     
     /**
      Ideal cell dequeueing method for cell subclasses which conform to
      ReusableView – a nice detail is that it accepts a type, rather than reuse
      identifier
-     
+
+     - parameter type:  The cell subclass type that conforms to the ReusableView
+     protocol
      - parameter indexPath: The index path of the cell to dequeue
      */
-    public func dequeueReusableCell<T: UITableViewCell>(forIndexPath indexPath: IndexPath) -> T where T: ReusableView {
-        guard let cell = self.dequeueReusableCell(withIdentifier: T.defaultReuseIdentifier, for: indexPath) as? T else {
-            fatalError("Could not dequeue table view cell with identifier: \(T.defaultReuseIdentifier)")
+    public func dequeueReusableCell<Cell: UITableViewCell>(ofType type: Cell.Type, for indexPath: IndexPath) -> Cell {
+        guard let cell = dequeueReusableCell(withIdentifier: type.reuseIdentifier, for: indexPath) as? Cell else {
+            fatalError("Could not dequeue table view cell with identifier: \(type.reuseIdentifier)")
         }
         return cell
+    }
+
+    /**
+     Ideal dequeueing method for reusable header/footer views which conform to
+     ReusableView – a nice detail is that it accepts a type, rather than reuse
+     identifier
+
+     - parameter type:  The cell subclass type that conforms to the ReusableView
+     protocol
+     */
+    func dequeueReusableHeaderFooterView<View: UITableViewHeaderFooterView>(ofType type: View.Type) -> View {
+        guard let view = self.dequeueReusableHeaderFooterView(withIdentifier: type.reuseIdentifier) as? View else {
+            fatalError("Could not dequeue table header/footer view with identifier: \(type.reuseIdentifier)")
+        }
+        return view
     }
 }

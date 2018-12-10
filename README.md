@@ -16,10 +16,12 @@ Astro is a library, built in swift, used to hold common utility methods.
   - [Security](#security)
   - [UI](#ui)
     - [UIColor Extension](#uicolor-extension)
-    - [Reusable Cell Protocols](#reusable-cell-protocols)
+    - [IdentifiableType Protocols](#identifiabletype-protocols)
+      - [IdentifiableType](#identifiabletype)
       - [ReusableView](#reusableview)
+      - [ReusableCell](#reusablecell)
       - [NibLoadableView](#nibloadableview)
-      - [ReusableView + NibLoadableView in Tandem](#reusableview--nibloadableview-in-tandem)
+      - [ReusableCell + NibLoadableView in Tandem](#reusablecell--nibloadableview-in-tandem)
   - [Utils](#utils)
     - [EnumCountable](#enumcountable)
     - [Queue](#queue)
@@ -124,11 +126,37 @@ In your app's implementation you you can then quickly make use of those colors:
 ```swift
 let color = UIColor.MyApp_BrightOrangeColor()
 ```
-#### Reusable Cell Protocols
-In many iOS apps, it is common to dequeue table or collection view cells. To assist with this and avoid having to define identifiers for each type of cell, a number of protocols are included in Astro/UI.
+
+#### IdentifiableType Protocols
+
+In many iOS apps, it is common to need a type identifier to instantiate views, register instances for reuse or dequeue cells. To assist with this and avoid having to define identifiers manually, a number of protocols are included in Astro/UI.
+
+##### IdentifiableType
+
+Provides a static `identifier` value that defaults to the type name. UIViewController conforms to this automatically, and this can be used when instantiating from a storyboard.
+
+```swift
+class AstroViewController: UIViewController {}
+
+let vc = Storyboard.main.instantiateView(ofType: AstroViewController.self)
+```
 
 ##### ReusableView
-The [`ReusableView`](Astro/UI/ReusableView.swift) protocol requires that a `defaultReuseIdentifier` string be defined for any objects that wish to adhere to it. To make adoption of this protocol easier, a default implementation is provided for any `UIView` subclasses (namely, `UITableViewCell` and `UICollectionViewCell`). The default implementation will provide the name of the class as the reuse identifier, so as long as you define the reuse identifier for your prototype cells in IB the same as the name of the class, you should be good to go:
+
+[`ReusableView`](Astro/UI/ReusableView.swift) has a `reuseIdentifier`, which defaults to the type's identifier, or type name. This can be overridden if needed by having conforming types provide their own implementation. MKAnnotationView conforms to this automatically, and this can be used when instantiating with a MKMapView.
+
+```swift
+class AstroAnnotationView: MKAnnotationView {
+  // ...
+}
+
+mapView.registerView(ofType: AstroAnnotationView.self)
+mapView.dequeueReusableAnnotationView(ofType: AstroAnnotationView.self, for: annotation)
+```
+
+##### ReusableCell
+
+Like ReusableView but for cell types :smile:. There are currently no further requirements of types that conform to this protocol, but extensions on UITableView and UICollectionView require ReusableCells.
 
 ```swift
 class AstroTableViewCell: UITableViewCell, ReusableView {
@@ -138,24 +166,15 @@ class AstroTableViewCell: UITableViewCell, ReusableView {
 class AstroTableViewController: UITableViewController {
   // ...
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let astroCellIdentifier = AstroTableViewCell.defaultReuseIdentifier // "AstroTableViewCell"
-    let cell = tableView.dequeueReusableCellWithIdentifier(astroCellIdentifier, forIndexPath: indexPath)
-    return cell
+    return tableView.dequeueReusableCell(ofType: AstroTableViewCell.self, for: indexPath)
   }
   // ...
 }
 ```
 
-One other trick you can do to make it so that all your cell subclasses are a `ReusableView` and have a `defaultReuseIdentifier`, you can apply an extension like below for your project:
-
-```swift
-extension UICollectionViewCell: ReusableView {}
-```
-
-It should also be noted that if you wish to customize the identifier, you can always override the implementation of `defaultReuseIdentifier` in your view subclass.
-
 ##### NibLoadableView
-The [`NibLoadableView`](Astro/UI/NibLoadableView.swift) protocol, like `ReusableView`, requires that a string, `nibName`, be defined for objects that wish to adhere to it. Since the use of nibs is similar to how cells are referenced and dequeued for table/collection views, a default implementation is provided for this protocol too, which returns the class' name for the name of the nib (meaning that you should name your nib files the same as the view subclasses you implement them in). 
+
+[`NibLoadableView`](Astro/UI/NibLoadableView.swift) has a `nibName`, which should be the NIB filename and defaults to the type's name.
 
 ```swift
 class AstroView: NibLoadableView {
@@ -172,31 +191,11 @@ class AstroViewController: UIViewController {
 
 Why bother with this `NibLoadableView` though, you ask? Watch how it combines with `ReusableView`, and some nifty extensions to reduce more boilerplate...
 
-##### ReusableView + NibLoadableView in Tandem
-As alluded to, there are `UITableView` and `UICollectionView` extensions that make use of `ReusableView` and `NibLoadableView` for really easy cell registration and dequeueing. Below is the extension for `UICollectionView`:
+##### ReusableCell + NibLoadableView in Tandem
 
-```swift
-public extension UICollectionView {
-    public func register<T: UICollectionViewCell where T: ReusableView>(cellType: T.Type) {
-        registerClass(cellType.self, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
-    }
-    
-    public func register<T: UICollectionViewCell where T: ReusableView, T: NibLoadableView>(cellType: T.Type) {
-        let bundle = NSBundle(forClass: cellType.self)
-        let nib = UINib(nibName: cellType.nibName, bundle: bundle)
-        registerNib(nib, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
-    }
-    
-    public func dequeueReusableCell<T: UICollectionViewCell where T: ReusableView>(forIndexPath indexPath: NSIndexPath) -> T {
-        guard let cell = dequeueReusableCellWithReuseIdentifier(T.defaultReuseIdentifier, forIndexPath: indexPath) as? T else {
-            fatalError("Could not dequeue collection view cell with identifier: \(T.defaultReuseIdentifier)")
-        }
-        return cell
-    }
-}
-```
+As alluded to, there are `UITableView` and `UICollectionView` extensions that make use of `ReusableCell` and `NibLoadableView` for really easy cell registration and dequeueing.
 
-The register method can take in a cell subclass that adheres to only `ReusableView`, or both `ReusableView` and `NibLoadableView`. After the cell is registered, the provided dequeue method can be used in the necessary delegate method which allows you to stick with just using types to reference our views, and get back the specific view type we just dequeued:
+The register method can take in a cell subclass that adheres to only `ReusableCell`, or both `ReusableCell` and `NibLoadableView`. After the cell is registered, the provided dequeue method can be used in the necessary delegate method which allows you to stick with just using types to reference our views, and get back the specific view type we just dequeued:
 
 ```swift
 class BookCell: UICollectionViewCell, ReusableView, NibLoadableView {

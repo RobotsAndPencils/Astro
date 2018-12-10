@@ -18,22 +18,32 @@ public extension UICollectionView {
     /**
      Registration method for subclasses implementing only ReusableView
      
-     - parameter cellType: The cell subclass type that conforms to the ReusableView protocol
+     - parameter type: The cell subclass type that conforms to the ReusableView
+     protocol
      */
-    public func register<T: UICollectionViewCell>(_ cellType: T.Type) where T: ReusableView {
-        register(cellType.self, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
+    public func registerCell<Cell: UICollectionViewCell>(ofType type: Cell.Type) {
+        register(type, forCellWithReuseIdentifier: type.reuseIdentifier)
     }
     
     /**
      Registration method for subclasses implementing both ReusableView and
      NibLoadableView
      
-     - parameter cellType: The cell subclass type that conforms to both ReusableView and NibLoadableView protocols
+     - parameter type: The cell subclass type that conforms to both ReusableView
+     and NibLoadableView protocols
      */
-    public func register<T: UICollectionViewCell>(_ cellType: T.Type) where T: ReusableView, T: NibLoadableView {
-        let bundle = Bundle(for: cellType.self)
-        let nib = UINib(nibName: cellType.nibName, bundle: bundle)
-        register(nib, forCellWithReuseIdentifier: cellType.defaultReuseIdentifier)
+    public func registerCell<Cell: UICollectionViewCell>(ofType type: Cell.Type) where Cell: NibLoadableView {
+        register(type.nib, forCellWithReuseIdentifier: type.reuseIdentifier)
+    }
+
+    /**
+     Registers a UICollectionReusableView subclass for use in creating supplementary views for the collection view.
+
+     - parameter kind: The kind of supplementary view to retrieve
+     - parameter type: The UICollectionReusableView subclass type to register
+     */
+    public func registerReusableSupplementaryView<View: UICollectionReusableView>(ofKind kind: String, type: View.Type) {
+        register(type, forSupplementaryViewOfKind: kind, withReuseIdentifier: type.identifier)
     }
     
     /**
@@ -41,12 +51,30 @@ public extension UICollectionView {
      ReusableView – a nice detail is that it accepts a type, rather than reuse
      identifier
      
+     - parameter type: The cell subclass type that conforms to the ReusableView
+     protocol
      - parameter indexPath: The index path of the cell to dequeue
      */
-    public func dequeueReusableCell<T: UICollectionViewCell>(forIndexPath indexPath: IndexPath) -> T where T: ReusableView {
-        guard let cell = self.dequeueReusableCell(withReuseIdentifier: T.defaultReuseIdentifier, for: indexPath) as? T else {
-            fatalError("Could not dequeue collection view cell with identifier: \(T.defaultReuseIdentifier)")
+    public func dequeueReusableCell<Cell: UICollectionViewCell>(ofType type: Cell.Type, for indexPath: IndexPath) -> Cell {
+        guard let cell = dequeueReusableCell(withReuseIdentifier: type.reuseIdentifier, for: indexPath) as? Cell else {
+            fatalError("Could not dequeue collection view cell with identifier: \(type.reuseIdentifier)")
         }
         return cell
+    }
+
+    /**
+     Ideal dequeueing method for reusable supplementary views which conform to
+     ReusableView – a nice detail is that it accepts a type, rather than reuse
+     identifier
+
+     - parameter kind: The kind of supplementary view to retrieve
+     - parameter type: The UICollectionReusableView subclass type to retrieve
+     - parameter indexPath: The index path specifying the location of the supplementary view in the collection view
+     */
+    public func dequeueReusableSupplementaryView<View: UICollectionReusableView>(ofKind kind: String, type: View.Type, for indexPath: IndexPath) -> View {
+        guard let view = dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: type.identifier, for: indexPath) as? View else {
+            fatalError("Could not dequeue supplementary view with identifier: \(type.identifier)")
+        }
+        return view
     }
 }
