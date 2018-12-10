@@ -25,6 +25,7 @@ Astro is a library, built in swift, used to hold common utility methods.
   - [Utils](#utils)
     - [EnumCountable](#enumcountable)
     - [Queue](#queue)
+    - [Change](#change)
 - [Module Management](#module-management)
 - [Contact](#contact)
   - [Maintainers](#maintainers)
@@ -251,6 +252,32 @@ Queue.Background.execute {
     Queue.Main.executeAfter(delay: 1) {
         // Back on main thread
     }
+}
+```
+
+#### Change
+
+`Change<Value>` encapsulates a change between two values of the same type
+
+Sometimes you need the old and new values of a property in order to perform efficient or pleasing changes elsewhere, like in your UI. This type makes that simpler by allowing you to pass a single value around. It's then possible to get sub-changes with the `change[at: \.value]` subscript.
+
+```
+var model: ViewModel {
+    didSet {
+        let change = Change(old: oldValue, new: model)
+        updateUI(with: change)
+    }
+}
+
+func updateUI(with change: Change<Model>) {
+    title = change.new.title
+    updateSomeSubview(with: change[at: \.subviewState])
+    // ...
+}
+
+func updateSomeSubview(with change: Change<SubviewState>) {
+    guard change.isDifferent else { return }
+    // ...
 }
 ```
     
