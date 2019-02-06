@@ -20,17 +20,18 @@
 		638C62521BD454FD0004ECE1 /* Astro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638C62471BD454FD0004ECE1 /* Astro.framework */; };
 		835932AC62597B13CED887E4 /* ComparableSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83593E90B43887E2AE664086 /* ComparableSpec.swift */; };
 		835937E4D0DE85A9286BACC6 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83593EEFC7D26F39183B2AE1 /* Comparable.swift */; };
+		B4B3605221B725A800B7038F /* UIImage+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B3605121B725A800B7038F /* UIImage+AstroGadgets.swift */; };
+		B4B3605521B725B600B7038F /* Array+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B3605321B725B600B7038F /* Array+AstroGadgets.swift */; };
+		B4B3605621B725B600B7038F /* Bundle+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B3605421B725B600B7038F /* Bundle+AstroGadgets.swift */; };
 		B69726CE1BD9162F0047EEB9 /* LoggerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69726CD1BD9162F0047EEB9 /* LoggerSpec.swift */; };
-		BD62EA481C929BF0004A02DF /* EnumCountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62EA471C929BF0004A02DF /* EnumCountable.swift */; };
-		BD62EA4B1C929C1C004A02DF /* EnumCountableSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */; };
 		CA1EF8AF2182AA7400554392 /* IdentifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1EF8AE2182AA7400554392 /* IdentifiableType.swift */; };
 		CA5380CB1C5C195900204A68 /* UIColor+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5380CA1C5C195900204A68 /* UIColor+AstroGadgets.swift */; };
 		CA5380CD1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */; };
+		CA663428219A55C400C90ECE /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA663427219A55C400C90ECE /* Sequence.swift */; };
+		CA66342E219A5C6E00C90ECE /* SequenceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66342D219A5C6E00C90ECE /* SequenceSpec.swift */; };
 		CAB40CD1215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB40CD0215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift */; };
 		CAB40CD32153149F008CBE6B /* MKMapView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB40CD22153149F008CBE6B /* MKMapView+AstroGadgets.swift */; };
 		CAEDCACF21892A600050AF0C /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDCACE21892A600050AF0C /* Change.swift */; };
-		CA663428219A55C400C90ECE /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA663427219A55C400C90ECE /* Sequence.swift */; };
-		CA66342E219A5C6E00C90ECE /* SequenceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66342D219A5C6E00C90ECE /* SequenceSpec.swift */; };
 		D0C3176529877E28CFD27E77 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C31A257874127AD224738D /* Log.swift */; };
 		D6F831A48F327D5367262464 /* Pods_AstroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D24B772E4EC6454D9C2C893 /* Pods_AstroTests.framework */; };
 		E62F9D1C1D62264F005402BF /* UICollectionView+AstroGadgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F9D1B1D62264F005402BF /* UICollectionView+AstroGadgets.swift */; };
@@ -73,18 +74,20 @@
 		7CC6FB4E4A3FE9D093738307 /* Pods-AstroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AstroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AstroTests/Pods-AstroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		83593E90B43887E2AE664086 /* ComparableSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparableSpec.swift; sourceTree = "<group>"; };
 		83593EEFC7D26F39183B2AE1 /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comparable.swift; path = Utils/Comparable.swift; sourceTree = "<group>"; };
+		B4B3605121B725A800B7038F /* UIImage+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+AstroGadgets.swift"; sourceTree = "<group>"; };
+		B4B3605321B725B600B7038F /* Array+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+AstroGadgets.swift"; path = "Utils/Array+AstroGadgets.swift"; sourceTree = "<group>"; };
+		B4B3605421B725B600B7038F /* Bundle+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Bundle+AstroGadgets.swift"; path = "Utils/Bundle+AstroGadgets.swift"; sourceTree = "<group>"; };
 		B69726CD1BD9162F0047EEB9 /* LoggerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerSpec.swift; sourceTree = "<group>"; };
 		BD62EA471C929BF0004A02DF /* EnumCountable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnumCountable.swift; path = Utils/EnumCountable.swift; sourceTree = "<group>"; };
-		BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumCountableSpec.swift; sourceTree = "<group>"; };
 		BD95704572604E86D00F715F /* Pods-Astro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Astro.release.xcconfig"; path = "Pods/Target Support Files/Pods-Astro/Pods-Astro.release.xcconfig"; sourceTree = "<group>"; };
 		CA1EF8AE2182AA7400554392 /* IdentifiableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableType.swift; sourceTree = "<group>"; };
 		CA5380CA1C5C195900204A68 /* UIColor+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AstroGadgets.swift"; sourceTree = "<group>"; };
 		CA5380CC1C5C196E00204A68 /* UIColor+AstroGadgetsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AstroGadgetsSpec.swift"; sourceTree = "<group>"; };
+		CA663427219A55C400C90ECE /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sequence.swift; path = Utils/Sequence.swift; sourceTree = "<group>"; };
+		CA66342D219A5C6E00C90ECE /* SequenceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceSpec.swift; sourceTree = "<group>"; };
 		CAB40CD0215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+AstroGadgets.swift"; sourceTree = "<group>"; };
 		CAB40CD22153149F008CBE6B /* MKMapView+AstroGadgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+AstroGadgets.swift"; sourceTree = "<group>"; };
 		CAEDCACE21892A600050AF0C /* Change.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Change.swift; path = Utils/Change.swift; sourceTree = "<group>"; };
-		CA663427219A55C400C90ECE /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sequence.swift; path = Utils/Sequence.swift; sourceTree = "<group>"; };
-		CA66342D219A5C6E00C90ECE /* SequenceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceSpec.swift; sourceTree = "<group>"; };
 		D0C31A257874127AD224738D /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		D5D8E2A7279FA75989658B29 /* Pods-Astro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Astro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Astro/Pods-Astro.debug.xcconfig"; sourceTree = "<group>"; };
 		E62F9D1B1D62264F005402BF /* UICollectionView+AstroGadgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+AstroGadgets.swift"; sourceTree = "<group>"; };
@@ -120,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				CA5380CA1C5C195900204A68 /* UIColor+AstroGadgets.swift */,
+				B4B3605121B725A800B7038F /* UIImage+AstroGadgets.swift */,
 				2E93420DB2E8AE3339E2E9C0 /* UIView+AstroGadgets.swift */,
 				E62F9D1B1D62264F005402BF /* UICollectionView+AstroGadgets.swift */,
 				E62F9D1D1D6227DE005402BF /* UITableView+AstroGadgets.swift */,
@@ -227,6 +231,8 @@
 		BD62EA461C928F6C004A02DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B4B3605321B725B600B7038F /* Array+AstroGadgets.swift */,
+				B4B3605421B725B600B7038F /* Bundle+AstroGadgets.swift */,
 				3F78B54F1CC35D4900A0E30C /* Queue.swift */,
 				BD62EA471C929BF0004A02DF /* EnumCountable.swift */,
 				83593EEFC7D26F39183B2AE1 /* Comparable.swift */,
@@ -240,7 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				83593E90B43887E2AE664086 /* ComparableSpec.swift */,
-				BD62EA4A1C929C1C004A02DF /* EnumCountableSpec.swift */,
 				CA66342D219A5C6E00C90ECE /* SequenceSpec.swift */,
 			);
 			path = Utils;
@@ -471,8 +476,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD62EA481C929BF0004A02DF /* EnumCountable.swift in Sources */,
 				CAB40CD32153149F008CBE6B /* MKMapView+AstroGadgets.swift in Sources */,
+				B4B3605621B725B600B7038F /* Bundle+AstroGadgets.swift in Sources */,
 				535DF10A1C87864E00961785 /* LayoutLabel.swift in Sources */,
 				CA1EF8AF2182AA7400554392 /* IdentifiableType.swift in Sources */,
 				CAB40CD1215313F5008CBE6B /* UIStoryboard+AstroGadgets.swift in Sources */,
@@ -480,8 +485,10 @@
 				E6D5F8841D35B55600CB4D5F /* ReusableView.swift in Sources */,
 				2E9345EE0AEB18FB859A8D06 /* UIView+AstroGadgets.swift in Sources */,
 				2E934B8A416AF015C76347DC /* UIViewController+AstroGadgets.swift in Sources */,
+				B4B3605521B725B600B7038F /* Array+AstroGadgets.swift in Sources */,
 				63379D7F1C063B8800DDD95B /* KeychainAccess.swift in Sources */,
 				D0C3176529877E28CFD27E77 /* Log.swift in Sources */,
+				B4B3605221B725A800B7038F /* UIImage+AstroGadgets.swift in Sources */,
 				E62F9D1E1D6227DE005402BF /* UITableView+AstroGadgets.swift in Sources */,
 				E665B02B1D35BB4B0099C89E /* NibLoadableView.swift in Sources */,
 				E62F9D1C1D62264F005402BF /* UICollectionView+AstroGadgets.swift in Sources */,
@@ -505,7 +512,6 @@
 				CA66342E219A5C6E00C90ECE /* SequenceSpec.swift in Sources */,
 				2E934D1B02F8932284DCF220 /* UIViewController+AstroGadgetsSpec.swift in Sources */,
 				E62F9D221D623675005402BF /* ReusableViewSpec.swift in Sources */,
-				BD62EA4B1C929C1C004A02DF /* EnumCountableSpec.swift in Sources */,
 				835932AC62597B13CED887E4 /* ComparableSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
