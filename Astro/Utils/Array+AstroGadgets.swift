@@ -9,22 +9,6 @@
 import Foundation
 
 public extension Array {
-    
-    public func group<Key: Hashable>(by predicate: @escaping (Element) -> Key) -> [Key: [Element]] {
-        return self.reduce([Key: [Element]]()) { result, element in
-            var mutableResult = result
-            let key = predicate(element)
-            if var group = mutableResult[key] {
-                group.append(element)
-                mutableResult[key] = group
-            }
-            else {
-                mutableResult[key] = [element]
-            }
-            return mutableResult
-        }
-    }
-    
     /**
      A safe version of subscript does automatic bounds checking. Takes an optional index and returns an optional object.
      
