@@ -2,7 +2,7 @@ version: 2
 jobs:
   build-test-lint:
     macos:
-      xcode: "10.0.0"
+      xcode: "10.1.0"
     environment:
       - BUNDLE_PATH: vendor/bundle
       - LC_ALL: en_US.UTF-8
