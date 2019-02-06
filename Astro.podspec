@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Astro"
-  s.version      = "6.0.0"
+  s.version      = "7.0.0"
   s.summary          = "A RoboPod containing a small collection of utilities for project reuse"
   s.homepage         = "https://RobotsAndPencils.com"
   s.license      = {
@@ -30,8 +30,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   }
   s.source           = { :git => "https://github.com/RobotsAndPencils/Astro.git", :tag => s.version.to_s }
 
-  s.ios.deployment_target = '9.0'
-  s.platform     = :ios, '9.0'
+  s.ios.deployment_target = '11.0'
+  s.platform     = :ios, '11.0'
   s.requires_arc = true
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
   
