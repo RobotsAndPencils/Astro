@@ -11,7 +11,6 @@
 		052C0E1C06D418A85196EC1E641E6688 /* QuickSpecBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BFF14C47E58B8E063220A817E3823B4 /* QuickSpecBase.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		078D382E99527C04EDA7705762A32C63 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40183DE699BD3AD6DE8DC68067EF1049 /* Functional.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		0AB1A7A7DB171546FF2FA3BFA4886B17 /* QuickSpecBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C07996AA3AA00FB5FDB406B12C40C62A /* QuickSpecBase.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		0B5899DD5CBDB3B31CA74D95559F1C62 /* EnumCountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F3DC6EFAEE80A7CD156FDD034FF70 /* EnumCountable.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		0C369D493C90E9DEDA57BD5AB972DD34 /* EndWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4548F6297127FEB1361A4709BA2D2 /* EndWith.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		0C5A0168EE0515C4948EAC6621F72EB2 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41443FE617600725662032C17580F79 /* World.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		0EFF888E42BD1DF8B77FA6B547BC9149 /* NMBStringify.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E22BF514863D07E61230F874F7FEE7A /* NMBStringify.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -118,8 +117,8 @@
 		C56C765F972E1C734CC90E2D778AD0C8 /* CwlCatchException.m in Sources */ = {isa = PBXBuildFile; fileRef = 466A33694AD202F68760EDC08F2A1DB8 /* CwlCatchException.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C9976B28F0BDB89E552934A250463D52 /* ContainElementSatisfying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A17A87F5C21829EDCE4E61C23FB3751 /* ContainElementSatisfying.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		CA1EF8B52182B17900554392 /* IdentifiableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1EF8B42182B17900554392 /* IdentifiableType.swift */; };
-		CAEDCAD521892C410050AF0C /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDCAD421892C410050AF0C /* Change.swift */; };
 		CA66342C219A5C5800C90ECE /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA66342B219A5C5800C90ECE /* Sequence.swift */; };
+		CAEDCAD521892C410050AF0C /* Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEDCAD421892C410050AF0C /* Change.swift */; };
 		CC6EDE60A73201DABFC98BC7CAC386E3 /* MatcherProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838725A5D79D138A96E9A58370482809 /* MatcherProtocols.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		CF3E1677F05F5A14272D3119E3C873E7 /* BeLessThanOrEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B6A041827B2ED884C92F69B5CF56F /* BeLessThanOrEqual.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D0BBEAE1167C476BF9C2DBBF18D93046 /* Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC45A7599E83ACD3CD2BBE6827C89C9 /* Closures.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -199,7 +198,7 @@
 		2340D28BCB9DEE166989141C24760D8A /* Astro-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Astro-dummy.m"; sourceTree = "<group>"; };
 		25E2A425AC44022CC611D939D8586C46 /* HooksPhase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HooksPhase.swift; path = Sources/Quick/Hooks/HooksPhase.swift; sourceTree = "<group>"; };
 		27682780E51DEB096A7BADF5E15DE2B9 /* XCTestObservationCenter+Register.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestObservationCenter+Register.m"; path = "Sources/NimbleObjectiveC/XCTestObservationCenter+Register.m"; sourceTree = "<group>"; };
-		276EAF536A70E3D88C3EB0A57A3EE03B /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Quick.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		276EAF536A70E3D88C3EB0A57A3EE03B /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2887CEF04154D07A8981209CD7E05A71 /* Match.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Match.swift; path = Sources/Nimble/Matchers/Match.swift; sourceTree = "<group>"; };
 		2A7C86492B593A5249B2F4326CD24F27 /* Nimble.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Nimble.modulemap; sourceTree = "<group>"; };
 		2A7D9BABF0FEA737D7AE83ED6B206782 /* Pods-Astro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Astro.release.xcconfig"; sourceTree = "<group>"; };
@@ -234,7 +233,7 @@
 		51924F12954C22859ACE53858055142E /* URL+FileName.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URL+FileName.swift"; path = "Sources/Quick/URL+FileName.swift"; sourceTree = "<group>"; };
 		53139E2BA664BE4DD6701AD1B65A1023 /* QuickTestSuite.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuickTestSuite.swift; path = Sources/Quick/QuickTestSuite.swift; sourceTree = "<group>"; };
 		5B58BA9E5624966B089705BB2EF81137 /* Queue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Astro/Utils/Queue.swift; sourceTree = "<group>"; };
-		5D7DEFF0BEBE7702CDDD585358BE2AEC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		5D7DEFF0BEBE7702CDDD585358BE2AEC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5E660C791AD2BD5D8DD1C5C16B6572C1 /* Pods-AstroTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AstroTests-dummy.m"; sourceTree = "<group>"; };
 		600809E8458F06E53AAE5888DAFF491A /* CwlDarwinDefinitions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CwlDarwinDefinitions.swift; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlPreconditionTesting/CwlDarwinDefinitions.swift; sourceTree = "<group>"; };
 		60689963023DFAC9FB8BF3C20FC8C248 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -270,11 +269,10 @@
 		8AC0B21E88E09373C2FAAAABC6400E1F /* Comparable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Comparable.swift; path = Astro/Utils/Comparable.swift; sourceTree = "<group>"; };
 		8AD5FEE49823049E17C5E5171CF7EBCB /* BeLogical.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeLogical.swift; path = Sources/Nimble/Matchers/BeLogical.swift; sourceTree = "<group>"; };
 		8B846F9D5DB8BA751EBCC89C03478655 /* Astro.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Astro.modulemap; sourceTree = "<group>"; };
-		8BFD5B7ED38D60E6617539232B222125 /* Astro.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Astro.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		8F1F3DC6EFAEE80A7CD156FDD034FF70 /* EnumCountable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EnumCountable.swift; path = Astro/Utils/EnumCountable.swift; sourceTree = "<group>"; };
+		8BFD5B7ED38D60E6617539232B222125 /* Astro.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = Astro.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		90000E7AD21E321D619F4DA97455C775 /* CwlCatchException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CwlCatchException.h; path = Carthage/Checkouts/CwlCatchException/Sources/CwlCatchExceptionSupport/include/CwlCatchException.h; sourceTree = "<group>"; };
 		919C76F6A19763DC1D71678EF64A59A4 /* DSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DSL.m; path = Sources/NimbleObjectiveC/DSL.m; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		969D1C426C1FC4C91D153A7C637EF1DA /* UIView+AstroGadgets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+AstroGadgets.swift"; path = "Astro/UI/UIView+AstroGadgets.swift"; sourceTree = "<group>"; };
 		9BB752CBB534234B39D8FAF052B7A6E7 /* mach_excServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mach_excServer.h; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/mach_excServer.h; sourceTree = "<group>"; };
 		9C6741B1B4EA2E448C699868C6D96E02 /* FailureMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FailureMessage.swift; path = Sources/Nimble/FailureMessage.swift; sourceTree = "<group>"; };
@@ -286,7 +284,7 @@
 		A2245F836E65917837AE64D1BA1CF425 /* Predicate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Predicate.swift; path = Sources/Nimble/Matchers/Predicate.swift; sourceTree = "<group>"; };
 		A41443FE617600725662032C17580F79 /* World.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = World.swift; path = Sources/Quick/World.swift; sourceTree = "<group>"; };
 		A67DC7C7BF9087E063C3AD0FDE68F1C6 /* QuickSpec.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QuickSpec.m; path = Sources/QuickObjectiveC/QuickSpec.m; sourceTree = "<group>"; };
-		A6C131E6E40565D466525D2055761915 /* Pods_AstroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AstroTests.framework; path = "Pods-AstroTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6C131E6E40565D466525D2055761915 /* Pods_AstroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AstroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9351C10847D176293CC3E77083A09AF /* World+DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "World+DSL.swift"; path = "Sources/Quick/DSL/World+DSL.swift"; sourceTree = "<group>"; };
 		ABF24E4B9CADF95B962A11742F30194E /* Pods-Astro-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Astro-acknowledgements.plist"; sourceTree = "<group>"; };
 		AC38B22611A4A3BC429CF5372F333079 /* Nimble-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Nimble-dummy.m"; sourceTree = "<group>"; };
@@ -311,8 +309,8 @@
 		CA1EF8B42182B17900554392 /* IdentifiableType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IdentifiableType.swift; path = Astro/UI/IdentifiableType.swift; sourceTree = "<group>"; };
 		CA4A67144474A12D0CEE78DFEA381F69 /* ReusableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReusableView.swift; path = Astro/UI/ReusableView.swift; sourceTree = "<group>"; };
 		CA5F841A373F755E79A64CE9F5990F1C /* Pods-AstroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AstroTests.release.xcconfig"; sourceTree = "<group>"; };
-		CAEDCAD421892C410050AF0C /* Change.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Change.swift; path = Astro/Utils/Change.swift; sourceTree = "<group>"; };
 		CA66342B219A5C5800C90ECE /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sequence.swift; path = Astro/Utils/Sequence.swift; sourceTree = "<group>"; };
+		CAEDCAD421892C410050AF0C /* Change.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Change.swift; path = Astro/Utils/Change.swift; sourceTree = "<group>"; };
 		D04405C8EBD220E451B7DDF4756F3DF0 /* Quick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Quick-dummy.m"; sourceTree = "<group>"; };
 		D06396285FFC7F0BD9E17FAD2E374CE4 /* Nimble-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-prefix.pch"; sourceTree = "<group>"; };
 		D16F20B15242D0164137D22DE3C44698 /* Pods-AstroTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AstroTests-umbrella.h"; sourceTree = "<group>"; };
@@ -328,19 +326,19 @@
 		D947A5B29F0E60B655D0834E86EA5E98 /* Pods-Astro-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Astro-umbrella.h"; sourceTree = "<group>"; };
 		DB958A22A9FC0CCE9A241E1E86878A79 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/Quick/Configuration/Configuration.swift; sourceTree = "<group>"; };
 		DD1A89A6F1F0EFB7AA49649393B0239E /* RaisesException.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RaisesException.swift; path = Sources/Nimble/Matchers/RaisesException.swift; sourceTree = "<group>"; };
-		DF64E537D32F5CA191D281F2D4F400E4 /* mach_excServer.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mach_excServer.c; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/mach_excServer.c; sourceTree = "<group>"; };
+		DF64E537D32F5CA191D281F2D4F400E4 /* mach_excServer.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mach_excServer.c; path = Carthage/Checkouts/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler/mach_excServer.c; sourceTree = "<group>"; };
 		DFA7FE75C9EBECD151F818B7BFF5AB84 /* Nimble.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Nimble.xcconfig; sourceTree = "<group>"; };
 		E19116C99424EBC887B511316D0F1829 /* BeGreaterThanOrEqualTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeGreaterThanOrEqualTo.swift; path = Sources/Nimble/Matchers/BeGreaterThanOrEqualTo.swift; sourceTree = "<group>"; };
-		E1FAAACBD5D503551B7F6E9D077671CD /* Astro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Astro.framework; path = Astro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1FAAACBD5D503551B7F6E9D077671CD /* Astro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Astro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E36862F0BEBAD3A54411560A1CAFB386 /* Pods-AstroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AstroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6F58128E9C8632E8658DF8E09D9CD66 /* Quick.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Quick.modulemap; sourceTree = "<group>"; };
-		E76E0767CB7BC96ABFB9E29B23668B0F /* Pods_Astro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Astro.framework; path = "Pods-Astro.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E76E0767CB7BC96ABFB9E29B23668B0F /* Pods_Astro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Astro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC6DD6B6893D63228C1369713AC0903D /* Pods-AstroTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AstroTests-frameworks.sh"; sourceTree = "<group>"; };
 		ED0C323BB9D07D295FCA52C51D998E3D /* QCKDSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QCKDSL.m; path = Sources/QuickObjectiveC/DSL/QCKDSL.m; sourceTree = "<group>"; };
-		F21BA3252FAE58BE08950F82DEC0617C /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Nimble.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F21BA3252FAE58BE08950F82DEC0617C /* Nimble.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4EBF1B47B9B5488DD67538957A428EF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		F68E5CCFB6B9B59501471666DB803006 /* ExpectationMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpectationMessage.swift; path = Sources/Nimble/ExpectationMessage.swift; sourceTree = "<group>"; };
-		F7185EFC6A8A8FAC25BA05981157D4A7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		F7185EFC6A8A8FAC25BA05981157D4A7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		F8806A60D828ED5A14D9322E7408837C /* DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DSL.swift; path = Sources/Quick/DSL/DSL.swift; sourceTree = "<group>"; };
 		FA0E9496942A15DE6053316D97E1F62E /* ErrorUtility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ErrorUtility.swift; path = Sources/Quick/ErrorUtility.swift; sourceTree = "<group>"; };
 		FA64DFB8ECDE791D0B53371676CFC531 /* XCTestSuite+QuickTestSuiteBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestSuite+QuickTestSuiteBuilder.m"; path = "Sources/QuickObjectiveC/XCTestSuite+QuickTestSuiteBuilder.m"; sourceTree = "<group>"; };
@@ -458,7 +456,6 @@
 				FA64DFB8ECDE791D0B53371676CFC531 /* XCTestSuite+QuickTestSuiteBuilder.m */,
 				70489F67E035D833EEDA42E3611454C9 /* Support Files */,
 			);
-			name = Quick;
 			path = Quick;
 			sourceTree = "<group>";
 		};
@@ -570,7 +567,6 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = SwiftLint;
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
@@ -645,7 +641,6 @@
 			isa = PBXGroup;
 			children = (
 				8AC0B21E88E09373C2FAAAABC6400E1F /* Comparable.swift */,
-				8F1F3DC6EFAEE80A7CD156FDD034FF70 /* EnumCountable.swift */,
 				5B58BA9E5624966B089705BB2EF81137 /* Queue.swift */,
 				CAEDCAD421892C410050AF0C /* Change.swift */,
 				CA66342B219A5C5800C90ECE /* Sequence.swift */,
@@ -727,7 +722,6 @@
 				27682780E51DEB096A7BADF5E15DE2B9 /* XCTestObservationCenter+Register.m */,
 				90657247999F2201336E018CE2D319B3 /* Support Files */,
 			);
-			name = Nimble;
 			path = Nimble;
 			sourceTree = "<group>";
 		};
@@ -888,6 +882,14 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					B619DDE510BEFC6A17C007307291627A = {
+						LastSwiftMigration = 1010;
+					};
+					BA85E3619866E2EAA8CC3EDE21C659FC = {
+						LastSwiftMigration = 1010;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1035,7 +1037,6 @@
 			files = (
 				B708D80D074A6B78CDA7AE2E6D418E94 /* Astro-dummy.m in Sources */,
 				87C6DA6940DE23DC23E861416B1F9BA6 /* Comparable.swift in Sources */,
-				0B5899DD5CBDB3B31CA74D95559F1C62 /* EnumCountable.swift in Sources */,
 				344E98D9AF28FEE3AE31A86207B9778B /* KeychainAccess.swift in Sources */,
 				A9619BE06A19AA65498EE467924EE2F6 /* LayoutLabel.swift in Sources */,
 				75F652D8D0EF4A835689F6C9C31764D3 /* Log.swift in Sources */,
