@@ -27,7 +27,7 @@ class UIViewControllerAstroGadgetsSpec: QuickSpec {
                     childViewController = UIViewController()
                     childViewController.view = UIView()
                     // Act
-                    parentViewController.addChildViewController(childViewController, inContainer: parentViewController.view)
+                    parentViewController.addChild(childViewController, inContainer: parentViewController.view)
                 }
                 
                 it("then the child view controller should have been added") {
