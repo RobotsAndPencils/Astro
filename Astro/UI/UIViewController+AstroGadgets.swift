@@ -24,7 +24,7 @@ public extension UIViewController {
      - parameter childViewController: to be added inside of the parent view controller (i.e. self)
      - parameter inContainer: the UIView where the childViewController's UIView will be added as a subview
     */
-    public func addChildViewController(_ childViewController: UIViewController, inContainer view: UIView) {
+    public func addChild(_ childViewController: UIViewController, inContainer view: UIView) {
         self.addChild(childViewController)
         view.addSubview(childViewController.view)
         childViewController.didMove(toParent: self)

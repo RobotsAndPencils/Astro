@@ -27,12 +27,12 @@ class UIViewControllerAstroGadgetsSpec: QuickSpec {
                     childViewController = UIViewController()
                     childViewController.view = UIView()
                     // Act
-                    parentViewController.addChildViewController(childViewController, inContainer: parentViewController.view)
+                    parentViewController.addChild(childViewController, inContainer: parentViewController.view)
                 }
                 
                 it("then the child view controller should have been added") {
                     // Assert
-                    expect(parentViewController.childViewControllers[0]).to(equal(childViewController))
+                    expect(parentViewController.children[0]).to(equal(childViewController))
                 }
                 it("then the child view controller view should be added to the given view") {
                     // Assert
