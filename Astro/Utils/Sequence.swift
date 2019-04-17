@@ -38,7 +38,7 @@ public extension Sequence {
     /**
      Returns a subsequence by skipping the initial, consecutive elements whose value at the given key path is true.
      */
-    public func drop(while keyPath: KeyPath<Element, Bool>) -> SubSequence {
+    public func drop(while keyPath: KeyPath<Element, Bool>) -> DropWhileSequence<Self> {
         return drop(while: get(keyPath))
     }
 
@@ -75,7 +75,7 @@ public extension Sequence {
     /**
      Returns a subsequence containing the initial, consecutive elements with true values at the given key path.
      */
-    public func prefix(while keyPath: KeyPath<Element, Bool>) -> SubSequence {
+    public func prefix(while keyPath: KeyPath<Element, Bool>) -> [Element] {
         return prefix(while: get(keyPath))
     }
 
