@@ -55,10 +55,10 @@ class SequenceSpec: QuickSpec {
 
         describe("drop(while:)") {
             it("returns subsequence skipping initial true values") {
-                expect([
+                expect(Array([
                     TestElement(id: 0, name: "Zero", isActive: true),
                     TestElement(id: 1, name: nil, isActive: false)
-                ].drop(while: \.isActive))
+                ].drop(while: \.isActive)))
                 .to(equal([TestElement(id: 1, name: nil, isActive: false)]))
             }
         }
