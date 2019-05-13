@@ -211,7 +211,7 @@ class BookListViewController: UIViewController, UICollectionViewDataSource {
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: BookCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCell(ofType: BookCell.self, for: indexPath)
         return cell
     }
 }
