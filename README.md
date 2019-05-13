@@ -159,7 +159,7 @@ mapView.dequeueReusableAnnotationView(ofType: AstroAnnotationView.self, for: ann
 Like ReusableView but for cell types :smile:. There are currently no further requirements of types that conform to this protocol, but extensions on UITableView and UICollectionView require ReusableCells.
 
 ```swift
-class AstroTableViewCell: UITableViewCell, ReusableView {
+class AstroTableViewCell: UITableViewCell {
   // ...
 }
 
