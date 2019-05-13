@@ -16,7 +16,7 @@ import UIKit
  */
 public extension UIView {
     
-    public var frameSize: CGSize {
+    var frameSize: CGSize {
         get {
             return self.frame.size
         }
@@ -27,7 +27,7 @@ public extension UIView {
         }
     }
     
-    public var frameHeight: CGFloat {
+    var frameHeight: CGFloat {
         get {
             return self.frame.size.height
         }
@@ -38,7 +38,7 @@ public extension UIView {
         }
     }
     
-    public var frameWidth: CGFloat {
+    var frameWidth: CGFloat {
         get {
             return self.frame.size.width
         }
@@ -49,7 +49,7 @@ public extension UIView {
         }
     }
     
-    public var frameOrigin: CGPoint {
+    var frameOrigin: CGPoint {
         get {
             return self.frame.origin
         }
@@ -60,7 +60,7 @@ public extension UIView {
         }
     }
     
-    public var frameX: CGFloat {
+    var frameX: CGFloat {
         get {
             return self.frame.origin.x
         }
@@ -71,7 +71,7 @@ public extension UIView {
         }
     }
     
-    public var frameY: CGFloat {
+    var frameY: CGFloat {
         get {
             return self.frame.origin.y
         }

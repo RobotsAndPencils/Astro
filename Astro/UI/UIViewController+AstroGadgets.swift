@@ -24,7 +24,7 @@ public extension UIViewController {
      - parameter childViewController: to be added inside of the parent view controller (i.e. self)
      - parameter inContainer: the UIView where the childViewController's UIView will be added as a subview
     */
-    public func addChild(_ childViewController: UIViewController, inContainer view: UIView) {
+    func addChild(_ childViewController: UIViewController, inContainer view: UIView) {
         self.addChild(childViewController)
         view.addSubview(childViewController.view)
         childViewController.didMove(toParent: self)
@@ -42,7 +42,7 @@ public extension UIViewController {
      - parameter title: - of the alert
      - parameter message: - of the alert
      */
-    public func quickAlert(title: String?, message: String?) {
+    func quickAlert(title: String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         present(alert, animated: true, completion: nil)
@@ -51,7 +51,7 @@ public extension UIViewController {
     /**
      Show an alert indicating that the feature has not been implemented. Useful when developing new features and you quickly want to stub out an unfinished areas.
     */
-    public func featureNotImplemented() {
+    func featureNotImplemented() {
         NSLog("FEATURE NOT IMPLEMENTED")
         quickAlert(title: "Coming Soon", message: "Feature Not Implemented Yet.")
     }

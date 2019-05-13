@@ -10,11 +10,11 @@ import Foundation
 
 public extension Bundle {
     
-    public var shortVersionString: String? {
+    var shortVersionString: String? {
         return self.infoDictionary?["CFBundleShortVersionString"] as? String
     }
     
-    public var bundleVersion: String? {
+    var bundleVersion: String? {
         return self.infoDictionary?["CFBundleVersion"] as? String
     }
 }

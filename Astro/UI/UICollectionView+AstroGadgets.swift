@@ -21,7 +21,7 @@ public extension UICollectionView {
      - parameter type: The cell subclass type that conforms to the ReusableView
      protocol
      */
-    public func registerCell<Cell: UICollectionViewCell>(ofType type: Cell.Type) {
+    func registerCell<Cell: UICollectionViewCell>(ofType type: Cell.Type) {
         register(type, forCellWithReuseIdentifier: type.reuseIdentifier)
     }
     
@@ -32,7 +32,7 @@ public extension UICollectionView {
      - parameter type: The cell subclass type that conforms to both ReusableView
      and NibLoadableView protocols
      */
-    public func registerCell<Cell: UICollectionViewCell>(ofType type: Cell.Type) where Cell: NibLoadableView {
+    func registerCell<Cell: UICollectionViewCell>(ofType type: Cell.Type) where Cell: NibLoadableView {
         register(type.nib, forCellWithReuseIdentifier: type.reuseIdentifier)
     }
 
@@ -42,7 +42,7 @@ public extension UICollectionView {
      - parameter kind: The kind of supplementary view to retrieve
      - parameter type: The UICollectionReusableView subclass type to register
      */
-    public func registerReusableSupplementaryView<View: UICollectionReusableView>(ofKind kind: String, type: View.Type) {
+    func registerReusableSupplementaryView<View: UICollectionReusableView>(ofKind kind: String, type: View.Type) {
         register(type, forSupplementaryViewOfKind: kind, withReuseIdentifier: type.identifier)
     }
     
@@ -55,7 +55,7 @@ public extension UICollectionView {
      protocol
      - parameter indexPath: The index path of the cell to dequeue
      */
-    public func dequeueReusableCell<Cell: UICollectionViewCell>(ofType type: Cell.Type, for indexPath: IndexPath) -> Cell {
+    func dequeueReusableCell<Cell: UICollectionViewCell>(ofType type: Cell.Type, for indexPath: IndexPath) -> Cell {
         guard let cell = dequeueReusableCell(withReuseIdentifier: type.reuseIdentifier, for: indexPath) as? Cell else {
             fatalError("Could not dequeue collection view cell with identifier: \(type.reuseIdentifier)")
         }
@@ -71,7 +71,7 @@ public extension UICollectionView {
      - parameter type: The UICollectionReusableView subclass type to retrieve
      - parameter indexPath: The index path specifying the location of the supplementary view in the collection view
      */
-    public func dequeueReusableSupplementaryView<View: UICollectionReusableView>(ofKind kind: String, type: View.Type, for indexPath: IndexPath) -> View {
+    func dequeueReusableSupplementaryView<View: UICollectionReusableView>(ofKind kind: String, type: View.Type, for indexPath: IndexPath) -> View {
         guard let view = dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: type.identifier, for: indexPath) as? View else {
             fatalError("Could not dequeue supplementary view with identifier: \(type.identifier)")
         }

@@ -16,10 +16,10 @@ public protocol ExecutableQueue {
 }
 
 public extension ExecutableQueue {
-    public func execute(_ closure: @escaping () -> Void) {
+    func execute(_ closure: @escaping () -> Void) {
         queue.async(execute: closure)
     }
-    public func executeAfter(delay: TimeInterval, closure: @escaping () -> Void) {
+    func executeAfter(delay: TimeInterval, closure: @escaping () -> Void) {
         let delayTime = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         queue.asyncAfter(deadline: delayTime, execute: closure)
     }

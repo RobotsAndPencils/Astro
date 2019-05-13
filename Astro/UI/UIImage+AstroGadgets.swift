@@ -11,7 +11,7 @@ import UIKit
 public extension UIImage {
     
     /** Resizes an image to a given width, preserving aspect ratio */
-    public func resizeImage(forWidth: CGFloat) -> UIImage {
+    func resizeImage(forWidth: CGFloat) -> UIImage {
         let scale = forWidth / self.size.width
         let height = self.size.height * scale
         UIGraphicsBeginImageContext(CGSize(width: forWidth, height: height))
@@ -23,7 +23,7 @@ public extension UIImage {
     }
     
     /** Returns a drawn image with a given color and size. */
-    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+    convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
         let context = UIGraphicsGetCurrentContext()
         context?.setFillColor(color.cgColor)
