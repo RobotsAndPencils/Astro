@@ -198,7 +198,7 @@ As alluded to, there are `UITableView` and `UICollectionView` extensions that ma
 The register method can take in a cell subclass that adheres to only `ReusableCell`, or both `ReusableCell` and `NibLoadableView`. After the cell is registered, the provided dequeue method can be used in the necessary delegate method which allows you to stick with just using types to reference our views, and get back the specific view type we just dequeued:
 
 ```swift
-class BookCell: UICollectionViewCell, ReusableView, NibLoadableView {
+class BookCell: UICollectionViewCell, NibLoadableView {
   // ...
 }
 
