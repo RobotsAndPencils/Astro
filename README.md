@@ -115,8 +115,8 @@ NOTES:
 Includes a UIColor extension for hex code (e.g. `#FF0000`) support. You can now create your project's color palette in another class extension that brings all those pesky colors into one place and with names that are easy to understand:
 
 ```swift
-public static func MyApp_BrightOrangeColor() -> UIColor {
 private static let _FF9000 = UIColor(hexString: "#FF9000")!
+public static func myApp_BrightOrangeColor() -> UIColor {
     return _FF9000
 }
 ```
@@ -124,7 +124,7 @@ private static let _FF9000 = UIColor(hexString: "#FF9000")!
 In your app's implementation you you can then quickly make use of those colors:
 
 ```swift
-let color = UIColor.MyApp_BrightOrangeColor()
+let color = UIColor.myApp_BrightOrangeColor()
 ```
 
 #### IdentifiableType Protocols
