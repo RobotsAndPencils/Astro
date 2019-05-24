@@ -115,8 +115,8 @@ NOTES:
 Includes a UIColor extension for hex code (e.g. `#FF0000`) support. You can now create your project's color palette in another class extension that brings all those pesky colors into one place and with names that are easy to understand:
 
 ```swift
-private static let _FF9000 = UIColor(hexString: "#FF9000")
-public static func MyApp_BrightOrangeColor() -> UIColor {
+private static let _FF9000 = UIColor(hexString: "#FF9000")!
+public static func myApp_BrightOrangeColor() -> UIColor {
     return _FF9000
 }
 ```
@@ -124,7 +124,7 @@ public static func MyApp_BrightOrangeColor() -> UIColor {
 In your app's implementation you you can then quickly make use of those colors:
 
 ```swift
-let color = UIColor.MyApp_BrightOrangeColor()
+let color = UIColor.myApp_BrightOrangeColor()
 ```
 
 #### IdentifiableType Protocols
@@ -138,7 +138,7 @@ Provides a static `identifier` value that defaults to the type name. UIViewContr
 ```swift
 class AstroViewController: UIViewController {}
 
-let vc = Storyboard.main.instantiateView(ofType: AstroViewController.self)
+let vc = UIStoryboard.main.instantiateView(ofType: AstroViewController.self)
 ```
 
 ##### ReusableView
@@ -165,7 +165,7 @@ class AstroTableViewCell: UITableViewCell {
 
 class AstroTableViewController: UITableViewController {
   // ...
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     return tableView.dequeueReusableCell(ofType: AstroTableViewCell.self, for: indexPath)
   }
   // ...
@@ -177,7 +177,7 @@ class AstroTableViewController: UITableViewController {
 [`NibLoadableView`](Astro/UI/NibLoadableView.swift) has a `nibName`, which should be the NIB filename and defaults to the type's name.
 
 ```swift
-class AstroView: NibLoadableView {
+class AstroView: UIView, NibLoadableView {
   // ...
 }
 
@@ -207,10 +207,10 @@ class BookListViewController: UIViewController, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.register(BookCell.self)
+        collectionView.registerCell(ofType: BookCell.self)
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(ofType: BookCell.self, for: indexPath)
         return cell
     }
