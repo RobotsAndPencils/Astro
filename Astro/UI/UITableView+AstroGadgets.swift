@@ -21,7 +21,7 @@ public extension UITableView {
      - parameter type: The cell subclass type that conforms to the ReusableView
      protocol
      */
-    public func registerCell<Cell: UITableViewCell>(ofType type: Cell.Type) {
+    func registerCell<Cell: UITableViewCell>(ofType type: Cell.Type) {
         register(type.self, forCellReuseIdentifier: type.reuseIdentifier)
     }
     
@@ -32,7 +32,7 @@ public extension UITableView {
      - parameter type: The cell subclass type that conforms to both ReusableView
      and NibLoadableView protocols
      */
-    public func registerCell<Cell: UITableViewCell>(ofType type: Cell.Type) where Cell: NibLoadableView {
+    func registerCell<Cell: UITableViewCell>(ofType type: Cell.Type) where Cell: NibLoadableView {
         register(type.nib, forCellReuseIdentifier: type.reuseIdentifier)
     }
 
@@ -66,7 +66,7 @@ public extension UITableView {
      protocol
      - parameter indexPath: The index path of the cell to dequeue
      */
-    public func dequeueReusableCell<Cell: UITableViewCell>(ofType type: Cell.Type, for indexPath: IndexPath) -> Cell {
+    func dequeueReusableCell<Cell: UITableViewCell>(ofType type: Cell.Type, for indexPath: IndexPath) -> Cell {
         guard let cell = dequeueReusableCell(withIdentifier: type.reuseIdentifier, for: indexPath) as? Cell else {
             fatalError("Could not dequeue table view cell with identifier: \(type.reuseIdentifier)")
         }

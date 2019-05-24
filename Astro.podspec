@@ -32,8 +32,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.platform     = :ios, '11.0'
   s.requires_arc = true
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
-  
+  s.swift_version = '5.0'
+
   s.subspec 'Logging' do | log |
     log.source_files = 'Astro/Logging/**/*.swift'
   end

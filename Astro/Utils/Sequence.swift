@@ -15,7 +15,7 @@ public extension Sequence {
     /**
      Returns a Boolean value indicating whether the value at the given key path for all elements is true.
      */
-    public func allSatisfy(_ keyPath: KeyPath<Element, Bool>) -> Bool {
+    func allSatisfy(_ keyPath: KeyPath<Element, Bool>) -> Bool {
         return allSatisfy(get(keyPath))
     }
 
@@ -24,35 +24,35 @@ public extension Sequence {
 
      Use this method to receive an array of nonoptional values when the key path's value is optional.
      */
-    public func compactMap<T>(_ keyPath: KeyPath<Element, T?>) -> [T] {
+    func compactMap<T>(_ keyPath: KeyPath<Element, T?>) -> [T] {
         return compactMap(get(keyPath))
     }
 
     /**
      Returns a Boolean value indicating whether the sequence contains an element where the key path's value is true.
      */
-    public func contains(where keyPath: KeyPath<Element, Bool>) -> Bool {
+    func contains(where keyPath: KeyPath<Element, Bool>) -> Bool {
         return contains(where: get(keyPath))
     }
 
     /**
      Returns a subsequence by skipping the initial, consecutive elements whose value at the given key path is true.
      */
-    public func drop(while keyPath: KeyPath<Element, Bool>) -> DropWhileSequence<Self> {
+    func drop(while keyPath: KeyPath<Element, Bool>) -> DropWhileSequence<Self> {
         return drop(while: get(keyPath))
     }
 
     /**
      Returns an array containing, in order, the elements of the sequence with true values at the given key path.
      */
-    public func filter(_ keyPath: KeyPath<Element, Bool>) -> [Element] {
+    func filter(_ keyPath: KeyPath<Element, Bool>) -> [Element] {
         return filter(get(keyPath))
     }
 
     /**
      Returns the first element of the sequence whose value at the given key path is true.
      */
-    public func first(where keyPath: KeyPath<Element, Bool>) -> Element? {
+    func first(where keyPath: KeyPath<Element, Bool>) -> Element? {
         return first(where: get(keyPath))
     }
 
@@ -61,28 +61,28 @@ public extension Sequence {
 
      Use this method to receive a single-level collection when the key path's value type is a sequence or collection for each element.
      */
-    public func flatMap<S>(_ keyPath: KeyPath<Element, S>) -> [S.Element] where S: Sequence {
+    func flatMap<S>(_ keyPath: KeyPath<Element, S>) -> [S.Element] where S: Sequence {
         return flatMap(get(keyPath))
     }
 
     /**
      Returns an array containing the values at the given key path for each element.
      */
-    public func map<T>(_ keyPath: KeyPath<Element, T>) -> [T] {
+    func map<T>(_ keyPath: KeyPath<Element, T>) -> [T] {
         return map(get(keyPath))
     }
 
     /**
      Returns a subsequence containing the initial, consecutive elements with true values at the given key path.
      */
-    public func prefix(while keyPath: KeyPath<Element, Bool>) -> [Element] {
+    func prefix(while keyPath: KeyPath<Element, Bool>) -> [Element] {
         return prefix(while: get(keyPath))
     }
 
     /**
      Returns the elements of the sequence, sorted using the < operator on the values at the given key path.
      */
-    public func sorted<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Element] {
+    func sorted<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Element] {
         return sorted(by: { first, second in
             return first[keyPath: keyPath] < second[keyPath: keyPath]
         })
