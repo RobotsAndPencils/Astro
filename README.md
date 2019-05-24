@@ -10,7 +10,7 @@ Astro is a library, built in swift, used to hold common utility methods.
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-    - [CocoaPods (iOS 8+)](#cocoapods-ios-8)
+    - [CocoaPods (iOS 11+)](#cocoapods-ios-11)
 - [Modules](#modules)
   - [Logging](#logging)
   - [Security](#security)
