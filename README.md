@@ -278,7 +278,7 @@ Made with ❤  by Robots & Pencils ([@robotsNpencils](https://twitter.com/robots
 
 - [Chad Sykes](http://github.com/csykes)
 - [Dominic Pepin](http://github.com/dompepin) 
-- [Michael Beauregard](http://github.com/mjbeauregard) 
+- [Brandon Evans](http://github.com/interstateone) 
 
 ## License
 
