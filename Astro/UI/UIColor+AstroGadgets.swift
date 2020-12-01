@@ -57,34 +57,32 @@ extension UIColor {
     }
 
     /**
-       Creates a hexadecimal string representation of a color. For example, UIColor.redColor().hexRGB() will return the string "FF0000".
+     Creates a hexadecimal string representation of a color. For example, UIColor.redColor().hexRGB() will return the string "FF0000". For colors with components in the extended sRGB colorspace, the method returns more than 2 hex digits for that component.
 
-       - returns: The hex string representation.
+     - returns: The hex string representation.
      */
     public func hexRGB() -> String {
-        // swiftlint:disable identifier_name
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        // swiftlint:enable identifier_name
-        assert(getRed(&r, green: &g, blue: &b, alpha: &a), "Unable to get RGB channels from UIColor")
-        return NSString(format: "%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255)) as String
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        let success = getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        assert(success, "Unable to get RGB channels from UIColor")
+        return String(format: "%02X%02X%02X", Int(red * 255), Int(green * 255), Int(blue * 255))
     }
 
     /**
-       Creates a hexadecimal string representation of a color. For example, UIColor.redColor().hexRGBA() will return the string "FF0000FF".
+     Creates a hexadecimal string representation of a color. For example, UIColor.redColor().hexRGBA() will return the string "FF0000FF". For colors with components in the extended sRGB colorspace, the method returns more than 2 hex digits for that component.
 
-       - returns: The hex string representation.
+     - returns: The hex string representation.
      */
     public func hexRGBA() -> String {
-        // swiftlint:disable identifier_name
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        // swiftlint:enable identifier_name
-        assert(getRed(&r, green: &g, blue: &b, alpha: &a), "Unable to get RGBA channels from UIColor")
-        return NSString(format: "%02X%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255), Int(a * 255)) as String
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        let success = getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        assert(success, "Unable to get RGBA channels from UIColor")
+        return NSString(format: "%02X%02X%02X%02X", Int(red * 255), Int(green * 255), Int(blue * 255), Int(alpha * 255)) as String
     }
 }
